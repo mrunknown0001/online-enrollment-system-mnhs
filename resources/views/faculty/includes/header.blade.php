@@ -165,7 +165,7 @@
                                               </li>
                                               <li><a href="#"><span class="fa fa-cog author-log-ic"></span>Settings</a>
                                               </li>
-                                              <li><a href="login.html"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
+                                              <li><a href="{{ route('logout') }}"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
                                               </li>
                                           </ul>
                                       </li>
