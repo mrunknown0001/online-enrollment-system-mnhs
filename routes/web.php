@@ -12,6 +12,7 @@ Route::post('/register', 'RegisterController@postRegister')->name('register.post
 
 
 
-Route::get('/dashboard', function () {
-	return view('dashboard');
+Route::group(['prefix' => 'admin'], function () {
+	// ADMIN DASHBOARD
+	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 });

@@ -72,7 +72,7 @@
     <![endif]-->
 
 
-    @include('includes.sidebar')
+    @include('admin.includes.sidebar')
 
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
@@ -81,13 +81,14 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
 
-                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="OES" /></a>
+                        {{-- <a href="index.html"><img class="main-logo" src="" alt="OES" /></a> --}}
+                        <br><br>
                     </div>
                 </div>
             </div>
         </div>
         <p></p>
-        @include('includes.header')
+        @include('admin.includes.header')
         <div class="section-admin container-fluid">
             <div class="row admin text-center">
                 <div class="col-md-12">
