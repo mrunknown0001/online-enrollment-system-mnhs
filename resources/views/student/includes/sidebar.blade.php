@@ -7,14 +7,13 @@
     <div class="left-custom-menu-adp-wrap comment-scrollbar">
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
-          <li class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}">
+          <li class="">
             <a class="has-arrow" href="index.html">
                <i class="fa big-icon fa-home icon-wrap"></i>
                <span class="mini-click-non">Home</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
                 <li><a title="Dashboard v.1" href="index.html"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
-                <li><a title="Product List" href="product-list.html"><i class="fa fa-female sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Product List</span></a></li>
             </ul>
           </li>
           <li class="">

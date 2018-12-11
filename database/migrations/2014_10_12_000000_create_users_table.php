@@ -18,10 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('firstname', 50);
             $table->string('middlename', 50)->nullable();
             $table->string('lastname', 50);
-            $table->string('email', 100)->unique();
-            $table->string('mobile_number', 100)->unique();
+            $table->string('student_number', 15)->unique()->nullable();
+            $table->string('employee_id', 15)->unique()->nullable();
+            $table->string('email', 100)->unique()->nullable();
+            $table->string('mobile_number', 100)->unique()->nullable();
             $table->string('password', 200);
-            $table->tinyInteger('user_type')->default(1);
+            $table->tinyInteger('user_type')->default(3);
+            // 1 for admin, 2 for faculty, 3 for students
             $table->boolean('active')->default(1);
             $table->rememberToken();
             $table->timestamps();

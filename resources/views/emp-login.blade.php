@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title') Login @endsection
+@section('title') Employee Login @endsection
 
 @section('content')
     <div class="container-fluid">
@@ -23,17 +23,17 @@
           <div class="hpanel">
             <div class="panel-body">
               @include('includes.all')
-              <form action="{{ route('login.post') }}" method="POST" id="loginForm" autocomplete="off">
+              <form action="{{ route('emp.login.post') }}" method="POST" id="loginForm" autocomplete="off">
                 @csrf
                 <div class="form-group">
-                  <label class="control-label" for="student_number">Student Number</label>
-                  <input type="text" placeholder="Enter Your Student Number" title="Please enter you username" required="" value="{{ old('student_number') }}" name="student_number" id="student_number" class="form-control" autofocus="">
-                  <span class="help-block small">Your Student Number</span>
+                  <label class="control-label" for="employee_id">Employee ID</label>
+                  <input type="text" placeholder="Enter Your Employee ID Number" title="Please Employee ID" required="" value="{{ old('employee_id') }}" name="employee_id" id="employee_id" class="form-control" autofocus="">
+                  <span class="help-block small"></span>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="password">Password</label>
                   <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
-                  <span class="help-block small">Yur strong password</span>
+                  <span class="help-block small"></span>
                 </div>
                 <div class="checkbox login-checkbox">
                   <label>
@@ -42,7 +42,6 @@
                   <p class="help-block small">(if this is a private computer)</p>
                 </div>
                 <button class="btn btn-success btn-block loginbtn">Login</button>
-                <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a>
               </form>
             </div>
           </div>
