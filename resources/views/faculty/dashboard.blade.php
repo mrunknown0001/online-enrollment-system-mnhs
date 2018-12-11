@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title') Admin Dashboard @endsection
+@section('title') Faculty Dashboard @endsection
 
 @section('sidebar')
-    @include('admin.includes.sidebar')
+    @include('faculty.includes.sidebar')
 @endsection
 
 @section('header')
-    @include('admin.includes.header')
+    @include('faculty.includes.header')
 @endsection
 
 @section('content')

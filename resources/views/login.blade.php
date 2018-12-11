@@ -25,9 +25,9 @@
               <form action="{{ route('login.post') }}" method="POST" id="loginForm" autocomplete="off">
                 @csrf
                 <div class="form-group">
-                  <label class="control-label" for="username">Username</label>
-                  <input type="email" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
-                  <span class="help-block small">Your unique username to app</span>
+                  <label class="control-label" for="username">Student Number</label>
+                  <input type="text" placeholder="Enter Your Student Number" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
+                  <span class="help-block small">Your Student Number</span>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="password">Password</label>

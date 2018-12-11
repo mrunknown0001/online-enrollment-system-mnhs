@@ -25,16 +25,16 @@
                         <form action="#" id="loginForm">
                             <div class="row">
                                 <div class="form-group col-lg-12">
-                                    <label>Student Number</label>
-                                    <input class="form-control">
+                                    <label for="student_number">Student Number</label>
+                                    <input type="text" name="student_number" id="student_number" class="form-control" placeholder="Enter Student Number" required autofocus="">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Password</label>
-                                    <input type="password" class="form-control">
+                                    <label for="password_confirmation">Repeat Password</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Re-Enter Password" required>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Email Address</label>
