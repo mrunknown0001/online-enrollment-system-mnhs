@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Controllers\AuditTrailController;
 
 class LoginController extends Controller
 {
@@ -14,6 +15,10 @@ class LoginController extends Controller
 	 */
 	public function home()
 	{
+        if(Auth::check()) {
+            return $this->authCheck();
+        }
+
 		return view('home');
 	}
     
@@ -24,6 +29,10 @@ class LoginController extends Controller
      */
     public function login()
     {
+        if(Auth::check()) {
+            return $this->authCheck();
+        }
+
     	return view('login');
     }
 
@@ -34,6 +43,10 @@ class LoginController extends Controller
      */
     public function postLogin(Request $request)
     {
+        if(Auth::check()) {
+            return $this->authCheck();
+        }
+
     	$request->validate([
             'student_number' => 'required',
             'password' => 'required'
@@ -43,8 +56,15 @@ class LoginController extends Controller
         $password = $request['password'];
 
         if(Auth::attempt(['student_number' => $student_number, 'password' => $password])) {
+
+            // add to audit trail
+            $action = 'Student Login';
+            AuditTrailController::create($action);
+
             return redirect()->route('student.dashboard');
         }
+
+        return redirect()->route('login')->with('error', 'Incorrect Student Number or Password!');
     }
 
 
@@ -54,6 +74,10 @@ class LoginController extends Controller
      */
     public function empLogin()
     {
+        if(Auth::check()) {
+            return $this->authCheck();
+        }
+
         return view('emp-login');
     }
 
@@ -63,6 +87,10 @@ class LoginController extends Controller
      */
     public function postEmpLogin(Request $request)
     {
+        if(Auth::check()) {
+            return $this->authCheck();
+        }
+        
         $request->validate([
             'employee_id' => 'required',
             'password' => 'required'
@@ -73,9 +101,19 @@ class LoginController extends Controller
 
         if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password])) {
             if(Auth::user()->user_type == 1) {
+
+                // add to audit trail
+                $action = 'Admin Login';
+                AuditTrailController::create($action);
+
                 return redirect()->route('admin.dashboard');
             }
             else if(Auth::user()->user_type == 2) {
+
+                // add to audit trail
+                $action = 'Faculty Login';
+                AuditTrailController::create($action);
+
                 return redirect()->route('faculty.dashboard');
             }
             
@@ -87,11 +125,38 @@ class LoginController extends Controller
 
 
     /**
+     * auth check
+     */
+    public function authCheck()
+    {
+        if(Auth::user()->user_type == 1) {
+            return redirect()->route('admin.dashboard');
+        }
+        else if(Auth::user()->user_type == 2) {
+            return redirect()->route('faculty.dashboard');
+        }
+        else if(Auth::user()->user_type == 3) {
+            return redirect()->route('student.dashboard');
+        }
+
+        Auth::logout();
+
+        return redirect()->route('login')->with('error', 'Error Occured!');
+    }
+
+
+
+    /**
      * LOGOUT FUNCTION
      * @return view for login
      */
     public function logout()
     {
+
+        // add to audit trail
+        $action = 'Logout';
+        AuditTrailController::create($action);
+
         Auth::logout();
 
         return redirect()->route('login')->with('success', 'Logged Out!');

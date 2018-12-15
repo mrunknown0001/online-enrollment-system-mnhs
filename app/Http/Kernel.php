@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'check_admin' => \App\Http\Middleware\CheckAdmin::class,
         'check_faculty' => \App\Http\Middleware\CheckFaculty::class,
         'check_student' => \App\Http\Middleware\CheckStudent::class,
+        'prevent.back.history' => \App\Http\Middleware\PreventBackHistory::class,
     ];
 
     /**

@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="back-link back-backend">
-            <a href="javascript:void(0)" class="btn btn-primary">Back to Home</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">Back to Home</a>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
                 <div class="form-group">
                   <label class="control-label" for="password">Password</label>
                   <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
-                  <span class="help-block small">Yur strong password</span>
+                  <span class="help-block small">Your strong password</span>
                 </div>
                 <div class="checkbox login-checkbox">
                   <label>

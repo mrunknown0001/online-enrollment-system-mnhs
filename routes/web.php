@@ -18,7 +18,7 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 
 // ADMIN ROUTE GROUP
-Route::group(['prefix' => 'admin', 'middleware' => 'check_admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back.history']], function () {
 	// ADMIN DASHBOARD
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	// ADMIN DASHBOARD REDIRECT
@@ -26,11 +26,35 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check_admin'], function () {
 		return redirect()->route('admin.dashboard');
 	});
 
+	// STUDENT AND FACULTY MANAGEMENT
+	Route::get('/faculty/management', 'UserController@faculties')->name('admin.faculties');
+
+	Route::get('/faculty/add', 'UserController@createFaculty')->name('admin.add.faculty');
+
+	Route::post('/faculty/add', 'UserController@storeFaculty')->name('admin.store.faculty');
+
+	Route::get('/student/management', 'UserController@students')->name('admin.students');
+
+
+	// ACTIVITY LOGS
+	Route::get('/activity-logs', 'AuditTrailController@index')->name('admin.activity.logs');
+
+
+
+	/**
+	 * JSON DATA
+	 */
+	// ALL FACULTIES
+	Route::get('/all/faculties', 'UserController@allFaculties')->name('all.faculties');
+
+	// ALL ACTIVITIES/AUDIT TRAIL
+	Route::get('/all/activity-logs', 'AuditTrailController@allLogs')->name('all.activity.logs');
+
 });
 
 
 // FACULTY ROUTE GROUP
-Route::group(['prefix' => 'faculty', 'middleware' => 'check_faculty'], function () {
+Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.back.history']], function () {
 	// FACULTY DASHBOARD
 	Route::get('/dashboard', 'FacultyController@dashboard')->name('faculty.dashboard');
 	// FACULTY DASHBOARD REDIRECT
@@ -42,7 +66,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'check_faculty'], function 
 
 
 // STUDENT ROUTE GROUP
-Route::group(['prefix' => 's', 'middleware' => 'check_student'], function () {
+Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.history']], function () {
 	// STUDENT DASHBOARD
 	Route::get('/dashboard', 'StudentController@dashboard')->name('student.dashboard');
 	// STUDENT DASHBOARD REDIRECT
