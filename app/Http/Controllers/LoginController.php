@@ -57,6 +57,11 @@ class LoginController extends Controller
 
         if(Auth::attempt(['student_number' => $student_number, 'password' => $password])) {
 
+            if(Auth::user()->active != 1) {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Inactive Student!');
+            }
+
             // add to audit trail
             $action = 'Student Login';
             AuditTrailController::create($action);
@@ -100,6 +105,11 @@ class LoginController extends Controller
         $password = $request['password'];
 
         if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password])) {
+            if(Auth::user()->active != 1) {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Inactive User!');
+            }
+
             if(Auth::user()->user_type == 1) {
 
                 // add to audit trail

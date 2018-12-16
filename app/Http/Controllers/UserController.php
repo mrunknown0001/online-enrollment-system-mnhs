@@ -73,12 +73,13 @@ class UserController extends Controller
     public function allFaculties()
     {
         // get all faculties
-        $faculties = User::where('user_type', 2)->get();
+        $faculties = User::where('user_type', 2)->where('active', 1)->get();
 
         // format to follow
         $data = array(
             'fistname' => null,
             'lastname' => null,
+            'employee_id' => null,
             'action' => null
         );
 
@@ -91,6 +92,7 @@ class UserController extends Controller
                 $data[] = [
                     'firstname' => strtoupper($f->firstname),
                     'lastname' => strtoupper($f->lastname),
+                    'employee_id' => $f->employee_id,
                     'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
                 ];
 

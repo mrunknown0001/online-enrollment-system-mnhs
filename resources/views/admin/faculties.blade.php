@@ -23,11 +23,13 @@
               <thead>
                 <th>Lastname</th>
                 <th>Firstname</th>
+                <th>Employee ID</th>
                 <th>Action</th>
               </thead>
               <tfoot>
                 <th>Lastname</th>
                 <th>Firstname</th>
+                <th>Employee ID</th>
                 <th>Action</th>
               </tfoot>
             </table>
@@ -44,6 +46,7 @@
       columns: [
         { data: 'lastname' },
         { data: 'firstname' },
+        { data: 'employee_id' },
         { data: 'action' }
       ]
     });

@@ -63,9 +63,10 @@
 
     </div>
 
-
-
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('js/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datatable.js') }}"></script>
 
     <script src="{{ asset('js/wow.min.js') }}"></script>
 
@@ -104,9 +105,6 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
 
     <script src="{{ asset('js/main.js') }}"></script>
-
-    <script src="{{ asset('js/jquery-datatable.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-datatable.js') }}"></script>
 </body>
 
 </html>
