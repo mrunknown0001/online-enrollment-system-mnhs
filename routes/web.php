@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/student/management', 'UserController@students')->name('admin.students');
 
+	Route::get('/subject/management', 'SubjectController@index')->name('admin.subjects');
+
 
 	// ACTIVITY LOGS
 	Route::get('/activity-logs', 'AuditTrailController@index')->name('admin.activity.logs');
@@ -54,6 +56,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	// ALL ACTIVITIES/AUDIT TRAIL
 	Route::get('/all/activity-logs', 'AuditTrailController@allLogs')->name('all.activity.logs');
+
+	// ALL SUBJECTS
+	Route::get('/all/subjects', 'SubjectController@allSubjects')->name('all.subjects');
 
 
 

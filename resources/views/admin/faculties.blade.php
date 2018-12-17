@@ -21,7 +21,7 @@
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
             </p>
             @include('includes.all')
-            <table id="faculties" class="table">
+            <table id="faculties" class="table table-hover table-bordered table-striped">
               <thead>
                 <th>Lastname</th>
                 <th>Firstname</th>

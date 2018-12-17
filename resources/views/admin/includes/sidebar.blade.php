@@ -29,6 +29,14 @@
             </ul>
           </li>
 
+          <li class="{{ route('admin.subjects') == url()->current() ? 'active' : '' }}">
+            <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
+          </li>
+
+          <li class="">
+            <a title="Settings" href="#" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
+          </li>
+
           <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">
             <a title="Activity Logs" href="{{ route('admin.activity.logs') }}" aria-expanded="false"><i class="fa fa-history icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Activity Logs</span></a>
           </li>

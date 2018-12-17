@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Student Management @endsection
+@section('title') Subject Management @endsection
 
 @section('sidebar')
     @include('admin.includes.sidebar')
@@ -15,23 +15,21 @@
         <div class="row">
           <div class="col-md-12">
             <br><br><br>
-            <h1>Student Management</h1>
+            <h1>Subject Management</h1>
             <p>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
             </p>
             @include('includes.all')
 
-            <table id="students" class="table table-hover table-bordered table-striped">
+            <table id="subjects" class="table table-hover table-bordered table-striped">
                 <thead>
-                    <th>Lastname</th>
-                    <th>Firstname</th>
-                    <th>LRN</th>
+                    <th>Subject Title</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </thead>
                 <tfoot>
-                    <th>Lastname</th>
-                    <th>Firstname</th>
-                    <th>LRN</th>
+                    <th>Subject Title</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tfoot>
             </table>
@@ -40,15 +38,14 @@
     </div>
 <script>
   $(document).ready(function() {
-    $('#students').DataTable({
+    $('#subjects').DataTable({
       ajax: {
-        url: "{{ route('all.students') }}",
+        url: "{{ route('all.subjects') }}",
         dataSrc: ""
       },
       columns: [
-        { data: 'lastname' },
-        { data: 'firstname' },
-        { data: 'lrn' },
+        { data: 'title' },
+        { data: 'description' },
         { data: 'action' }
       ]
     });
@@ -56,7 +53,7 @@
 
   function reloadTable() {
     // reload data datables
-    var table = $('#students').DataTable();
+    var table = $('#subjects').DataTable();
     table.ajax.reload();
   }
 </script>
