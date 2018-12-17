@@ -180,4 +180,18 @@ class UserController extends Controller
     {
     	return view('admin.students');
     }
+
+
+    // ALL STUDENTS
+    public function allStudents()
+    {
+        $data = array(
+            'firstname' => null,
+            'lastname' => null,
+            'lrn' => null,
+            'action' => null
+        );
+
+        return $data;
+    }
 }
