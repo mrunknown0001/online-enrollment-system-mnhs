@@ -18,7 +18,9 @@
             <h1>Faculty Management</h1>
             <p>
               <a href="{{ route('admin.add.faculty') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Faculty</a>
+              <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
             </p>
+            @include('includes.all')
             <table id="faculties" class="table">
               <thead>
                 <th>Lastname</th>
@@ -51,6 +53,32 @@
       ]
     });
   } );
+
+
+  function remove_faculty($id) {
+    if(confirm("Are you sure you want to remove faculty?")) {
+      $.ajax({
+        url: '/admin/remove/faculty/' + $id,
+        type: "get"
+      });
+      alert('Faculty Removed!');
+
+      // reload data datables
+      var table = $('#faculties').DataTable();
+      table.ajax.reload();
+    }
+    else {
+      alert('Deletion Cancelled!');
+    }
+
+  }
+
+
+  function reloadTable() {
+    // reload data datables
+    var table = $('#faculties').DataTable();
+    table.ajax.reload();
+  }
 </script>
 @endsection
  

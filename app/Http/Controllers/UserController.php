@@ -25,48 +25,102 @@ class UserController extends Controller
     // STORE/UPDATE FACULTY
     public function storeFaculty(Request $request)
     {
-        $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'employee_id' =>'required|unique:users,employee_id',
-            'email' => 'nullable|unique:users,email|email',
-            'mobile_number' => 'nullable|unique:users,mobile_number'
-        ]);
+        $faculty_id = $request['faculty_id'];
+
+        if($faculty_id == null) {
+
+            $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'employee_id' =>'required|unique:users,employee_id',
+                'email' => 'nullable|unique:users,email|email',
+                'mobile_number' => 'nullable|unique:users,mobile_number'
+            ]);
+
+            $firstname = $request['firstname'];
+            $lastname = $request['lastname'];
+            $employee_id = $request['employee_id'];
+            $email = $request['email'];
+            $mobile_number = $request['mobile_number'];
+
+            // add to database
+            $f = new User();
+            $f->firstname = $firstname;
+            $f->lastname = $lastname;
+            $f->employee_id = $employee_id;
+            $f->email = $email;
+            $f->mobile_number = $mobile_number;
+            $f->password = bcrypt('secret');
+            $f->user_type = 2; // faculty
+
+            // if save is success, add activity log and return back with message
+            if($f->save()) {
+                $action = 'Added New Faculty';
+                AuditTrailController::create($action);
+
+                return redirect()->route('admin.add.faculty')->with('success', 'Faculty Added!');
+            }
+        }
+        else {
+
+            $request->validate([
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'employee_id' =>'required',
+                'email' => 'nullable',
+                'mobile_number' => 'nullable'
+            ]);
+
+            $firstname = $request['firstname'];
+            $lastname = $request['lastname'];
+
+            $employee_id = $request['employee_id'];
+            $email = $request['email'];
+            $mobile_number = $request['mobile_number'];
 
 
-        $firstname = $request['firstname'];
-        $lastname = $request['lastname'];
-        $employee_id = $request['employee_id'];
-        $email = $request['email'];
-        $mobile_number = $request['mobile_number'];
+            $f = User::findorfail($faculty_id);
 
-        // add to database
-        $f = new User();
-        $f->firstname = $firstname;
-        $f->lastname = $lastname;
-        $f->employee_id = $employee_id;
-        $f->email = $email;
-        $f->mobile_number = $mobile_number;
-        $f->password = bcrypt('secret');
-        $f->user_type = 2; // faculty
+            // check employee id 
+            if(!$this->core->check_employee_id($employee_id, $f->employee_id)) {
+                return redirect()->back()->with('error', 'Employee ID Already In Use');
+            }
 
-        // if save is success, add activity log and return back with message
-        if($f->save()) {
-            $action = 'Added New Faculty';
-            AuditTrailController::create($action);
+            // check email
+            if(!$this->core->check_email($email, $f->email)) {
+                return redirect()->back()->with('error', 'Email Already In Use');
+            }
 
-            return redirect()->route('admin.add.faculty')->with('success', 'Faculty Added!');
+            // check mobile number
+
+            $f->firstname = $firstname;
+            $f->lastname = $lastname;
+            $f->employee_id = $employee_id;
+            $f->email = $email;
+            $f->mobile_number = $mobile_number;
+            $f->password = bcrypt('secret');
+            $f->user_type = 2; // faculty
+
+            if($f->save()) {
+                $action = 'Faculty Details Updated';
+                AuditTrailController::create($action);
+
+                return redirect()->route('admin.faculties')->with('success', 'Faculty Updated!');
+            }
         }
 
-        return redriect()->route('admin.add.faculty')->with('error', 'Data Not Save! Please Try Again Later!');
+        return redriect()->route('admin.faculties')->with('error', 'Data Not Save! Please Try Again Later!');
     }
 
 
     // EDIT FACULTY
     public function updateFaculty($id = null)
     {
+        $id = decrypt($id);
 
-    }
+        $faculty = User::findorfail($id);
+
+        return view('admin.faculty-add-edit', ['faculty' => $faculty]);    }
 
 
     // ALL FACULTIES
@@ -93,7 +147,7 @@ class UserController extends Controller
                     'firstname' => strtoupper($f->firstname),
                     'lastname' => strtoupper($f->lastname),
                     'employee_id' => $f->employee_id,
-                    'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
+                    'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"remove_faculty('" . $f->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                 ];
 
             }
@@ -101,6 +155,24 @@ class UserController extends Controller
 
         return $data;
     }
+
+
+
+
+    // REMOVE FACULTY IN THE RECORD
+    public function remove_faculty($id)
+    {
+        $faculty = User::findorfail($id);
+        $faculty->active = 0;
+
+        if($faculty->save()) {
+            $action = 'Removed Faculty!';
+            AuditTrailController::create($action);
+        }
+
+    }
+
+
 
 
     // STUDENT MANAGEMENT
