@@ -54,8 +54,9 @@ class LoginController extends Controller
 
         $student_number = $request['student_number'];
         $password = $request['password'];
+        $remember_me = $request['remember_me'];
 
-        if(Auth::attempt(['student_number' => $student_number, 'password' => $password])) {
+        if(Auth::attempt(['student_number' => $student_number, 'password' => $password], $remember_me)) {
 
             if(Auth::user()->active != 1) {
                 Auth::logout();
@@ -92,6 +93,7 @@ class LoginController extends Controller
      */
     public function postEmpLogin(Request $request)
     {
+        
         if(Auth::check()) {
             return $this->authCheck();
         }
@@ -103,8 +105,9 @@ class LoginController extends Controller
 
         $employee_id = $request['employee_id'];
         $password = $request['password'];
+        $remember_me = $request['remember_me'];
 
-        if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password])) {
+        if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password], $remember_me)) {
             if(Auth::user()->active != 1) {
                 Auth::logout();
                 return redirect()->route('login')->with('error', 'Inactive User!');

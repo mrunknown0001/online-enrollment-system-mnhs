@@ -37,14 +37,7 @@
                                                   <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                               </a>
                                           <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                              <li><a href="register.html"><span class="fa fa-home author-log-ic"></span>Register</a>
-                                              </li>
                                               <li><a href="#"><span class="fa fa-user author-log-ic"></span>My Profile</a>
-                                              </li>
-                                              <li><a href="lock.html"><span class="fa fa-diamond author-log-ic"></span> Lock</a>
-                                              </li>
-                                              <li><a href="#"><span class="fa fa-cog author-log-ic"></span>Settings</a>
-                                              </li>
                                               <li><a href="{{ route('logout') }}"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
                                               </li>
                                           </ul>
@@ -69,7 +62,7 @@
                         <ul class="mobile-menu-nav">
                             <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                 <ul class="collapse dropdown-header-top">
-                                    <li><a href="index.html">Dashboard v.1</a></li>
+                                    <li><a href="index.html">Dashboard</a></li>
                                 </ul>
                             </li>
                         </ul>
