@@ -194,4 +194,13 @@ class UserController extends Controller
 
         return $data;
     }
+
+
+
+
+    // ENROLL STUDENT
+    public function enrollStudent()
+    {
+        return view('faculty.student-add-edit', ['student' => null]);
+    }
 }

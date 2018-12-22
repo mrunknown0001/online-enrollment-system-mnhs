@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/subject/update/{id}', 'SubjectController@update')->name('admin.update.subject');
 
 
+	// SCHEDULES
+	Route::get('/schedules', 'ScheduleController@index')->name('admin.schedules');
+
+
 	// SETTINGS
 	Route::get('/settings', 'SettingController@index')->name('admin.settings');
 
@@ -93,6 +97,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	Route::get('/', function () {
 		return redirect()->route('faculty.dashboard');
 	});
+
+
+	// STUDENTS
+	Route::get('/student/enroll', 'UserController@enrollStudent')->name('faculty.enroll.student');
 
 });
 

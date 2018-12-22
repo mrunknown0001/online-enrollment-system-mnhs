@@ -33,7 +33,7 @@
                                       <li class="nav-item">
                                           <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                   <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
-                                                  <span class="admin-name">{{ strtoupper(Auth::user()->firstname . ' ' . Auth::user()->lastname) }}</span>
+                                                  <span class="admin-name">{{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }}</span>
                                                   <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                               </a>
                                           <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
@@ -62,7 +62,7 @@
                         <ul class="mobile-menu-nav">
                             <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                 <ul class="collapse dropdown-header-top">
-                                    <li><a href="index.html">Dashboard</a></li>
+                                    <li><a href="{{ route('faculty.dashboard') }}">Dashboard</a></li>
                                 </ul>
                             </li>
                         </ul>

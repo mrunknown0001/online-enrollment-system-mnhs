@@ -41,14 +41,17 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/datatable.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.button.min.css') }}">
 
     <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery3.3.1.js') }}"></script> --}}
 
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery-datatable.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datatable.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.js') }}"></script>
+    <script src="{{ asset('js/datatables.button.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/calendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendar/fullcalendar.print.min.css') }}">

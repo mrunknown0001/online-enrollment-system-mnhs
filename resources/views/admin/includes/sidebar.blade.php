@@ -2,7 +2,7 @@
   <nav id="sidebar" class="">
     <div class="sidebar-header">
         <a href="{{ route('admin.dashboard') }}"><img class="main-logo" width="80px" src="{{ asset('images/logo.jpg') }}" alt="" /></a>
-        <strong><img scr="{{ asset('images/logo.jpg') }}"></strong>
+        <strong>OES</strong>
     </div>
     <div class="left-custom-menu-adp-wrap comment-scrollbar">
       <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -31,6 +31,10 @@
 
           <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
             <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
+          </li>
+
+          <li class="{{ route('admin.schedules') == url()->current() ? 'active' : '' }}">
+            <a title="Schedules" href="{{ route('admin.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
           </li>
 
           <li class="{{ route('admin.settings') == url()->current() ? 'active' : '' }}">

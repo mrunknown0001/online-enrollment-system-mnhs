@@ -49,12 +49,11 @@
                             <div class="form-group col-lg-6">
                                 <label for="email_confirmation">Repeat Email Address</label>
                                 <input type="email" name="email_confirmation" id="email_confirmation" value="{{ old('email_confirmation') }}" class="form-control" placeholder="Re-Enter Email Address">
-                                <span class="help-block small">Your Valid Email</span>
+                                <span class="help-block small">Your Valid Email Address</span>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="btn btn-success loginbtn">Register</button>
-                            <button class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-success loginbtn">Register</button>
                         </div>
                     </form>
                     <div class="">
