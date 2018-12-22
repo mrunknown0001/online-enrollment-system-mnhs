@@ -25,6 +25,7 @@
             <table id="subjects" class="table table-hover table-bordered table-striped">
                 <thead>
                     <th>Subject Title</th>
+                    <th>Code</th>
                     <th>Description</th>
                     <th>Prerequisite</th>
                     <th>Action</th>
@@ -42,8 +43,9 @@
       },
       columns: [
         { data: 'title' },
+        { data: 'code' },
         { data: 'description' },
-        { data: 'preqrequisite' },
+        { data: 'prerequisite' },
         { data: 'action' }
       ]
     });
@@ -53,6 +55,23 @@
     // reload data datables
     var table = $('#subjects').DataTable();
     table.ajax.reload();
+  }
+
+  function removeSubject($id) {
+    if(confirm("Are you sure you want to remove subject?")) {
+      $.ajax({
+        url: '/admin/remove/subject/' + $id,
+        type: "get"
+      });
+      alert('Subject Removed!');
+
+      // reload data datables
+      var table = $('#subjects').DataTable();
+      table.ajax.reload();
+    }
+    else {
+      alert('Deletion Cancelled!');
+    }
   }
 </script>
 @endsection

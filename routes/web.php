@@ -45,6 +45,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/subject/add', 'SubjectController@store')->name('admin.store.subject');
 
+	Route::get('/subject/update/{id}', 'SubjectController@update')->name('admin.update.subject');
+
+
+	// SETTINGS
+	Route::get('/settings', 'SettingController@index')->name('admin.settings');
+
 
 	// ACTIVITY LOGS
 	Route::get('/activity-logs', 'AuditTrailController@index')->name('admin.activity.logs');
@@ -73,6 +79,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	 * SCRIPT FOR REMOVING USERS TO LIST
 	 */
 	Route::get('/remove/faculty/{id}', 'UserController@remove_faculty')->name('admin.remove.faculty');
+
+	Route::get('/remove/subject/{id}', 'SubjectController@remove')->name('admin.remove.subject');
 
 });
 

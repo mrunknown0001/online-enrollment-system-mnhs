@@ -33,8 +33,8 @@
             <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
           </li>
 
-          <li class="">
-            <a title="Settings" href="#" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
+          <li class="{{ route('admin.settings') == url()->current() ? 'active' : '' }}">
+            <a title="Settings" href="{{ route('admin.settings') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
           </li>
 
           <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">

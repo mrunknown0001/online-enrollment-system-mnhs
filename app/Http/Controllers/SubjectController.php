@@ -83,27 +83,6 @@ class SubjectController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Subject  $subject
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Subject $subject)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -112,20 +91,33 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update($id)
     {
-        //
+        $id = decrypt($id);
+
+        $subject = Subject::findorfail($id);
+
+        return view('admin.subject-add-edit', ['subject' => $subject]);
     }
 
+
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Subject  $subject
-     * @return \Illuminate\Http\Response
+     * Remove subject
+     * making active = 0
+     * @return null
      */
-    public function destroy(Subject $subject)
+    public function remove($id)
     {
-        //
+        $id = decrypt($id);
+
+        $subject = Subject::findorfail($id);
+        $subject->active = 0;
+
+        if($subject->save()) {
+            $action = 'Subject Removed';
+            AuditTrailController::create($action);
+        }
     }
 
 
@@ -136,11 +128,28 @@ class SubjectController extends Controller
     {
         $data = array(
             'title' => null,
+            'code' => null,
             'description' => null,
             'prerequisite' => null,
             'action' => null
         );
 
+        $subjects = Subject::where('active', 1)->orderBy('title', 'asc')->get();
+
+        if(count($subjects) > 0) {
+
+            $data = null;
+
+            foreach($subjects as $s) {
+                $data[] = [
+                    'title' => ucwords($s->title),
+                    'code' => strtoupper($s->code),
+                    'description' => strtoupper($s->description),
+                    'prerequisite' => $s->prerequisite,
+                    'action' => "<a href='" . route('admin.update.subject', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSubject('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
+                ];
+            }
+        }
 
         return $data;
     }
