@@ -28,12 +28,6 @@
                 <th>Employee ID</th>
                 <th>Action</th>
               </thead>
-              <tfoot>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Employee ID</th>
-                <th>Action</th>
-              </tfoot>
             </table>
           </div>
         </div>

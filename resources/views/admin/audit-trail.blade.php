@@ -22,11 +22,6 @@
                     <th>Activity</th>
                     <th>Date &amp; Time</th>
                 </thead>
-                <tfoot>
-                    <th>User</th>
-                    <th>Activity</th>
-                    <th>Date &amp; Time</th>
-                </tfoot>
             </table>
           </div>
         </div>

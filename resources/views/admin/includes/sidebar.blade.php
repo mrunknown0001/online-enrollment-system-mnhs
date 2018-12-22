@@ -29,7 +29,7 @@
             </ul>
           </li>
 
-          <li class="{{ route('admin.subjects') == url()->current() ? 'active' : '' }}">
+          <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
             <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
           </li>
 

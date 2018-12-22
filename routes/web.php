@@ -37,7 +37,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/student/management', 'UserController@students')->name('admin.students');
 
+
+	// SUBJECT MANAGEMENT
 	Route::get('/subject/management', 'SubjectController@index')->name('admin.subjects');
+
+	Route::get('/subject/add', 'SubjectController@create')->name('admin.add.subject');
+
+	Route::post('/subject/add', 'SubjectController@store')->name('admin.store.subject');
 
 
 	// ACTIVITY LOGS

@@ -23,6 +23,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-select.css') }}">
+
     {{-- <link rel="stylesheet" href="{{ asset('css/morrisjs/morris.css') }}"> --}}
 
     {{-- <link rel="stylesheet" href="{{ asset('css/scrollbar/jquery.mCustomScrollbar.min.css') }}"> --}}
@@ -46,6 +48,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery-datatable.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datatable.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-select.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/calendar/fullcalendar.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendar/fullcalendar.print.min.css') }}">

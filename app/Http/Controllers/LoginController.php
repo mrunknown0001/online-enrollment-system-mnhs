@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\AuditTrailController;
+use Illuminate\Database\QueryException;
 
 class LoginController extends Controller
 {
@@ -56,6 +57,7 @@ class LoginController extends Controller
         $password = $request['password'];
         $remember_me = $request['remember_me'];
 
+    try {
         if(Auth::attempt(['student_number' => $student_number, 'password' => $password], $remember_me)) {
 
             if(Auth::user()->active != 1) {
@@ -69,6 +71,10 @@ class LoginController extends Controller
 
             return redirect()->route('student.dashboard');
         }
+    }
+    catch (QueryException $ex) {
+        return redirect()->back()->with('error', 'Please Check Your Database Server');
+    }
 
         return redirect()->route('login')->with('error', 'Incorrect Student Number or Password!');
     }
@@ -107,29 +113,35 @@ class LoginController extends Controller
         $password = $request['password'];
         $remember_me = $request['remember_me'];
 
-        if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password], $remember_me)) {
-            if(Auth::user()->active != 1) {
-                Auth::logout();
-                return redirect()->route('login')->with('error', 'Inactive User!');
+        try {
+            if(Auth::attempt(['employee_id' => $employee_id, 'password' => $password], $remember_me)) {
+                if(Auth::user()->active != 1) {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'Inactive User!');
+                }
+
+                if(Auth::user()->user_type == 1) {
+
+                    // add to audit trail
+                    $action = 'Admin Login';
+                    AuditTrailController::create($action);
+
+                    return redirect()->route('admin.dashboard');
+                }
+                else if(Auth::user()->user_type == 2) {
+
+                    // add to audit trail
+                    $action = 'Faculty Login';
+                    AuditTrailController::create($action);
+
+                    return redirect()->route('faculty.dashboard');
+                }
+                
             }
-
-            if(Auth::user()->user_type == 1) {
-
-                // add to audit trail
-                $action = 'Admin Login';
-                AuditTrailController::create($action);
-
-                return redirect()->route('admin.dashboard');
-            }
-            else if(Auth::user()->user_type == 2) {
-
-                // add to audit trail
-                $action = 'Faculty Login';
-                AuditTrailController::create($action);
-
-                return redirect()->route('faculty.dashboard');
-            }
-            
+        }
+        catch (QueryException $ex) {
+            return redirect()->back()->with('error', 'Please Check Your Database Server.');
+            // $ex->getMessage();
         }
 
         return redirect()->back()->with('error', 'Incorrect Employee ID or Password!');

@@ -28,12 +28,6 @@
                     <th>LRN</th>
                     <th>Action</th>
                 </thead>
-                <tfoot>
-                    <th>Lastname</th>
-                    <th>Firstname</th>
-                    <th>LRN</th>
-                    <th>Action</th>
-                </tfoot>
             </table>
           </div>
         </div>

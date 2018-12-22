@@ -17,6 +17,7 @@
             <br><br><br>
             <h1>Subject Management</h1>
             <p>
+              <a href="{{ route('admin.add.subject') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Subject</a>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
             </p>
             @include('includes.all')
@@ -25,13 +26,9 @@
                 <thead>
                     <th>Subject Title</th>
                     <th>Description</th>
+                    <th>Prerequisite</th>
                     <th>Action</th>
                 </thead>
-                <tfoot>
-                    <th>Subject Title</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tfoot>
             </table>
           </div>
         </div>
@@ -46,6 +43,7 @@
       columns: [
         { data: 'title' },
         { data: 'description' },
+        { data: 'preqrequisite' },
         { data: 'action' }
       ]
     });
