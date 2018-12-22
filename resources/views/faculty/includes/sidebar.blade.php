@@ -28,9 +28,9 @@
             </ul>
           </li>
 
-          {{-- <li>
-            <a title="Landing Page" href="#" aria-expanded="false"><i class="fa fa-bookmark icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Landing Page</span></a>
-          </li> --}}
+          <li>
+            <a title="Schedules" href="" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
+          </li>
         </ul>
       </nav>
     </div>

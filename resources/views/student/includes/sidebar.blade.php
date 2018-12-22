@@ -17,8 +17,8 @@
             </ul>
           </li>
 
-            {{-- <a title="Landing Page" href="#" aria-expanded="false"><i class="fa fa-bookmark icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Landing Page</span></a>
-          </li> --}}
+            <a title="Grades" href="" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Grades</span></a>
+          </li>
         </ul>
       </nav>
     </div>
