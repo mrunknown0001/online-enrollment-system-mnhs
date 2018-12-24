@@ -23,7 +23,8 @@
             <div class="hpanel">
                 <div class="panel-body">
                     @include('includes.all')
-                    
+                    <p>{{ $student->student_number }}</p>
+                    <p>{{ $student->firstname . ' ' . $student->lastname }}</p>
                     <div class="">
                         <a href="{{ route('login') }}">Click Here to Login</a>
                     </div>

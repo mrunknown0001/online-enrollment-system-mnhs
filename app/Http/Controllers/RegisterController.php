@@ -47,8 +47,10 @@ class RegisterController extends Controller
             return redirect()->route('register')->with('error', 'Student Already Registered!');
         }
 
-        // show details
+        // check if they are able to register
+        // qualification: next sy grade 7
 
-        // next step is registration
+        // show details
+        return view('register-show-details', ['student' => $student, 'email' => $email, 'password' => bcrypt($password)]);
     }
 }
