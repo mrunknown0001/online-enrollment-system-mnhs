@@ -27,7 +27,10 @@
                 @csrf
                 <div class="form-group">
                   <label class="control-label" for="student_number">Student Number</label>
-                  <input type="text" placeholder="Enter Your Student Number" title="Please enter you username" required="" value="{{ old('student_number') }}" name="student_number" id="student_number" class="form-control" autofocus="">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">LRN-106702</span>
+                    <input type="text" name="student_number" id="student_number" class="form-control" placeholder="Last 6 Digit LRN" aria-describedby="basic-addon1">
+                  </div>
                   <span class="help-block small">Your Student Number</span>
                 </div>
                 <div class="form-group">

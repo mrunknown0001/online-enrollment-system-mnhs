@@ -28,7 +28,7 @@
 					<select name="section" id="section" class="form-control selectpicker" data-live-search="true" required>
 						@if(count($sections) > 0)
 							@foreach($sections as $s)
-								<option value="{{ $s->id }}">{{ $s->name }} Number of Slots Available</option>
+								<option value="{{ $s->id }}">{{ $s->name }} - {{ $s->enrolled }} of {{ $s->student_limit }} studends enrolled</option>
 							@endforeach
 						@endif
 					</select>

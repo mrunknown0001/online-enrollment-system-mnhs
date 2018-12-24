@@ -3,11 +3,11 @@
 @section('title') Student Dashboard @endsection
 
 @section('sidebar')
-    @include('faculty.includes.sidebar')
+    @include('student.includes.sidebar')
 @endsection
 
 @section('header')
-    @include('faculty.includes.header')
+    @include('student.includes.header')
 @endsection
 
 @section('content')

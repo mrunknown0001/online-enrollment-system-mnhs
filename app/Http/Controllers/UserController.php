@@ -274,7 +274,7 @@ class UserController extends Controller
             'lrn' => 'required|max:6',
             'gender' => 'required',
             'nationality' => 'required',
-            'birthday' => 'required',
+            'birthday' => 'required|date_format:Y-m-d',
             'address' => 'required',
             'birth_certificate' => 'required',
             'form_137' => 'required',
@@ -283,6 +283,13 @@ class UserController extends Controller
 
         $grade_level = $request['grade_level'];
         $section_id = $request['section_id'];
+
+        // check if slot is full
+        $section = Section::findorfail($section_id);
+
+        if($section->enrolled == $section->student_limit) {
+            return redirect()->route('faculty.register.choose.grade')->with('error', 'Section slot is full');
+        }
 
         $firstname = $request['firstname'];
         $middlename = $request['middlename'];
@@ -324,7 +331,9 @@ class UserController extends Controller
         $info->save();
 
         // increment number of enrolled student in the section
-        
+        $section->enrolled += 1;
+        $section->save();
+
 
         $action = 'Enrolled New Student';
         AuditTrailController::create($action);

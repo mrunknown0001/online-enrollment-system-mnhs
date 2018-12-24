@@ -15,8 +15,8 @@
                           <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                               <div class="header-top-menu tabl-d-n">
                                   <ul class="nav navbar-nav mai-top-nav">
-                                      <li class="nav-item"><a href="{{ route('student.dashboard') }}" class="nav-link">Dashboard</a>
-                                      </li>
+                                      {{-- <li class="nav-item"><a href="{{ route('student.dashboard') }}" class="nav-link">Dashboard</a>
+                                      </li> --}}
                                   </ul>
                               </div>
                           </div>
@@ -34,7 +34,7 @@
                                               <li><a href="#"><span class="fa fa-user author-log-ic"></span>My Profile</a>
                                               </li>
                                               </li>
-                                              <li><a href="login.html"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
+                                              <li><a href="{{ route('logout') }}"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
                                               </li>
                                           </ul>
                                       </li>

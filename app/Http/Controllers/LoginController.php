@@ -53,7 +53,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $student_number = $request['student_number'];
+        $student_number = 'LRN-106702' . $request['student_number'];
         $password = $request['password'];
         $remember_me = $request['remember_me'];
 

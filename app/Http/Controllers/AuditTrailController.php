@@ -46,7 +46,7 @@ class AuditTrailController extends Controller
             foreach($logs as $l) {
 
                 $data[] = [
-                    'user' => strtoupper($l->user->firstname . ' ' . $l->user->lastname),
+                    'user' => strtoupper($l->user->firstname . ' ' . $l->user->lastname) . ' ' . $l->user->student_number ,
                     'activity' => $l->action,
                     'created_at' => date('F d, Y h:i:s A', strtotime($l->created_at))
                 ];

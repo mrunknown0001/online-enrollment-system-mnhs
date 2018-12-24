@@ -65,6 +65,7 @@ class SectionController extends Controller
 
         $section->name = $name;
         $section->grade_level = $grade_level;
+        $section->school_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
         $section->student_limit = $student_limit;
 
         // save with log and redirect
