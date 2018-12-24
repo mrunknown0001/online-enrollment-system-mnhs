@@ -15,7 +15,8 @@
     <div class="row">
         <div class="col-md-12">
             <br><br><br>
-            <h1>Enroll Student</h1>
+            <h1>Register Existing Student</h1>
+            <h2><small>Choose Section</small></h2>
         </div>
     </div>
 </div>

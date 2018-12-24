@@ -19,8 +19,7 @@
             <p>
               <a href="{{ route('admin.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subjects</a>
             </p>
-            @include('includes.success')
-            @include('includes.error')
+            @include('includes.all')
             <form action="{{ route('admin.store.subject') }}" method="POST" autocomplete="off">
               @csrf
               <input type="hidden" name="subject_id" value="{{ $subject != null ? $subject->id : '' }}">

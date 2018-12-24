@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Faculty Dashboard @endsection
+@section('title') Students @endsection
 
 @section('sidebar')
     @include('faculty.includes.sidebar')
@@ -15,8 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <br><br><br>
-            <h1>Faculty Dashboard</h1>
-            @include('includes.all')
+            <h1>Register Existing Student</h1>
         </div>
     </div>
 </div>

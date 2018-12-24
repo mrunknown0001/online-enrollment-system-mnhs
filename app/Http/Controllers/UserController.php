@@ -8,6 +8,8 @@ use App\Http\Controllers\AuditTrailController;
 
 class UserController extends Controller
 {
+    // ADMIN SIDE
+
     // FACULTY MANAGEMENT
     public function faculties()
     {
@@ -192,15 +194,68 @@ class UserController extends Controller
             'action' => null
         );
 
+        $students = User::where('user_type', 3)->where('active', 1)->orderBy('lastname', 'asc')->get();
+
+        if(count($students) > 0) {
+
+            $data = null;
+
+            foreach($students as $s) {
+                $data[] = [
+                    'firstname' => $s->firstname,
+                    'lastname' => $s->lastname,
+                    'lrn' => $s->student_number,
+                    'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
+                ];
+            }
+        }
+
         return $data;
     }
 
 
 
 
-    // ENROLL STUDENT
-    public function enrollStudent()
+
+
+    // FACULTY SIDE
+    // CHOOSE GRADE LEVEL
+    public function registrationGradeLevel($id = 1)
     {
-        return view('faculty.student-add-edit', ['student' => null]);
+        if($id != 1 && $id != 2) {
+            return redirect()->route('faculty.dashboard')->with('error', 'Error! Please Try Again Later!');
+        }
+
+        return view('faculty.student-new-grade-level', ['id' => $id]);
     }
+
+
+    // CHOOSE SECTION
+    public function registrationSection(Request $request)
+    {
+        $request->validate([
+            'grade_level' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+
+        // sections based on grade level
+
+        return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level]);
+    }
+
+    // NEW STUDENT REGISTRATION
+    public function newStudentRegistration()
+    {
+        return view('faculty.student-new-registration');
+    }
+
+
+    // EXISTING STUDENT REGISTRATION
+    public function existingStudentRegistration()
+    {
+        return view('faculty.student-existing-registration');
+    }
+
 }

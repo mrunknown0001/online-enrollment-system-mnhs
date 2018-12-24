@@ -17,14 +17,24 @@
             </ul>
           </li>
 
-          <li class="{{ route('faculty.enroll.student') == url()->current() ? 'active' : '' }}">
+          <li class="">
             <a class="has-arrow" href="index.html">
                <i class="fa big-icon fa-users icon-wrap"></i>
                <span class="mini-click-non">Students</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
                 <li><a title="Students" href=""><i class="fa fa-users sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a></li>
-                <li><a title="Enroll Student" href="{{ route('faculty.enroll.student') }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Enroll Students</span></a></li>
+            </ul>
+          </li>
+
+          <li class="{{ route('faculty.new.student.registration') ==  url()->current() || route('faculty.existing.student.registration') == url()->current() ? 'active' : '' }}">
+            <a class="has-arrow" href="index.html">
+               <i class="fa big-icon fa-user-plus icon-wrap"></i>
+               <span class="mini-click-non">Registration</span>
+            </a>
+            <ul class="submenu-angle" aria-expanded="true">
+                <li><a title="Existing Student" href="{{ route('faculty.register.choose.grade', ['id' => 2]) }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Existing Student</span></a></li>
+                <li><a title="New Student" href="{{ route('faculty.register.choose.grade') }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">New Student</span></a></li>
             </ul>
           </li>
 

@@ -99,8 +99,19 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	});
 
 
-	// STUDENTS
-	Route::get('/student/enroll', 'UserController@enrollStudent')->name('faculty.enroll.student');
+
+	// REGISTRATION	
+	// CHOOSE GRADE LEVEL
+	Route::get('/student/register/grade/level/{id?}', 'UserController@registrationGradeLevel')->name('faculty.register.choose.grade');
+
+	// CHOOSE SECTION
+	Route::post('/student/register/section/', 'UserController@registrationSection')->name('faculty.register.choose.section');
+
+	// NEW STUDENT REGISTRATION
+	Route::get('/student/register/new/', 'UserController@newStudentRegistration')->name('faculty.new.student.registration');
+
+	// EXISTING STUDENT REGISTRATION
+	Route::get('/student/register/existing', 'UserController@existingStudentRegistration')->name('faculty.existing.student.registration');
 
 });
 

@@ -19,8 +19,7 @@
             <p>
               <a href="{{ route('admin.faculties') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Faculty Management</a>
             </p>
-            @include('includes.success')
-            @include('includes.error')
+            @include('includes.all')
             <form action="{{ route('admin.store.faculty') }}" method="POST" autocomplete="off">
               @csrf
               <input type="hidden" name="faculty_id" value="{{ $faculty != null ? $faculty->id : '' }}">
