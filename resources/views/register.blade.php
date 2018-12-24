@@ -29,27 +29,52 @@
                             <div class="form-group col-lg-12">
                                 <label for="student_number">Student Number</label>
                                 <input type="text" name="student_number" id="student_number" value="{{ old('student_number') }}" class="form-control" placeholder="Enter Student Number" required autofocus="">
-                                <span class="help-block small">Your Student Number</span>
+                                <span class="help-block small"></span>
+                                @if ($errors->has('student_number'))
+                                  <span class="invalid-feedback text-red" role="alert">
+                                    <strong>{{ $errors->first('student_number') }}</strong>
+                                  </span>
+                                @endif
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" value="" class="form-control" placeholder="Enter Password" required>
-                                <span class="help-block small">Your Strong Password</span>
+                                <span class="help-block small"></span>
+                                @if ($errors->has('password'))
+                                  <span class="invalid-feedback text-red" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                  </span>
+                                @endif
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="password_confirmation">Repeat Password</label>
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Re-Enter Password" required>
-                                <span class="help-block small">Your Strong Password</span>
+                                <span class="help-block small"></span>
+                                @if ($errors->has('password'))
+                                  <span class="invalid-feedback text-red" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                  </span>
+                                @endif
                             </div>
                             <div class="form-group col-lg-6">
                                 <label id="email">Email Address</label>
                                 <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="Enter Email Address">
-                                <span class="help-block small">Your Valid Email Address</span>
+                                <span class="help-block small"></span>
+                                @if ($errors->has('email'))
+                                  <span class="invalid-feedback text-red" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                  </span>
+                                @endif
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="email_confirmation">Repeat Email Address</label>
                                 <input type="email" name="email_confirmation" id="email_confirmation" value="{{ old('email_confirmation') }}" class="form-control" placeholder="Re-Enter Email Address">
-                                <span class="help-block small">Your Valid Email Address</span>
+                                <span class="help-block small"></span>
+                                @if ($errors->has('email'))
+                                  <span class="invalid-feedback text-red" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                  </span>
+                                @endif
                             </div>
                         </div>
                         <div class="text-center">

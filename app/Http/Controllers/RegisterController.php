@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Http\Controllers\AuditTrailController;
 
 class RegisterController extends Controller
 {
@@ -22,6 +24,31 @@ class RegisterController extends Controller
      */
     public function postRegister(Request $request)
     {
-    	return $request; // testing
+    	$request->validate([
+            'student_number' => 'required',
+            'password' => 'required|confirmed|min:8',
+            'email' => 'required|email|confirmed'
+        ]);
+
+        $student_number = $request['student_number'];
+        $password = $request['password'];
+        $email = $request['email'];
+
+        // check student number
+        $student = User::where('student_number', $student_number)->first();
+
+        if(empty($student)) {
+            // if no student found
+            return redirect()->route('register')->with('error', 'Student Not Found!');
+        }
+
+        if($student->registered == 1) {
+            // if registered
+            return redirect()->route('register')->with('error', 'Student Already Registered!');
+        }
+
+        // show details
+
+        // next step is registration
     }
 }

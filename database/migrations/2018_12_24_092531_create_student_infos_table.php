@@ -17,6 +17,8 @@ class CreateStudentInfosTable extends Migration
             $table->increments('id');
             $table->UnsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->tinyInteger('grade_level')->nullable();
+            $table->boolean('graduated')->default(0);
             $table->string('gender', 6)->nullable();
             $table->date('birthday')->nullable();
             $table->string('nationality', 15)->nullable();

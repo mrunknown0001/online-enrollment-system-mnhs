@@ -318,6 +318,7 @@ class UserController extends Controller
         $student->save();
 
         $info = new StudentInfo();
+        $info->grade_level = $grade_level;
         $info->user_id = $student->id;
         $info->gender = $gender;
         $info->birthday = $birthday;
