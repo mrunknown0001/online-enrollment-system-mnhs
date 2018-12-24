@@ -14,7 +14,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.sections');
     }
 
     /**
@@ -81,5 +81,36 @@ class SectionController extends Controller
     public function destroy(Section $section)
     {
         //
+    }
+
+
+
+    /**
+     * all sections
+     */
+    public function allSections()
+    {
+        $data = array(
+            'name' => null,
+            'grade_level' => null,
+            'action' => null
+        );
+
+        $sections = Section::where('active', 1)->orderBy('grade_level', 'asc')->get();
+
+        if(count($sections) > 0) {
+
+            $data = null;
+
+            foreach($sections as $s) {
+                $data[] = [
+                    'name' => $s->name,
+                    'grade_level' => 'Grade ' . $s->grade_level,
+                    'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
+                ];
+            }
+        }
+
+        return $data;
     }
 }

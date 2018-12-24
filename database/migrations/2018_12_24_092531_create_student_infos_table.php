@@ -15,7 +15,7 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->UsignedInteger('user_id');
+            $table->UnsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('gender', 6)->nullable();
             $table->date('birthday')->nullable();

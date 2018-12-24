@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Students @endsection
+@section('title') Sections @endsection
 
 @section('sidebar')
     @include('faculty.includes.sidebar')
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <br><br><br>
-            <h1>Students</h1>
+            <h1>Sections</h1>
         </div>
     </div>
 </div>

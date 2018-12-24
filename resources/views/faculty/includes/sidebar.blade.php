@@ -19,11 +19,11 @@
 
           <li class="">
             <a class="has-arrow" href="index.html">
-               <i class="fa big-icon fa-users icon-wrap"></i>
+               <i class="fa big-icon fa-graduation-cap icon-wrap"></i>
                <span class="mini-click-non">Students</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
-                <li><a title="Students" href=""><i class="fa fa-users sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a></li>
+                <li><a title="Students" href=""><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a></li>
             </ul>
           </li>
 

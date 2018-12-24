@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/subject/update/{id}', 'SubjectController@update')->name('admin.update.subject');
 
 
+	// SECTION MANAGEMENT
+	Route::get('/section/management', 'SectionController@index')->name('admin.sections');
+
+
 	// SCHEDULES
 	Route::get('/schedules', 'ScheduleController@index')->name('admin.schedules');
 
@@ -75,6 +79,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	// ALL SUBJECTS
 	Route::get('/all/subjects', 'SubjectController@allSubjects')->name('all.subjects');
+
+	// ALL SECTIONS
+	Route::get('/all/sections', 'SectionController@allSections')->name('all.sections');
 
 
 
@@ -106,6 +113,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 
 	// CHOOSE SECTION
 	Route::post('/student/register/section/', 'UserController@registrationSection')->name('faculty.register.choose.section');
+
+	Route::get('/student/register/section/', function () {
+		return redirect()->route('faculty.dashboard')->with('error', 'Error! Please Try Again Later!');
+	});
 
 	// NEW STUDENT REGISTRATION
 	Route::get('/student/register/new/', 'UserController@newStudentRegistration')->name('faculty.new.student.registration');

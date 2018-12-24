@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Section;
 use App\Http\Controllers\AuditTrailController;
 
 class UserController extends Controller
@@ -241,8 +242,13 @@ class UserController extends Controller
         $grade_level = $request['grade_level'];
 
         // sections based on grade level
+        $sections = Section::where('grade_level', $grade_level)->orderBy('name', 'asc')->get();
 
-        return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level]);
+        if($grade_level == 2) {
+            $sections = Section::where('grade_level', $grade_level)->where('grade_level', '>', 7)->orderBy('name', 'asc')->get();
+        }
+
+        return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level, 'sections' => $sections]);
     }
 
     // NEW STUDENT REGISTRATION
