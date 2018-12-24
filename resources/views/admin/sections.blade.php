@@ -26,6 +26,8 @@
                 <thead>
                     <th>Section Name</th>
                     <th>Grade Level</th>
+                    <th>Enrolled</th>
+                    <th>Student Limit</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -42,6 +44,8 @@
       columns: [
         { data: 'name' },
         { data: 'grade_level' },
+        { data: 'enrolled' },
+        { data: 'limit' },
         { data: 'action' }
       ]
     });

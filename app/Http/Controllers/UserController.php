@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Section;
+use App\StudentInfo;
 use App\Http\Controllers\AuditTrailController;
 
 class UserController extends Controller
@@ -248,15 +249,97 @@ class UserController extends Controller
     }
 
     // NEW STUDENT REGISTRATION
-    public function newStudentRegistration()
+    public function newStudentRegistration(Request $request)
     {
-        return view('faculty.student-new-registration');
+        $request->validate([
+            'section' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $section_id = $request['section'];
+
+        $section = Section::findorfail($section_id);
+
+        return view('faculty.student-new-registration', ['grade_level' => $grade_level, 'section' => $section]);
+    }
+
+
+    // SAVE NEW STUDENT REGISTRATION
+    public function saveNewStudentRegistration(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'lrn' => 'required|max:6',
+            'gender' => 'required',
+            'nationality' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'birth_certificate' => 'required',
+            'form_137' => 'required',
+            'good_moral_character' => 'required'
+        ]);
+
+        $grade_level = $request['grade_level'];
+        $section_id = $request['section_id'];
+
+        $firstname = $request['firstname'];
+        $middlename = $request['middlename'];
+        $lastname = $request['lastname'];
+        $prefix = $request['prefix'];
+        $lrn = 'LRN-106702' . $request['lrn'];
+        $gender = $request['gender'];
+        $nationality = $request['nationality'];
+        $birthday = date('Y-m-d', strtotime($request['birthday']));
+        $address = $request['address'];
+        $father = $request['father'];
+        $mother = $request['mother'];
+        $birth_certificate = $request['birth_certificate'];
+        $form_137 = $request['form_137'];
+        $gmc = $request['good_moral_character'];
+
+
+        $student = new User();
+        $student->firstname = $firstname;
+        $student->middlename = $middlename;
+        $student->lastname = $lastname;
+        $student->prefix_name = $prefix;
+        $student->student_number = $lrn;
+        $student->user_type = 3; // student
+        $student->password = bcrypt('12345678');
+        $student->save();
+
+        $info = new StudentInfo();
+        $info->user_id = $student->id;
+        $info->gender = $gender;
+        $info->birthday = $birthday;
+        $info->nationality = $nationality;
+        $info->address = $address;
+        $info->father = $father;
+        $info->mother = $mother;
+        $info->birth_certificate = $birth_certificate;
+        $info->form_137 = $form_137;
+        $info->good_moral_character = $gmc;
+        $info->save();
+
+        // increment number of enrolled student in the section
+        
+
+        $action = 'Enrolled New Student';
+        AuditTrailController::create($action);
+
+        return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
+
+        
     }
 
 
     // EXISTING STUDENT REGISTRATION
-    public function existingStudentRegistration()
+    public function existingStudentRegistration(Request $request)
     {
+        return $request;
+
         return view('faculty.student-existing-registration');
     }
 

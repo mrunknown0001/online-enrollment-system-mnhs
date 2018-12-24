@@ -16,9 +16,12 @@
     <div class="col-md-12">
       <br><br><br>
       <h1>Register New Student</h1>
-      <h3><small>Information</small></h3>
+      <h3><small>Grade {{ $grade_level }} -- {{ $section->name }}</small></h3>
       @include('includes.all')
-      <form action="" method="POST" autocomplete="off">
+      <form action="{{ route('faculty.save.new.student.registration') }}" method="POST" autocomplete="off">
+      	{{ csrf_field() }}
+      	<input type="hidden" name="grade_level" value="{{ $grade_level }}">
+      	<input type="hidden" name="section_id" value="{{ $section->id }}">
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label for="firstname">Enter Firstname</label>
@@ -67,7 +70,7 @@
 					<div class="form-group col-md-4">
 						<label for="lrn">Enter LRN</label>
             <div class="input-group">
-						  <span class="input-group-addon" id="basic-addon1">LRN-111111</span>
+						  <span class="input-group-addon" id="basic-addon1">LRN-106702</span>
 						  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Last 6 Digit LRN" aria-describedby="basic-addon1">
 						</div>
             <span class="help-block small"></span>

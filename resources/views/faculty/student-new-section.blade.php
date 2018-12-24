@@ -18,11 +18,12 @@
     <h1>{{ $id == 1 ? 'Register New Student' : 'Register Existing Student' }}</h1>
     <h2><small>Choose Section for Grade {{ $grade_level }}</small></h2>
     @include('includes.all')
-    <form action="" method="POST">
+    <form action="{{ $id == 1 ? route('faculty.new.student.registration') : route('faculty.existing.student.registration') }}" method="POST">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 form-group">
 					{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{ $id }}">
+					<input type="hidden" name="grade_level" value="{{ $grade_level }}">
 					<label for="section">Select Section</label>
 					<select name="section" id="section" class="form-control selectpicker" data-live-search="true" required>
 						@if(count($sections) > 0)

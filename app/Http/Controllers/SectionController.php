@@ -38,11 +38,13 @@ class SectionController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'grade_level' => 'required'
+            'grade_level' => 'required',
+            'student_limit' => 'required|numeric'
         ]);
 
         $name = $request['name'];
         $grade_level = $request['grade_level'];
+        $student_limit = $request['student_limit'];
 
         $section_id = $request['section_id'];
 
@@ -63,6 +65,7 @@ class SectionController extends Controller
 
         $section->name = $name;
         $section->grade_level = $grade_level;
+        $section->student_limit = $student_limit;
 
         // save with log and redirect
         if($section->save()) {
@@ -156,6 +159,8 @@ class SectionController extends Controller
                 $data[] = [
                     'name' => $s->name,
                     'grade_level' => 'Grade ' . $s->grade_level,
+                    'enrolled' => $s->enrolled,
+                    'limit' => $s->student_limit,
                     'action' => "<a href='" . route('admi.update.section', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSection('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }

@@ -56,6 +56,17 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="student_limit">Student Limit</label>
+                    <input type="text" name="student_limit" id="student_limit" value="{{ $section != null ? $section->student_limit : '' }}" class="form-control" placeholder="Enter Section Name" autofocus="" required>
+                    <span class="help-block small"></span>
+                    @if ($errors->has('student_limit'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('student_limit') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+
+                  <div class="form-group">
                     <button type="submit" class="btn btn-primary">{{ $section == null ? 'Add Section' : 'Update Section' }}</button>
                   </div>
                 </div>
