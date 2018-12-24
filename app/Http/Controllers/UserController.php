@@ -243,7 +243,7 @@ class UserController extends Controller
         $grade_level = $request['grade_level'];
 
         // sections based on grade level
-        $sections = Section::where('grade_level', $grade_level)->orderBy('name', 'asc')->get();
+        $sections = Section::where('grade_level', $grade_level)->where('active', 1)->orderBy('name', 'asc')->get();
 
         return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level, 'sections' => $sections]);
     }
