@@ -40,7 +40,6 @@
                   <div class="form-group">
                     <label for="grade_level">Grade Level</label>
                     <select name="grade_level" id="grade_level" class="form-control selectpicker" data-live-search="true" required>
-                      <option value="">Select Grade Level</option>
                       <option value="7">Grade 7</option>
                       <option value="8">Grade 8</option>
                       <option value="9">Grade 9</option>

@@ -24,8 +24,7 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="id" value="{{ $id }}">
 					<label for="section">Select Section</label>
-					<select name="section" id="section" class="form-control" required>
-						<option value="">Select Section</option>
+					<select name="section" id="section" class="form-control selectpicker" data-live-search="true" required>
 						@if(count($sections) > 0)
 							@foreach($sections as $s)
 								<option value="{{ $s->id }}">{{ $s->name }} Number of Slots Available</option>
