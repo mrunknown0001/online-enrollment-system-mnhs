@@ -22,7 +22,7 @@
             @include('includes.all')
             <form action="{{ route('admin.store.section') }}" method="POST" autocomplete="off">
               @csrf
-              <input type="hidden" name="subject_id" value="{{ $section != null ? $section->id : '' }}">
+              <input type="hidden" name="section_id" value="{{ $section != null ? $section->id : '' }}">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -40,12 +40,12 @@
                   <div class="form-group">
                     <label for="grade_level">Grade Level</label>
                     <select name="grade_level" id="grade_level" class="form-control selectpicker" data-live-search="true" required>
-                      <option value="7">Grade 7</option>
-                      <option value="8">Grade 8</option>
-                      <option value="9">Grade 9</option>
-                      <option value="10">Grade 10</option>
-                      <option value="11">Grade 11</option>
-                      <option value="12">Grade 12</option>
+                      <option value="7" {{ $section != null ? $section->grade_level == 7 ? 'selected' : '' : '' }}>Grade 7</option>
+                      <option value="8" {{ $section != null ? $section->grade_level == 8 ? 'selected' : '' : '' }}>Grade 8</option>
+                      <option value="9" {{ $section != null ? $section->grade_level == 9 ? 'selected' : '' : '' }}>Grade 9</option>
+                      <option value="10" {{ $section != null ? $section->grade_level == 10 ? 'selected' : '' : '' }}>Grade 10</option>
+                      <option value="11" {{ $section != null ? $section->grade_level == 11 ? 'selected' : '' : '' }}>Grade 11</option>
+                      <option value="12" {{ $section != null ? $section->grade_level == 12 ? 'selected' : '' : '' }}>Grade 12</option>
                     </select>
                     <span class="help-block small"></span>
                     @if ($errors->has('name'))

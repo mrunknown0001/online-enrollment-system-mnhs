@@ -55,7 +55,7 @@ class SectionController extends Controller
         }
         else {
             // update
-            $section = Section::findorfail($id);
+            $section = Section::findorfail($section_id);
 
             $action = 'Section Updated!';
             $message = 'Section Updated';
@@ -103,9 +103,13 @@ class SectionController extends Controller
      * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update($id)
     {
-        //
+        $id = decrypt($id);
+
+        $section = Section::findorfail($id);
+
+        return view('admin.section-add-edit', ['section' => $section]);
     }
 
     /**
@@ -152,7 +156,7 @@ class SectionController extends Controller
                 $data[] = [
                     'name' => $s->name,
                     'grade_level' => 'Grade ' . $s->grade_level,
-                    'action' => "<a href=\"route('" . route('admi.update.section', ['id' => encrypt($s->id)]) . "')\" class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSection('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
+                    'action' => "<a href='" . route('admi.update.section', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSection('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }
         }
