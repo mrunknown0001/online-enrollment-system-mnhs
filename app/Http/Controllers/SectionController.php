@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Section;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AuditTrailController;
 
 class SectionController extends Controller
 {
@@ -24,7 +25,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.section-add-edit', ['section' => null]);
     }
 
     /**
@@ -35,7 +36,42 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'grade_level' => 'required'
+        ]);
+
+        $name = $request['name'];
+        $grade_level = $request['grade_level'];
+
+        $section_id = $request['section_id'];
+
+        if($section_id == null) {
+            // create section
+            $section = new Section();
+
+            $action = 'New Section Created!';
+            $message = 'Section Created';
+        }
+        else {
+            // update
+            $section = Section::findorfail($id);
+
+            $action = 'Section Updated!';
+            $message = 'Section Updated';
+        }
+
+        $section->name = $name;
+        $section->grade_level = $grade_level;
+
+        // save with log and redirect
+        if($section->save()) {
+            AuditTrailController::create($action);
+
+            return redirect()->route('admin.add.section')->with('success', $message);
+        }
+
+        return redirect()->route('admin.sections')->with('error', 'Error Occured! Please Try Again Later!');
     }
 
     /**
@@ -78,9 +114,19 @@ class SectionController extends Controller
      * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function remove($id)
     {
-        //
+        $id = decrypt($id);
+
+        $section = Section::findorfail($id);
+        $section->active = 0;
+        
+        if($section->save()) {
+            $action = 'Removed Section';
+            AuditTrailController::create($action);
+        }
+
+
     }
 
 
@@ -106,7 +152,7 @@ class SectionController extends Controller
                 $data[] = [
                     'name' => $s->name,
                     'grade_level' => 'Grade ' . $s->grade_level,
-                    'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
+                    'action' => "<a href=\"route('" . route('admi.update.section', ['id' => encrypt($s->id)]) . "')\" class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSection('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }
         }

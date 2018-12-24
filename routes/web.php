@@ -51,6 +51,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// SECTION MANAGEMENT
 	Route::get('/section/management', 'SectionController@index')->name('admin.sections');
 
+	Route::get('/section/add', 'SectionController@create')->name('admin.add.section');
+
+	Route::post('/section/add', 'SectionController@store')->name('admin.store.section');
+
+	Route::get('/section/update/{id}', 'SectionController@update')->name('admi.update.section');
+
 
 	// SCHEDULES
 	Route::get('/schedules', 'ScheduleController@index')->name('admin.schedules');
@@ -92,6 +98,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/remove/faculty/{id}', 'UserController@remove_faculty')->name('admin.remove.faculty');
 
 	Route::get('/remove/subject/{id}', 'SubjectController@remove')->name('admin.remove.subject');
+
+	Route::get('/remove/section/{id}', 'SectionController@remove')->name('admin.remove.section');
 
 });
 

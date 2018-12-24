@@ -24,7 +24,7 @@
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{ $id }}">
 						<label for="grade_level">Select Grade Level</label>
-						<select name="grade_level" id="grade_level" class="form-control" required>
+						<select name="grade_level" id="grade_level" class="form-control selectpicker" data-live-search="true" required>
 							<option value="">Select Grade Level</option>
 							<option value="7">Grade 7</option>
 							<option value="8">Grade 8</option>

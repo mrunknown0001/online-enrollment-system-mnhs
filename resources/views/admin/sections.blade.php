@@ -17,7 +17,7 @@
             <br><br><br>
             <h1>Section Management</h1>
             <p>
-              <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Add Section</a>
+              <a href="{{ route('admin.add.section') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Section</a>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
             </p>
             @include('includes.all')
@@ -49,20 +49,20 @@
 
   function reloadTable() {
     // reload data datables
-    var table = $('#subjects').DataTable();
+    var table = $('#sections').DataTable();
     table.ajax.reload();
   }
 
-  function removeSubject($id) {
-    if(confirm("Are you sure you want to remove subject?")) {
+  function removeSection($id) {
+    if(confirm("Are you sure you want to remove section?")) {
       $.ajax({
-        url: '/admin/remove/subject/' + $id,
+        url: '/admin/remove/section/' + $id,
         type: "get"
       });
-      alert('Subject Removed!');
+      alert('Section Removed!');
 
       // reload data datables
-      var table = $('#subjects').DataTable();
+      var table = $('#sections').DataTable();
       table.ajax.reload();
     }
     else {
