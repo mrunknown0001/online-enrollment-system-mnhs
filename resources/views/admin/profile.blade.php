@@ -24,7 +24,7 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="firstname">Enter Firstname</label>
-                <input type="text" name="firstname" id="firstname" value="{{ Auth::user()->firstname != null ? Auth::user()->firstname : '' }}" class="form-control" placeholder="Enter Firstname" required>
+                <input type="text" name="firstname" id="firstname" value="{{ Auth::user()->firstname != null ? Auth::user()->firstname : '' }}" class="form-control" placeholder="Enter Firstname" required autofocus="">
                 @if ($errors->has('firstname'))
                   <span class="invalid-feedback text-red" role="alert">
                     <strong>{{ $errors->first('firstname') }}</strong>

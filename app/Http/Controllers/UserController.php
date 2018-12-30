@@ -17,7 +17,29 @@ class UserController extends Controller
     // CHANGE PASSWORD
     public function postChangePassword(Request $request)
     {
-        return $request;
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $old_password = $request['old_password'];
+        $password = $request['password'];
+
+
+        if(!password_verify($old_password, Auth::user()->password)) {
+            return redirect()->back()->with('error', 'Old Password Incorrect!');
+        }
+
+        Auth::user()->password = bcrypt($password);
+
+        if(Auth::user()->save()) {
+
+            $action = 'Updated Profile';
+            AuditTrailController::create($action);
+            return redirect()->back()->with('success', 'Password Updated!');
+        }
+
+        return redirect()->back()->with('error', 'Password Failed to Update!');
     }
 
 
@@ -43,6 +65,9 @@ class UserController extends Controller
         $user->mobile_number = $mobile_number;
 
         if($user->save()) {
+
+            $action = 'Changed Password';
+            AuditTrailController::create($action);
             return redirect()->back()->with('success', 'Profile Updated!');
         }
 

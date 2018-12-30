@@ -4,3 +4,8 @@
     /*height: 40px;*/
     margin-top: -40px !important;
 }
+
+
+.text-red {
+	color: red !important;
+}
