@@ -19,12 +19,20 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 // ADMIN ROUTE GROUP
 Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back.history']], function () {
-	// ADMIN DASHBOARD
+    // ADMIN DASHBOARD
 	Route::get('/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 	// ADMIN DASHBOARD REDIRECT
 	Route::get('/', function () {
 		return redirect()->route('admin.dashboard');
 	});
+
+	// ADMIN PROFILE
+	Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+	Route::post('/profile', 'UserController@postProfileUpdate')->name('admin.profile.update');
+
+	// ADMIN PASSWORD
+	Route::get('/password', 'AdminController@password')->name('admin.password');
+	Route::post('/password', 'UserController@postChangePassword')->name('admin.password.update');
 
 	// STUDENT AND FACULTY MANAGEMENT
 	Route::get('/faculty/management', 'UserController@faculties')->name('admin.faculties');

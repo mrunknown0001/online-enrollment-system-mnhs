@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,19 @@ class User extends Authenticatable
     public function info()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+
+
+    /**
+     * method use to get fullname of user
+     *
+     */
+    public function fullname()
+    {
+        $fullname = Auth::user()->firstname . ' ' . Auth::user()->lastname;
+
+        return $fullname;
     }
     
 }

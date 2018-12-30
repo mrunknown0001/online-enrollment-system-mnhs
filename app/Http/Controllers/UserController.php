@@ -6,10 +6,53 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Section;
 use App\StudentInfo;
+use Auth;
 use App\Http\Controllers\AuditTrailController;
 
 class UserController extends Controller
 {
+
+    // COMMON FOR ALL USERS
+
+    // CHANGE PASSWORD
+    public function postChangePassword(Request $request)
+    {
+        return $request;
+    }
+
+
+    // UPDATE PROFILe
+    public function postProfileUpdate(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'nullable|email',
+            'mobile_number' => 'nullable|numeric'
+        ]);
+
+        $firstname = $request['firstname'];
+        $lastname = $request['lastname'];
+        $email = $request['email'];
+        $mobile_number = $request['mobile_number'];
+
+        $user = Auth::user();
+        $user->firstname = $firstname;
+        $user->lastname = $lastname;
+        $user->email = $email;
+        $user->mobile_number = $mobile_number;
+
+        if($user->save()) {
+            return redirect()->back()->with('success', 'Profile Updated!');
+        }
+
+        return redirect()->back()->with('error', 'Failed to Update Profile!');
+        
+    }
+
+
+
+
     // ADMIN SIDE
 
     // FACULTY MANAGEMENT

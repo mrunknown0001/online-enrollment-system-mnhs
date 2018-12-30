@@ -27,11 +27,11 @@
                                       <li class="nav-item">
                                           <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                   <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
-                                                  <span class="admin-name">{{ ucwords(Auth::user()->firstname . ' ' . Auth::user()->lastname) }}</span>
+                                                  <span class="admin-name">{{ ucwords(Auth::user()->fullname()) }}</span>
                                                   <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                               </a>
                                           <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                              <li><a href="javascript:void(0)"><span class="fa fa-user author-log-ic"></span>My Profile</a>
+                                              <li><a href="{{ route('admin.profile') }}"><span class="fa fa-user author-log-ic"></span>My Profile</a>
                                               </li>
                                               {{-- <li><a href="lock.html"><span class="fa fa-diamond author-log-ic"></span> Lock</a>
                                               </li>
