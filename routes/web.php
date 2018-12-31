@@ -121,6 +121,14 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 		return redirect()->route('faculty.dashboard');
 	});
 
+	// FACULTY PROFILE
+	Route::get('/profile', 'FacultyController@profile')->name('faculty.profile');
+	Route::post('/profile', 'UserController@postProfileUpdate')->name('faculty.profile.update');
+
+	// FACULTY PASSWORD CHANGE
+	Route::get('/password', 'FacultyController@password')->name('faculty.password');
+	Route::post('/password', 'UserController@postChangePassword')->name('faculty.password.update');
+
 
 
 	// REGISTRATION	

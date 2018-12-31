@@ -37,7 +37,7 @@
                                                   <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                               </a>
                                           <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                              <li><a href="#"><span class="fa fa-user author-log-ic"></span>My Profile</a>
+                                              <li><a href="{{ route('faculty.profile') }}"><span class="fa fa-user author-log-ic"></span>My Profile</a>
                                               <li><a href="{{ route('logout') }}"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>
                                               </li>
                                           </ul>
