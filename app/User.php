@@ -35,7 +35,7 @@ class User extends Authenticatable
     // STUDENT INFO
     public function info()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->hasOne('App\StudentInfo', 'user_id', 'id');
     }
 
 
