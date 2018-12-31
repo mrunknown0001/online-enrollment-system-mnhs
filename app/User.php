@@ -32,11 +32,15 @@ class User extends Authenticatable
     ];
 
 
+    // STUDENT INFO
     public function info()
     {
         return $this->belongsTo('App\User', 'user_id');
     }
 
+
+
+    // GLOBAL FUNCTION ACCESS FOR USERS USING AUTH
 
 
     /**

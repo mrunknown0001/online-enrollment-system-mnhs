@@ -25,13 +25,13 @@
                                   <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                      
                                       <li class="nav-item">
-                                          <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                          <a href="javascript:void(0)" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                   <i class="fa fa-user adminpro-user-rounded header-riht-inf" aria-hidden="true"></i>
                                                   <span class="admin-name">{{ ucwords(Auth::user()->fullname()) }}</span>
                                                   <i class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
                                               </a>
                                           <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                              <li><a href="#"><span class="fa fa-user author-log-ic"></span>My Profile</a>
+                                              <li><a href="{{ route('student.profile') }}"><span class="fa fa-user author-log-ic"></span>My Profile</a>
                                               </li>
                                               </li>
                                               <li><a href="{{ route('logout') }}"><span class="fa fa-sign-out author-log-ic"></span>Log Out</a>

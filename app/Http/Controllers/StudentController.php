@@ -12,4 +12,18 @@ class StudentController extends Controller
 		return view('student.dashboard');
 	}
 
+
+	// STUDENT PROFILE
+	public function profile()
+	{
+		return view('student.profile');
+	}
+
+
+	// STUDENT PASSWORD CHANGE
+	public  function password()
+	{
+		return view('student.password-change');
+	}
+
 }

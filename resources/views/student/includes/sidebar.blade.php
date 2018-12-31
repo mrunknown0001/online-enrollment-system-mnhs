@@ -17,7 +17,7 @@
             </ul>
           </li>
           <li>
-            <a title="Grades" href="" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Grades</span></a>
+            <a title="Grades" href="{{ route('student.grades') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Grades</span></a>
           </li>
         </ul>
       </nav>

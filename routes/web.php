@@ -175,4 +175,17 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 		return redirect()->route('student.dashboard');
 	});
 
+
+	// STUDENT PROFILE view only
+	Route::get('/profile', 'StudentController@profile')->name('student.profile');
+
+	// STUDENT PASSWORD CHANGE VIEW
+	Route::get('/password', 'StudentController@password')->name('student.password');
+	Route::post('/password', 'UserController@postChangePassword')->name('student.password.update');
+
+
+
+	// STUDENT GRADES
+	Route::get('/grades', 'GradeController@viewGrades')->name('student.grades');
+
 });
