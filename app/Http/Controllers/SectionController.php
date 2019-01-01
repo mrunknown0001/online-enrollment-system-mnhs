@@ -109,7 +109,7 @@ class SectionController extends Controller
      */
     public function update($id)
     {
-        $id = decrypt($id);
+        $id = $this->core->decryptString($id);
 
         $section = Section::findorfail($id);
 

@@ -93,7 +93,7 @@ class SubjectController extends Controller
      */
     public function update($id)
     {
-        $id = decrypt($id);
+        $id = $this->core->decryptString($id);
 
         $subject = Subject::findorfail($id);
 

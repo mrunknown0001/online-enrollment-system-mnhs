@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrandsTable extends Migration
+class CreateStudentSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateStrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('strands', function (Blueprint $table) {
+        Schema::create('student_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 120);
-            $table->string('code', 10);
-            $table->string('track', 120);
-            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateStrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strands');
+        Schema::dropIfExists('student_sections');
     }
 }

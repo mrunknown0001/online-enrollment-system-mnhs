@@ -55,6 +55,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/subject/update/{id}', 'SubjectController@update')->name('admin.update.subject');
 
+	// STRANDS MANAGEMENT
+	Route::get('/strand/management', 'StrandController@index')->name('admin.strands');
+
+	Route::get('/strand/add', 'StrandController@create')->name('admin.add.strand');
+
+	Route::post('/strand/add', 'StrandController@store')->name('admin.store.strand');
+
+	Route::get('/strand/update/{id}', 'StrandController@update')->name('admin.update.strand');
+
 
 	// SECTION MANAGEMENT
 	Route::get('/section/management', 'SectionController@index')->name('admin.sections');
@@ -97,6 +106,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// ALL SECTIONS
 	Route::get('/all/sections', 'SectionController@allSections')->name('all.sections');
 
+	// ALL STRANDS
+	Route::get('/all/strands', 'StrandController@allStrands')->name('all.strands');
+
 
 
 
@@ -108,6 +120,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/remove/subject/{id}', 'SubjectController@remove')->name('admin.remove.subject');
 
 	Route::get('/remove/section/{id}', 'SectionController@remove')->name('admin.remove.section');
+
+	Route::get('/remove/strand/{id}', 'StrandController@remove')->name('admin.remove.strand');
 
 });
 

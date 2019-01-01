@@ -29,12 +29,16 @@
             </ul>
           </li>
 
-          <li class="{{ route('admin.sections') == url()->current() ? 'active' : '' }}">
-            <a title="Section Management" href="{{ route('admin.sections') }}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Sections</span></a>
+          <li class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}">
+            <a title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Strands</span></a>
           </li>
 
           <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
             <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
+          </li>
+
+          <li class="{{ route('admin.sections') == url()->current() ? 'active' : '' }}">
+            <a title="Section Management" href="{{ route('admin.sections') }}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Sections</span></a>
           </li>
 
           <li class="{{ route('admin.schedules') == url()->current() ? 'active' : '' }}">

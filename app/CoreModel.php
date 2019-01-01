@@ -73,4 +73,18 @@ class CoreModel extends Model
 
     	return true;
     }
+
+
+    // check payload in decrypting encrypted id
+    public function decryptString($str)
+    {
+        try {
+            $str = decrypt($str);
+
+            return $str;
+        }
+        catch (\Exception $e) {
+            return null;
+        }
+    }
 }
