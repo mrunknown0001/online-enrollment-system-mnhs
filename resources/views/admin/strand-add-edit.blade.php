@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label for="track">Select Track</label>
-                    <select name="track" id="track" class="form-control" required>
+                    <select name="track" id="track" class="form-control selectpicker" data-live-search="true" required>
                       <option value="">Select Track</option>
                       <option value="Academic Track" {{ $strand != null ? $strand->track == 'Academic Track' ? 'selected' : '' : '' }}>Academic Track</option>
                       <option value="Technical-Vocational-Livelihood (TVL) Track" {{ $strand != null ? $strand->track == 'Technical-Vocational-Livelihood (TVL) Track' ? 'selected' : '' : '' }}>Technical-Vocational-Livelihood (TVL) Track</option>
