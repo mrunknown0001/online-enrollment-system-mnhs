@@ -17,8 +17,8 @@ class CreateStudentSectionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->usignedInteger('section_id');
-            $table->foregin('section_id')->references('id')->on('sections');
+            $table->unsignedInteger('section_id');
+            $table->foreign('section_id')->references('id')->on('sections');
             $table->timestamps();
         });
     }
