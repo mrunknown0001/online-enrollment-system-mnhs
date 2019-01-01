@@ -416,7 +416,7 @@ class UserController extends Controller
     // EXISTING STUDENT REGISTRATION
     public function existingStudentRegistration(Request $request)
     {
-        return $request;
+        // return $request;
 
         return view('faculty.student-existing-registration');
     }

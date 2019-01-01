@@ -15,6 +15,10 @@ class CreateStudentSectionsTable extends Migration
     {
         Schema::create('student_sections', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->usignedInteger('section_id');
+            $table->foregin('section_id')->references('id')->on('sections');
             $table->timestamps();
         });
     }

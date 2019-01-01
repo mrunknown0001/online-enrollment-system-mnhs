@@ -3,21 +3,35 @@
 @section('title') Students @endsection
 
 @section('sidebar')
-    @include('faculty.includes.sidebar')
+  @include('faculty.includes.sidebar')
 @endsection
 
 @section('header')
-    @include('faculty.includes.header')
+  @include('faculty.includes.header')
 @endsection
 
 @section('content')
 <div class="section-admin container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <br><br><br>
-            <h1>Register Existing Student</h1>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br><br><br>
+      <h1>Register Existing Student</h1>
+      @include('includes.all')
+      <div class="row">
+      	<div class="col-md-6 col-md-offset-3">
+      		<h4>Search Student:</h4>
+      		<form action="" method="POST" autocomplete="off">
+						<div class="form-group">
+							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search Student" autofocus="">
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary">Search</button>
+						</div>
+      		</form>
+      	</div>
+      </div>
     </div>
+  </div>
 </div>
 @endsection
  
