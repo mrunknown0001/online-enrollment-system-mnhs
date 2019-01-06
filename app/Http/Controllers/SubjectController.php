@@ -146,6 +146,7 @@ class SubjectController extends Controller
                     'code' => strtoupper($s->code),
                     'description' => strtoupper($s->description),
                     'prerequisite' => $s->prerequisite,
+                    'grade_level' => 'Grade '. $s->grade_level,
                     'action' => "<a href='" . route('admin.update.subject', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSubject('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }

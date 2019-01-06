@@ -19,6 +19,7 @@ class CreateSubjectsTable extends Migration
             $table->string('code', 50)->nullable();
             $table->text('description')->nullable();
             $table->integer('prerequisite')->nullable();
+            $table->tinyInteger('grade_level')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

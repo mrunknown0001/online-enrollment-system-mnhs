@@ -28,6 +28,7 @@
                     <th>Code</th>
                     <th>Description</th>
                     <th>Prerequisite</th>
+                    <th>Grade Level</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -46,6 +47,7 @@
         { data: 'code' },
         { data: 'description' },
         { data: 'prerequisite' },
+        { data: 'grade_level' },
         { data: 'action' }
       ]
     });
