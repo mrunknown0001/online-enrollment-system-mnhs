@@ -12,6 +12,8 @@
 
     <link href="{{ asset('css/bootstrap.min.4.1.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/full-slider.css') }}">
+
   </head>
 
   <body>
@@ -45,7 +47,7 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol> --}}
         <div class="carousel-inner" role="listbox">
-          <div class="carousel-item active" style="background-image: url('images/basketball/image_9.png')">
+          <div class="carousel-item active" style="background-image: url('images/background-sample.jpeg')">
             <div class="carousel-caption d-none d-md-block">
               <h3></h3>
               <p></p>
@@ -53,14 +55,14 @@
           </div>
 
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        {{-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
-        </a>
+        </a> --}}
       </div>
     </header>
     

@@ -20,6 +20,9 @@ class CreateSubjectsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('prerequisite')->nullable();
             $table->tinyInteger('grade_level')->nullable();
+            $table->unsignedInteger('strand_id')->nullable();
+            $table->foreign('strand_id')->references('id')->on('strands');
+            $table->tinyInteger('semester')->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

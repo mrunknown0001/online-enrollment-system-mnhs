@@ -55,6 +55,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/subject/update/{id}', 'SubjectController@update')->name('admin.update.subject');
 
+	// SENIOR HIGH SUBJECT MANAGEMENT
+	Route::get('/subject/management/senior', 'SubjectController@seniorHighSubjects')->name('admin.senior.subjects');
+
+	Route::get('/subject/senior/add', 'SubjectController@seniorCreate')->name('admin.add.senior.subject');
+
+	Route::post('/subject/senior/add', 'SubjectController@storeSeniorSubject')->name('admin.senior.subject.store');
+
+	Route::get('/subject/senior/update/{id}', 'SubjectController@updateSeniorSubject')->name('admin.update.senior.subject');
+
+
 	// STRANDS MANAGEMENT
 	Route::get('/strand/management', 'StrandController@index')->name('admin.strands');
 
@@ -102,6 +112,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	// ALL SUBJECTS
 	Route::get('/all/subjects', 'SubjectController@allSubjects')->name('all.subjects');
+
+	// ALL SENIOR HIGH SUBJECTS
+	Route::get('/all/subjects/senior', 'SubjectController@allSubjectsSenior')->name('all.subjects.senior');
 
 	// ALL SECTIONS
 	Route::get('/all/sections', 'SectionController@allSections')->name('all.sections');

@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label for="description">Subject Description</label>
-                    <textarea name="description" id="description" class="form-control" placeholder="Enter Subject Description" required>{{ $subject != null ? $subject->description : '' }}</textarea>
+                    <textarea name="description" id="description" class="form-control" placeholder="Enter Subject Description">{{ $subject != null ? $subject->description : '' }}</textarea>
                     <span class="help-block small"></span>
                     @if ($errors->has('description'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -56,9 +56,32 @@
                     @endif
                   </div>
                   <div class="form-group">
+                    <label for="grade_level">Grade Level</label>
+                    <select name="grade_level" id="grade_level" class="form-control selectpicker" data-live-search="true" required>
+                      <option data-token="" value="7" {{ $subject != null ? $subject->grade_level == 7 ? 'selected' : '' : '' }}>Grade 7</option>
+                      <option data-token="" value="8" {{ $subject != null ? $subject->grade_level == 8 ? 'selected' : '' : '' }}>Grade 8</option>
+                      <option data-token="" value="9" {{ $subject != null ? $subject->grade_level == 9 ? 'selected' : '' : '' }}>Grade 9</option>
+                      <option data-token="" value="10" {{ $subject != null ? $subject->grade_level == 10 ? 'selected' : '' : '' }}>Grade 10</option>
+                    </select>
+                    <span class="help-block small"></span>
+                    @if ($errors->has('grade_level'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('grade_level') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                  <div class="form-group">
                     <label for="prerequisite">Subject Prerequisite</label>
                     <select name="prerequisite" id="prerequisite" class="form-control selectpicker" data-live-search="true">
                       <option data-token="" value=""></option>
+                      @if(count($subjects) > 0)
+                        @foreach($subjects as $s)
+                          @if($subject != null && $subject->grade_level != $s->grade_level)
+                            <option data-token="" value="{{ $s->id }}">{{ $s->title }} for Grade {{ $s->grade_level }}</option>
+                          @endif
+                        @endforeach
+                      @endif
+
                     </select>
                     <span class="help-block small"></span>
                     @if ($errors->has('prerequisite'))

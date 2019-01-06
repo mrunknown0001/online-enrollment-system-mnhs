@@ -17,9 +17,9 @@
             <br><br><br>
             <h1>Subject Management</h1>
             <p>
-              <a href="{{ route('admin.add.subject') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add Subject</a>
+              <a href="{{ route('admin.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Junior High Subject Management</a>
+              <a href="{{ route('admin.add.senior.subject') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Senior High Subject</a>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
-              <a href="{{ route('admin.senior.subjects') }}" class="btn btn-success"><i class="fa fa-arrow-right"></i> Senior High Subject Management</a>
             </p>
             @include('includes.all')
 
@@ -27,9 +27,10 @@
                 <thead>
                     <th>Subject Title</th>
                     <th>Code</th>
-                    <th>Description</th>
+                    <th>Strand</th>
                     <th>Prerequisite</th>
                     <th>Grade Level</th>
+                    <th>Semester</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -40,15 +41,16 @@
   $(document).ready(function() {
     $('#subjects').DataTable({
       ajax: {
-        url: "{{ route('all.subjects') }}",
+        url: "{{ route('all.subjects.senior') }}",
         dataSrc: ""
       },
       columns: [
         { data: 'title' },
         { data: 'code' },
-        { data: 'description' },
+        { data: 'strand' },
         { data: 'prerequisite' },
         { data: 'grade_level' },
+        { data: 'semester' },
         { data: 'action' }
       ]
     });

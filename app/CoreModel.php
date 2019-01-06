@@ -87,4 +87,18 @@ class CoreModel extends Model
             return null;
         }
     }
+
+
+    // GET SUBJECT CODE
+    public function getSubjectCode($id)
+    {
+        if($id != null) {
+            $subject = \App\Subject::findorfail($id);
+
+            return $subject->code;
+        }
+
+        return 'N/A';
+
+    }
 }
