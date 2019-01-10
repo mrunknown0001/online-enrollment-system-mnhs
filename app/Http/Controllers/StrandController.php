@@ -56,6 +56,7 @@ class StrandController extends Controller
     	$strand->track = $track;
 
     	if($strand->save()) {
+            AuditTrailController::create($action);
     		return redirect()->route('admin.add.strand')->with('success', $message);
 
     	}
