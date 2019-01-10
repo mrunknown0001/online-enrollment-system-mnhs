@@ -30,7 +30,7 @@
           </li>
 
           <li class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}">
-            <a title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Strands</span></a>
+            <a title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Strands</span></a>
           </li>
 
           <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
