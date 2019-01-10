@@ -101,4 +101,17 @@ class CoreModel extends Model
         return 'N/A';
 
     }
+
+
+    // get strand code
+    public function getStrandCode($id)
+    {
+        if($id != null) {
+            $strand = \App\Strand::findorfail($id);
+
+            return $strand->code;
+        }
+
+        return 'N/A';
+    }
 }

@@ -28,6 +28,7 @@
                     <th>Grade Level</th>
                     <th>Enrolled</th>
                     <th>Student Limit</th>
+                    <th>Strand</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -46,6 +47,7 @@
         { data: 'grade_level' },
         { data: 'enrolled' },
         { data: 'limit' },
+        { data: 'strand' },
         { data: 'action' }
       ]
     });

@@ -64,7 +64,6 @@ class SectionController extends Controller
             return redirect()->back()->with('error', 'Grade Level Required a Strand');
         }
 
-        return '';
 
         if($section_id == null) {
             // create section
@@ -182,6 +181,7 @@ class SectionController extends Controller
                     'grade_level' => 'Grade ' . $s->grade_level,
                     'enrolled' => $s->enrolled,
                     'limit' => $s->student_limit,
+                    'strand' => $this->core->getStrandCode($s->strand_id),
                     'action' => "<a href='" . route('admi.update.section', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"removeSection('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }
