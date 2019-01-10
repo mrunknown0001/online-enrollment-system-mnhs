@@ -351,53 +351,5 @@ class SectionsTableSeeder extends Seeder
         ]);
 
 
-        // GRADE 11
-        DB::table('sections')->insert([
-        	[
-        		'name' => 'Meiji',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Krashen',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Hemingway',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Kesumbing',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Deloitte',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Cabrera',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Jaena',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Bonifacio',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        	[
-        		'name' => 'Rizal',
-        		'grade_level' => 11,
-        		'school_year' => date('Y') . '-' . date('Y', strtotime("+1 year"))
-        	],
-        ]);
     }
 }

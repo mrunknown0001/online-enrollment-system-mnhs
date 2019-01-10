@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Section;
+use App\Strand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuditTrailController;
 
@@ -25,7 +26,9 @@ class SectionController extends Controller
      */
     public function create()
     {
-        return view('admin.section-add-edit', ['section' => null]);
+        $strands = Strand::where('active', 1)->get();
+
+        return view('admin.section-add-edit', ['section' => null, 'strands' => $strands]);
     }
 
     /**
@@ -45,8 +48,23 @@ class SectionController extends Controller
         $name = $request['name'];
         $grade_level = $request['grade_level'];
         $student_limit = $request['student_limit'];
+        $strand_id = $request['strand'];
 
         $section_id = $request['section_id'];
+
+        if($strand_id != null) {
+            $strand = Strand::findorfail($strand_id);
+        }
+
+        // check grade 11 & 12 only for strand
+        if($grade_level < 11 && $strand_id != null) {
+            return redirect()->back()->with('error', 'Grade Level Can\'t Have Strand');
+        }
+        elseif($grade_level > 10 && $strand_id == null) {
+            return redirect()->back()->with('error', 'Grade Level Required a Strand');
+        }
+
+        return '';
 
         if($section_id == null) {
             // create section
@@ -65,6 +83,7 @@ class SectionController extends Controller
 
         $section->name = $name;
         $section->grade_level = $grade_level;
+        $section->strand_id = $strand_id;
         $section->school_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
         $section->student_limit = $student_limit;
 
@@ -112,8 +131,9 @@ class SectionController extends Controller
         $id = $this->core->decryptString($id);
 
         $section = Section::findorfail($id);
+        $strands = Strand::where('active', 1)->get();
 
-        return view('admin.section-add-edit', ['section' => $section]);
+        return view('admin.section-add-edit', ['section' => $section, 'strands' => $strands]);
     }
 
     /**

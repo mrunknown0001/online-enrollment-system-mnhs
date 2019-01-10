@@ -17,6 +17,8 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('name', 20);
             $table->tinyInteger('grade_level');
+            $table->unsignedInteger('strand_id')->nullable();
+            $table->foreign('strand_id')->references('id')->on('strands');
             $table->string('school_year', 10); // example: 2018-2019
             $table->tinyInteger('enrolled')->default(0);
             $table->tinyInteger('student_limit')->default(40);

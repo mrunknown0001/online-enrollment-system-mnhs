@@ -67,6 +67,24 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="strand">Select Strand</label>
+                    <select name="strand" id="strand" class="form-control selectpicker" data-live-search="true">
+                      <option value="">No Strand</option>
+                      @if(count($strands) > 0)
+                        @foreach($strands as $s)
+                          <option value="{{ $s->id }}">{{ $s->name . ' - ' . $s->code }}</option>
+                        @endforeach
+                      @endif
+                    </select>
+                    <span class="help-block small"></span>
+                    @if ($errors->has('name'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+
+                  <div class="form-group">
                     <button type="submit" class="btn btn-primary">{{ $section == null ? 'Add Section' : 'Update Section' }}</button>
                   </div>
                 </div>
