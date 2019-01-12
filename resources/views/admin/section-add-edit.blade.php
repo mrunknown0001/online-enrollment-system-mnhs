@@ -48,9 +48,9 @@
                       <option value="12" {{ $section != null ? $section->grade_level == 12 ? 'selected' : '' : '' }}>Grade 12</option>
                     </select>
                     <span class="help-block small"></span>
-                    @if ($errors->has('name'))
+                    @if ($errors->has('grade_level'))
                       <span class="invalid-feedback text-red" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('grade_level') }}</strong>
                       </span>
                     @endif
                   </div>
@@ -77,9 +77,9 @@
                       @endif
                     </select>
                     <span class="help-block small"></span>
-                    @if ($errors->has('name'))
+                    @if ($errors->has('strand'))
                       <span class="invalid-feedback text-red" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('strand') }}</strong>
                       </span>
                     @endif
                   </div>

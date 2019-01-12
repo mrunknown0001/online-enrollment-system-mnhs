@@ -88,6 +88,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// SCHEDULES
 	Route::get('/schedules', 'ScheduleController@index')->name('admin.schedules');
 
+	Route::get('/schedule/add', 'ScheduleController@create')->name('admin.schedule.add');
+
+	// ROOM MANAGEMENT
+	Route::get('/room/management', 'RoomController@index')->name('admin.rooms');
+
+	Route::get('/room/add', 'RoomController@create')->name('admin.room.add');
+
+	Route::post('/room/add', 'RoomController@store')->name('admin.room.store');
+
+	Route::get('/room/update/{id}', 'RoomController@update')->name('admin.room.update');
+
 
 	// SETTINGS
 	Route::get('/settings', 'SettingController@index')->name('admin.settings');
@@ -122,6 +133,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// ALL STRANDS
 	Route::get('/all/strands', 'StrandController@allStrands')->name('all.strands');
 
+	// ALL ROOMS
+	Route::get('/all/rooms', 'RoomController@allRooms')->name('all.rooms');	
+
+	// ALL SCHEDULES 
+
 
 
 
@@ -135,6 +151,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/remove/section/{id}', 'SectionController@remove')->name('admin.remove.section');
 
 	Route::get('/remove/strand/{id}', 'StrandController@remove')->name('admin.remove.strand');
+
+	Route::get('/remove/room/{id}', 'RoomController@remove')->name('admin.remove.room');
+
 
 });
 

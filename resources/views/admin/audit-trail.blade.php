@@ -37,7 +37,8 @@
         { data: 'user' },
         { data: 'activity' },
         { data: 'created_at' }
-      ]
+      ],
+      "order": [[ 2, 'desc' ]]
     });
   } );
 </script>

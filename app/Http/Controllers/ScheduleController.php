@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Schedule;
+use App\Section;
+use App\Room;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -24,7 +26,10 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $sections = Section::where('active', 1)->orderBy('grade_level', 'asc')->get();
+        $rooms = Room::where('active', 1)->orderBy('name', 'asc')->get();
+
+        return view('admin.schedule-add-edit', ['schedule' => null, 'sections' => $sections, 'rooms' => $rooms]);
     }
 
     /**

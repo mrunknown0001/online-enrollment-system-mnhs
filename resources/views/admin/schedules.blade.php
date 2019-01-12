@@ -17,8 +17,8 @@
             <br><br><br>
             <h1>Schedules</h1>
             <p>
-              <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Add Schedule</a>
-              <a href="" class="btn btn-primary"><i class="fa fa-building"></i> Room Management</a>
+              <a href="{{ route('admin.schedule.add') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Schedule</a>
+              <a href="{{ route('admin.rooms') }}" class="btn btn-primary"><i class="fa fa-building"></i> Room Management</a>
             </p>
             @include('includes.success')
             @include('includes.error')
