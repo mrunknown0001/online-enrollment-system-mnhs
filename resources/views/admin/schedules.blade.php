@@ -25,8 +25,8 @@
         <table id="schedules" class="table table-hover table-bordered table-striped">
           <thead>
             <th>Grade &amp; Section</th>
-            <th>Room</th>
             <th>Day</th>
+            <th>Room</th>
             <th>Time</th>
             <th>Subject</th>
             <th>Action</th>
@@ -44,8 +44,8 @@
       },
       columns: [
         { data: 'section' },
-        { data: 'room' },
         { data: 'day' },
+        { data: 'room' },
         { data: 'time', },
         { data: 'subject' },
         { data: 'action' }
@@ -59,7 +59,7 @@
     table.ajax.reload();
   }
 
-  function removeRoom($id) {
+  function removeSched($id) {
     if(confirm("Are you sure you want to remove Schedule?")) {
       $.ajax({
         url: '/admin/remove/schedule/' + $id,

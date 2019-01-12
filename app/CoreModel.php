@@ -116,7 +116,82 @@ class CoreModel extends Model
     }
 
 
-    
+
+    // get grade and section
+    public function getGradeSection($id)
+    {
+        $section = \App\Section::find($id);
+
+        $grade_section = 'Grade ' . $section->grade_level . ' - ' . $section->name;
+
+        return $grade_section;
+    }
+
+
+    // get room name
+    public function getRoomName($id)
+    {
+        $room = \App\Room::find($id);
+
+        return $room->name;
+    }
+
+
+    public function getDay($id)
+    {
+        switch ($id) {
+            case 1:
+                return 'Monday';
+                break;
+
+            case 2:
+                return 'Tuesday';
+                break;
+
+            case 3:
+                return 'Wednesday';
+                break;
+
+            case 4:
+                return 'Thursday';
+                break;
+
+            case 5:
+                return 'Friday';
+                break;
+
+            case 6:
+                return 'Saturday';
+                break;
+            
+            default:
+                return 'Sunday';
+                break;
+        }
+    }
+
+
+    public function getTime($id)
+    {
+        $times = $this->time_range();
+
+        foreach($times as $t) {
+            if($t['id'] == $id) {
+                return $t['time'];
+            }
+        }
+
+        return 'N/A';
+    }
+
+
+
+    public function getSubject($id)
+    {
+        $subject = \App\Subject::find($id);
+
+        return $subject->title;
+    }
 
 
 

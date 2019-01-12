@@ -104,7 +104,59 @@ class ScheduleController extends Controller
             return redirect()->back()->with('error', 'Section Time Conflict');
         }
 
+        // check subject duplicate
+        $subject_duplicate = Schedule::where('school_year', $school_year)
+            ->where('active', 1)
+            ->where('section_id', $section_id)
+            ->where('subject_id', $subject)
+            ->first();
+
+        if(!empty($subject_duplicate)) {
+            return redirect()->back()->with('error', 'Duplicate Subject');
+        }
+
         // check conflict time and day of the room
+        $conflict_room_time_date = Schedule::where('school_year', $school_year)
+            ->where('active', 1)
+            ->where('room_id', $room)
+            ->where('day', $day)
+            ->where('start_time', $start_time)
+            ->where('end_time', $end_time)
+            ->first();
+
+        if(!empty($conflict_room_time_date)) {
+            return redirect()->back()->with('error', 'Room Time Conflict on the Day');
+        }
+
+        // conflict on time range of the room time in the day
+        $range_room_time_date_conflict = Schedule::where('school_year', $school_year)
+            ->where('active', 1)
+            ->where('room_id', $room)
+            ->where('day', $day)
+            ->where(function ($query) use ($start_time) {
+                $query->where('start_time', '<=', $start_time);
+            })
+            ->where(function ($query2) use ($end_time) {
+                $query2->where('end_time', '<=', $end_time);
+            })
+            ->first();
+
+        if(!empty($range_room_time_date_conflict)) {
+            return redirect()->back()->with('error', 'Room Time Conflict on the Day!');
+        }
+
+        $room_date_time_range_conflict = Schedule::where('school_year', $school_year)
+            ->where('active', 1)
+            ->where('room_id', $room)
+            ->where('day', $day)
+            ->where('end_time', '<', $start_time)
+            ->where('end_time', '>', $end_time )
+            ->first();
+
+        if(!empty($room_date_time_range_conflict)) {
+            return redirect()->back()->with('error', 'Room Time Conflict on the Day3!');
+        }
+
 
         $schedule = new Schedule();
         $schedule->school_year = $school_year;
@@ -164,9 +216,16 @@ class ScheduleController extends Controller
      * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedule $schedule)
+    public function remove($id)
     {
-        //
+        $id = $this->core->decryptString($id);
+
+        $schedule = Schedule::findorfail($id);
+        $schedule->active = 0;
+
+        if($schedule->save()) {
+            AuditTrailController::create('Removed Schedule');
+        }
     }
 
 
@@ -175,28 +234,31 @@ class ScheduleController extends Controller
      */
     public function allSchedules()
     {
+
         $school_year = date('Y') . '-' . date('Y', strtotime('+1 year'));
         $schedules = Schedule::where('active', 1)->where('school_year', $school_year)->get();
 
         $data = [
             'section' => null,
-            'room ' => null,
             'day' => null,
+            'room' => null,
             'time' => null,
             'subject' => null,
             'action' => null
         ];
 
         if(count($schedules) > 0) {
+            
             $data = null;
+
             foreach($schedules as $s) {
-                $data = [
-                    'section' => $s->section_id,
-                    'room ' => $s->room_id,
-                    'day' => $s->day,
-                    'time' => $s->start_time . ' ' . $s->end_time,
-                    'subject' => $s->subject_id,
-                    'action' => "<button class='btn btn-primar btn-xs'>Action</button>"
+                $data[] = [
+                    'section' => $this->core->getGradeSection($s->section_id),
+                    'day' => $this->core->getDay($s->day),
+                    'room' => $this->core->getRoomName($s->room_id),
+                    'time' => $this->core->getTime($s->start_time) . ' - ' . $this->core->getTime($s->end_time),
+                    'subject' => $this->core->getSubject($s->subject_id),
+                    'action' => "<button class='btn btn-danger btn-xs' onclick=\"removeSched('" . encrypt($s->id) . "')\"><i class='fa fa-trash'></i> Remove</button>"
                 ];
             }
         }

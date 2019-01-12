@@ -163,6 +163,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/remove/room/{id}', 'RoomController@remove')->name('admin.remove.room');
 
+	Route::get('/remove/schedule/{id}', 'ScheduleController@remove')->name('admin.remove.schedule');
+
 
 });
 
