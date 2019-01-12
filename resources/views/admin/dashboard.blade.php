@@ -17,6 +17,18 @@
             <br><br><br>
             <h1>Admin Dashboard</h1>
           </div>
+          <div class="col-md-3">
+              <h3>Enrolled Students on Current SY</h3>
+          </div>
+          <div class="col-md-3">
+              <h3>Total Students Served</h3>
+          </div>
+          <div class="col-md-3">
+              <h3>Faculties</h3>
+          </div>
+          <div class="col-md-3">
+              <h3>Subjects</h3>
+          </div>
         </div>
     </div>
 @endsection

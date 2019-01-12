@@ -57,7 +57,7 @@
         url: '/admin/remove/room/' + $id,
         type: "get"
       });
-      alert('Section Removed!');
+      alert('Room Removed!');
 
       // reload data datables
       var table = $('#rooms').DataTable();

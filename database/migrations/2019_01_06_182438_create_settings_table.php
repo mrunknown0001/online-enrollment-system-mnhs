@@ -15,6 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('enrollment')->default(0);
+            $table->tinyInteger('semester')->default(1);
             $table->timestamps();
         });
     }

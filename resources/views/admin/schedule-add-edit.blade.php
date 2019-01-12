@@ -23,15 +23,14 @@
             @include('includes.error')
           </div>
           <div class="col-md-6">
-            <form action="" method="POST" autocomplete="off">
-              {{ csrf_field() }}
+            <form action="{{ route('admin.schedule.add2') }}" method="get" autocomplete="off">
               <div class="form-group">
                 <label for="section">Select Year Level &amp; Section</label>
-                <select name="section" id="section" class="form-control selectpicker" data-live-search="true">
+                <select name="section" id="section" class="form-control selectpicker" data-live-search="true" required>
                   <option value="">Select Year Level &amp; Section</option>
                   @if(count($sections) > 0)
                     @foreach($sections as $s)
-                      <option value="{{ $s->id }}">Grade {{ $s->grade_level }} - {{ $s->name }}</option>
+                      <option value="{{ encrypt($s->id) }}">Grade {{ $s->grade_level }} - {{ $s->name }}</option>
                     @endforeach
                   @endif
                 </select>
@@ -42,7 +41,7 @@
                   </span>
                 @endif
               </div>
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label for="room">Select Room</label>
                 <select name="room" id="room" class="form-control selectpicker" data-live-search="true">
                   <option value="">Select Room</option>
@@ -58,6 +57,9 @@
                     <strong>{{ $errors->first('room') }}</strong>
                   </span>
                 @endif
+              </div> --}}
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Continue</button>
               </div>
             </form>
           </div>

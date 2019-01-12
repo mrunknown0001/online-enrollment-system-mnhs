@@ -90,6 +90,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/schedule/add', 'ScheduleController@create')->name('admin.schedule.add');
 
+	Route::get('/schedule/add/grade/section', 'ScheduleController@create2')->name('admin.schedule.add2');
+
+	Route::post('/schedule/add', 'ScheduleController@store')->name('admin.schedule.store');
+
 	// ROOM MANAGEMENT
 	Route::get('/room/management', 'RoomController@index')->name('admin.rooms');
 
@@ -137,6 +141,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/all/rooms', 'RoomController@allRooms')->name('all.rooms');	
 
 	// ALL SCHEDULES 
+	Route::get('/all/schedules', 'ScheduleController@allSchedules')->name('all.schedules');
 
 
 
