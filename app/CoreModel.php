@@ -114,4 +114,146 @@ class CoreModel extends Model
 
         return 'N/A';
     }
+
+
+    
+
+
+
+
+    public function time_range()
+    {
+        $time = [
+            [
+                'id' => '1',
+                'time' => '7:00am'
+            ],
+            [
+                'id' => '2',
+                'time' => '7:30am'
+            ],
+            [
+                'id' => '3',
+                'time' => '8:00am'
+            ],
+            [
+                'id' => '4',
+                'time' => '8:30am'
+            ],
+            [
+                'id' => '5',
+                'time' => '9:00am'
+            ],
+            [
+                'id' => '6',
+                'time' => '9:30am'
+            ],
+            [
+                'id' => '7',
+                'time' => '10:00am'
+            ],
+            [
+                'id' => '8',
+                'time' => '10:30am'
+            ],
+            [
+                'id' => '9',
+                'time' => '11:00am'
+            ],
+            [
+                'id' => '10',
+                'time' => '11:30am'
+            ],
+            [
+                'id' => '11',
+                'time' => '12:00pm'
+            ],
+            [
+                'id' => '12',
+                'time' => '12:30pm'
+            ],
+            [
+                'id' => '13',
+                'time' => '1:00pm'
+            ],
+            [
+                'id' => '14',
+                'time' => '1:30pm'
+            ],
+            [
+                'id' => '15',
+                'time' => '2:00pm'
+            ],
+            [
+                'id' => '16',
+                'time' => '2:30pm'
+            ],
+            [
+                'id' => '17',
+                'time' => '3:00pm'
+            ],
+            [
+                'id' => '18',
+                'time' => '3:30pm'
+            ],
+            [
+                'id' => '19',
+                'time' => '4:00pm'
+            ],
+            [
+                'id' => '20',
+                'time' => '4:30pm'
+            ],
+            [
+                'id' => '21',
+                'time' => '5:00pm'
+            ],
+            [
+                'id' => '22',
+                'time' => '5:30pm'
+            ],
+            [
+                'id' => '23',
+                'time' => '6:00pm'
+            ],
+        ];
+
+        return $time;
+    }
+
+    public function days()
+    {
+        $days = [
+            [
+                'id' => 1,
+                'name' => 'Monday',
+            ],
+            [
+                'id' => 2,
+                'name' => 'Tuesday',
+            ],
+            [
+                'id' => 3,
+                'name' => 'Wednesday',
+            ],
+            [
+                'id' => 4,
+                'name' => 'Thursday',
+            ],
+            [
+                'id' => 5,
+                'name' => 'Friday',
+            ],
+            [
+                'id' => 7,
+                'name' => 'Monday',
+            ],
+            [
+                'id' => 7,
+                'name' => 'Sunday',
+            ]
+        ];
+
+        return $days;
+    }
 }

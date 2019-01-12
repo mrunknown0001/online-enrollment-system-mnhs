@@ -23,8 +23,9 @@
             @include('includes.error')
           </div>
           <div class="col-md-6">
-            <form action="" method="POST" autocomplete="off">
+            <form action="{{ route('admin.schedule.store') }}" method="POST" autocomplete="off">
               {{ csrf_field() }}
+              <input type="hidden" name="section_id" value="{{ encrypt($section->id) }}">
               <div class="form-group">
                 <label for="room">Select Room</label>
                 <select name="room" id="room" class="form-control selectpicker" data-live-search="true" required>
@@ -46,12 +47,9 @@
                 <label for="day">Select Day</label>
                 <select name="day" id="day" class="form-control selectpicker" data-live-search="true" required>
                   <option value="">Select Day</option>
-                  <option value="1">Monday</option>
-                  <option value="2">Tuesday</option>
-                  <option value="3">Wednesday</option>
-                  <option value="4">Thursday</option>
-                  <option value="5">Friday</option>
-                  <option value="6">Saturday</option>
+                  @foreach($days as $d)
+                    <option value="{{ $d['id'] }}">{{ $d['name'] }}</option>
+                  @endforeach
                 </select>
                 <span class="help-block small"></span>
                 @if ($errors->has('day'))
@@ -63,14 +61,20 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label>Start Time</label>
-                  <select name="start_time" class="form-control">
-                    
+                  <select name="start_time" class="form-control" required>
+                    <option value="">Select Start Time</option>
+                    @foreach($time as $t)
+                      <option value="{{ $t['id'] }}">{{ $t['time'] }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-6 form-group">
                   <label>End Time</label>
-                  <select name="end_time" class="form-control">
-                    
+                  <select name="end_time" class="form-control" required>
+                    <option value="">Select End Time</option>
+                    @foreach($time as $t)
+                      <option value="{{ $t['id'] }}">{{ $t['time'] }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>

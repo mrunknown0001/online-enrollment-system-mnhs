@@ -107,6 +107,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// SETTINGS
 	Route::get('/settings', 'SettingController@index')->name('admin.settings');
 
+	Route::post('/enrollment/toggle', 'SettingController@postToggleEnrollment')->name('admin.enrollment.toggle');
+
+	Route::post('/semester/select', 'SettingController@postToggleSemester')->name('admin.semester.toggle');
+
 
 	// ACTIVITY LOGS
 	Route::get('/activity-logs', 'AuditTrailController@index')->name('admin.activity.logs');
