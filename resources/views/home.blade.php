@@ -12,7 +12,25 @@
 
     <link href="{{ asset('css/bootstrap.min.4.1.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/full-slider.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/full-slider.css') }}"> --}}
+
+    <style type="text/css">
+      body {
+        /* The image used */
+        background-image: url("images/school-bus.jpg");
+
+        /* Full height */
+        height: 100%; 
+        min-height: 800px;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        border:0px solid transparent;
+      }
+    </style>
 
   </head>
 
@@ -20,7 +38,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="javascript:void(0)">Online Enrollment System</a>
+        <a class="navbar-brand" href="javascript:void(0)">Online Enrollment System for Maliwalo High School</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

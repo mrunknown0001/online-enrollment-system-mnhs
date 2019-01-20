@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/metisMenu/metisMenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/metisMenu/metisMenu-vertical.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
   <!--[if lt IE 8]>
