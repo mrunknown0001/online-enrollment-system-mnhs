@@ -186,6 +186,9 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	Route::get('/password', 'FacultyController@password')->name('faculty.password');
 	Route::post('/password', 'UserController@postChangePassword')->name('faculty.password.update');
 
+	// STUDENTS LIST OF ENROLLED UNDER ASSIGN SUBJECT
+	Route::get('/my-students', 'FacultyController@myStudents')->name('faculty.my.students');
+
 
 
 	// REGISTRATION	

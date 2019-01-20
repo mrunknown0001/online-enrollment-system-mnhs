@@ -8,7 +8,7 @@
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
           <li class="{{ route('faculty.dashboard') == url()->current() ? 'active' : '' }}">
-            <a class="has-arrow" href="index.html">
+            <a class="has-arrow" href="#">
                <i class="fa big-icon fa-home icon-wrap"></i>
                <span class="mini-click-non">Home</span>
             </a>
@@ -18,17 +18,17 @@
           </li>
 
           <li class="">
-            <a class="has-arrow" href="index.html">
+            <a class="has-arrow" href="#">
                <i class="fa big-icon fa-graduation-cap icon-wrap"></i>
                <span class="mini-click-non">Students</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
-                <li><a title="Students" href=""><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a></li>
+                <li><a title="Students" href="{{ route('faculty.my.students') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a></li>
             </ul>
           </li>
 
           <li class="{{ route('faculty.new.student.registration') ==  url()->current() || route('faculty.existing.student.registration') == url()->current() ? 'active' : '' }}">
-            <a class="has-arrow" href="index.html">
+            <a class="has-arrow" href="#">
                <i class="fa big-icon fa-user-plus icon-wrap"></i>
                <span class="mini-click-non">Registration</span>
             </a>

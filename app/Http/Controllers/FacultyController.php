@@ -23,4 +23,10 @@ class FacultyController extends Controller
     {
     	return view('faculty.password-change');
     }
+
+    // VIEW ENROLED STUDENT UNDER ITS ASSIGNED SUBJECT
+    public function myStudents()
+    {
+        return view('faculty.my-students');
+    }
 }

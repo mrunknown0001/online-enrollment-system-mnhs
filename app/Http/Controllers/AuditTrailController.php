@@ -20,10 +20,14 @@ class AuditTrailController extends Controller
     // RECORD ACTIVITY LOG
     public static function create($action = null)
     {
-    	$log = new AuditTrail();
-    	$log->user_id = Auth::user()->id;
-    	$log->action = $action;
-    	$log->save();
+        if(Auth::user()) {
+        	$log = new AuditTrail();
+        	$log->user_id = Auth::user()->id;
+        	$log->action = $action;
+        	$log->save();
+        }
+
+        return redirect()->route('home');
     }
 
 

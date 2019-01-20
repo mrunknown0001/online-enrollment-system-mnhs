@@ -20,7 +20,7 @@ class CreateStudentInfosTable extends Migration
             $table->tinyInteger('grade_level')->nullable();
             $table->boolean('graduated')->default(0);
             $table->boolean('existing_student')->default(0);
-            $table->boolean('registered')->defautl(0);
+            $table->boolean('registered')->default(0);
             $table->string('gender', 6)->nullable();
             $table->date('birthday')->nullable();
             $table->string('nationality', 15)->nullable();
