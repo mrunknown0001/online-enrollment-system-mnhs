@@ -292,6 +292,11 @@ class UserController extends Controller
     // CHOOSE GRADE LEVEL
     public function registrationGradeLevel($id = 1)
     {
+        // check enrollment if turned on
+        if(!$this->core->checkEnrollment()) {
+            return redirect()->back()->with('error', 'Enrollment is Inactive! Please Report to Administrator');
+        }
+
         if($id != 1 && $id != 2) {
             return redirect()->route('faculty.dashboard')->with('error', 'Error! Please Try Again Later!');
         }

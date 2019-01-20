@@ -137,6 +137,19 @@ class CoreModel extends Model
     }
 
 
+    // check enrollment
+    public function checkEnrollment()
+    {
+        $setting = \App\setting::find(1);
+
+        if($setting->enrollment == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public function getDay($id)
     {
         switch ($id) {

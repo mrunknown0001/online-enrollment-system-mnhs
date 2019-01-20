@@ -28,7 +28,6 @@
         background-repeat: no-repeat;
         background-size: cover;
 
-        border:0px solid transparent;
       }
     </style>
 
