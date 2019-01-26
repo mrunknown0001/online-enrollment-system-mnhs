@@ -11,4 +11,5 @@ class Section extends Model
     	return $this->hasMany('\App\Schedule', 'section_id', 'id')
     		->whereActive(1);
     }
+
 }

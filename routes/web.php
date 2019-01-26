@@ -43,6 +43,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/faculty/update/{id}', 'UserController@updateFaculty')->name('admin.update.faculty');
 
+	Route::get('/faculty/subject/assignments', 'FacultyAssignmentController@index')->name('admin.faculty.assignments');
+
+	Route::get('/faculty/subject/assignments/add', 'FacultyAssignmentController@create')->name('admin.faculty.assignments.add');
+
+	Route::post('/faculty/subject/assignments/add', 'FacultyAssignmentController@store')->name('admin.faculty.assignments.store');
+
 	Route::get('/student/management', 'UserController@students')->name('admin.students');
 
 
@@ -164,6 +170,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/remove/room/{id}', 'RoomController@remove')->name('admin.remove.room');
 
 	Route::get('/remove/schedule/{id}', 'ScheduleController@remove')->name('admin.remove.schedule');
+
+
+	/*
+	 * get records
+	 */
+	Route::get('/get/subjects/{id}', 'AdminController@getSubjects')->name('admin.get.subjects');
+
+
+	/*
+	 * get grade level based on the section id
+	 */
+	Route::get('/get/grade-level/{id}', 'AdminController@getGradeLevel')->name('admin.get.grade.level');
 
 
 });

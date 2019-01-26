@@ -32,7 +32,7 @@
 
                 </div>
                 <div class="col-xs-12 cus-gh-hd-pro">
-                    <h2 class="text-center">10,000</h2>
+                    <h2 class="text-center">{{ $subjects_assigned }}</h2>
                 </div>
               </div>
             </div>

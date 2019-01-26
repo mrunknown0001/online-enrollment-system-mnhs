@@ -25,6 +25,9 @@
             </a>
             <ul class="submenu-angle" aria-expanded="true">
               <li><a title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculties</span></a></li>
+
+              <li><a title="Faculty Subject Assignment" href="{{ route('admin.faculty.assignments') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty Subjects</span></a></li>
+
               <li><a title="Student Management" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Students</span></a></li>
             </ul>
           </li>

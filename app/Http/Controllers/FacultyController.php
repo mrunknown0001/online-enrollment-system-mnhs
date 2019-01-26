@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class FacultyController extends Controller
 {
     // FACULTY DASHBOARD
     public function dashboard()
     {
-    	return view('faculty.dashboard');
+        $subjects_assigned = \App\FacultyAssignment::where('faculty_id', Auth::user()->id)->where('active', 1)->count();
+
+    	return view('faculty.dashboard', ['subjects_assigned' => $subjects_assigned]);
     }
 
     // FACULTY PROFILE

@@ -31,4 +31,22 @@ class AdminController extends Controller
     {
     	return view('admin.password-change');
     }
+
+
+    // get all subjects
+    public function getSubjects($id)
+    {
+        $subjects = \App\Subject::where('grade_level', $id)->get();
+
+        return $subjects;
+    }
+
+
+    // get all grade level
+    public function getGradeLevel($id)
+    {
+        $section = \App\Section::find($id);
+
+        return $section->grade_level;
+    }
 }
