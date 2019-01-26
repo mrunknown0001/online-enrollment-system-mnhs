@@ -11,7 +11,12 @@ class AdminController extends Controller
     // ADMIN DASHBOARD
     public function dashboard()
     {
-    	return view('admin.dashboard');
+        $ay = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        $total_enroll = \App\EnrolledStudentCounter::where('active', 1)->first();
+        $subjects = \App\Subject::where('active', 1)->count();
+        $faculties = \App\User::where('user_type', 2)->where('active', 1)->count();
+
+    	return view('admin.dashboard', ['total_enroll' => $total_enroll, 'subjects' => $subjects, 'faculties' => $faculties]);
     }
 
     // ADMIN VIEW PROFILE
