@@ -16,6 +16,17 @@ class CoreModel extends Model
     }
 
 
+    // get full name by id
+    public function get_fullname_by_id($id)
+    {
+        $user = \App\User::find($id);
+
+        $fullname = $user->firstname . ' ' . $user->lastname;
+
+        return $fullname;
+    }
+
+
     // CHECK EMPLOYEE ID
     public function check_employee_id($id, $user_id)
     {
@@ -343,5 +354,24 @@ class CoreModel extends Model
         ];
 
         return $days;
+    }
+
+
+    // check if subject is assigned to faculty
+    public function checkSubjectAssignment($subject_id, $faculty_id, $section_id)
+    {
+        // check in subject assignment
+        $assignment = \App\FacultyAssignment::where('subject_id', $subject_id)
+                    ->where('faculty_id', $faculty_id)
+                    ->where('section_id', $section_id)
+                    ->where('active', 1)
+                    ->first();
+
+        if(!empty($assignment)) {
+            return true;
+        }
+
+        return false;
+
     }
 }

@@ -153,6 +153,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// ALL SCHEDULES 
 	Route::get('/all/schedules', 'ScheduleController@allSchedules')->name('all.schedules');
 
+	// ALL FACULTY ASSIGNMENT
+	Route::get('/all/faculty/assignments', 'FacultyAssignmentController@allAssignment')->name('all.faculty.assignments');
+
 
 
 
@@ -170,6 +173,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/remove/room/{id}', 'RoomController@remove')->name('admin.remove.room');
 
 	Route::get('/remove/schedule/{id}', 'ScheduleController@remove')->name('admin.remove.schedule');
+
+	Route::get('/remove/faculty/assignment/{id}', 'FacultyAssignmentController@remove')->name('admin.remove.faculty.assignment');
 
 
 	/*
@@ -240,6 +245,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	Route::get('/student/register/existing', function () {
 		return redirect()->route('faculty.register.choose.grade');
 	});
+
+
+	// faculty subjects assigned
+	Route::get('/subjects/assigned', 'FacultyController@assignedSubject')->name('faculty.assigned.subjects');
 
 });
 

@@ -40,6 +40,14 @@ class User extends Authenticatable
 
 
 
+    // faculty subjects
+    public function subjects()
+    {
+        return $this->hasMany('App\FacultyAssignment', 'faculty_id', 'id')->whereActive(1);
+    }
+
+
+
     // GLOBAL FUNCTION ACCESS FOR USERS USING AUTH
 
 
@@ -53,5 +61,9 @@ class User extends Authenticatable
 
         return $fullname;
     }
+
+
+
+
     
 }

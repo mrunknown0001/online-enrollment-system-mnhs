@@ -32,4 +32,12 @@ class FacultyController extends Controller
     {
         return view('faculty.my-students');
     }
+
+
+    // method use to view subjects assigned
+    public function assignedSubject()
+    {
+        $subjects = Auth::user()->subjects;
+        return view('faculty.my-subjects', ['subjects' => $subjects]);
+    }
 }

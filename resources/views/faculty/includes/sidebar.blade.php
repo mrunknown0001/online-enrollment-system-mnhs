@@ -38,6 +38,10 @@
             </ul>
           </li>
 
+          <li class="{{ route('faculty.assigned.subjects') == url()->current() ? 'active' : '' }}">
+            <a title="Schedules" href="{{ route('faculty.assigned.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">My Subjects</span></a>
+          </li>
+
           <li>
             <a title="Schedules" href="" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
           </li>
