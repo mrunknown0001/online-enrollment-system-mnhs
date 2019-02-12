@@ -21,6 +21,7 @@
       	<div class="col-md-6 col-md-offset-3">
       		<h4>Search Student:</h4>
       		<form action="" method="POST" autocomplete="off">
+            {{ csrf_field() }}
 						<div class="form-group">
 							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search Student" autofocus="">
 						</div>
