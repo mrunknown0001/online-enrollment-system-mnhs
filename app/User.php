@@ -39,6 +39,12 @@ class User extends Authenticatable
     }
 
 
+    // student section
+    public function student_section()
+    {
+        return $this->hasOne('App\StudentSection', 'user_id');
+    }
+
 
     // faculty subjects
     public function subjects()

@@ -275,12 +275,27 @@ class UserController extends Controller
                     'firstname' => $s->firstname,
                     'lastname' => $s->lastname,
                     'lrn' => $s->student_number,
-                    'action' => "<button class='btn btn-primary btn-xs'>Action</button>"
+                    'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a>"
                 ];
             }
         }
 
         return $data;
+    }
+
+
+
+
+    // method use to view details of student user in admin
+    public function studentViewDetails($id)
+    {
+        $id = decrypt($id);
+
+        $student = User::findorfail($id);
+
+        // return $student->student_section->section->name;
+
+        return view('admin.student-details', ['student' => $student]);
     }
 
 
