@@ -408,6 +408,31 @@ class UserController extends Controller
         $section->enrolled += 1;
         $section->save();
 
+        // year student count
+        $academic_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+
+        $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $academic_year)
+            ->where('active', 1)
+            ->first();
+
+        if(empty($enrolled_counter)) {
+            $enrolled_counter = new \App\EnrolledStudentCounter();
+            $enrolled_counter->academic_year = $academic_year;
+            $enrolled_counter->count = 1;
+            $enrolled_counter->save();
+        }
+        else {
+            $enrolled_counter->count += 1;
+            $enrolled_counter->save();            
+        }
+
+
+        // section and student enrollment record
+        $student_section = new \App\StudentSection();
+        $student_section->user_id = $student->id;
+        $student_section->section_id = $section->id;
+        $student_section->save();
+
 
         $action = 'Enrolled New Student';
         AuditTrailController::create($action);

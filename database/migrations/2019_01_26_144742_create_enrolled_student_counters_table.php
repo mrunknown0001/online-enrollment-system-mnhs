@@ -16,7 +16,7 @@ class CreateEnrolledStudentCountersTable extends Migration
         Schema::create('enrolled_student_counters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('academic_year', 15)->nullable();
-            $table->unsignedInteger('count')->nullable();
+            $table->unsignedInteger('count')->nullable()->default(0);
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
