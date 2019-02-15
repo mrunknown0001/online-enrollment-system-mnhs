@@ -299,6 +299,12 @@ class UserController extends Controller
     }
 
 
+    // method use to print list of students
+    public function printStudentList()
+    {
+        return view('admin.students-print-list');
+    }
+
 
 
 

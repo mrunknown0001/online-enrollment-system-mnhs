@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/student/{id}/view/details', 'UserController@studentViewDetails')->name('admin.student.view.details');
 
+	Route::get('/student/print/list', 'UserController@printStudentList')->name('admin.print.student.list');
+
 
 	// SUBJECT MANAGEMENT
 	Route::get('/subject/management', 'SubjectController@index')->name('admin.subjects');
