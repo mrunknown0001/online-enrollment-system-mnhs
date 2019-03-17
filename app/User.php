@@ -69,6 +69,20 @@ class User extends Authenticatable
     }
 
 
+    /*
+     * get grades of student if any
+     *
+     */
+    public function getGrades($user_id, $subject_id)
+    {
+        // return $user_id;
+        // return $subject_id;
+        $grade = \App\Grade::where('user_id', $user_id)->where('subject_id', $subject_id)->first();
+
+        return $grade;
+    }
+
+
 
 
     

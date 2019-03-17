@@ -24,8 +24,10 @@
             @include('includes.all')
 
             @if(count($students) > 0)
-            <form action="" method="POST" autocomplete="off">
+            <form action="{{ route('faculty.save.grades') }}" method="POST" autocomplete="off">
             	{{ csrf_field() }}
+            	<input type="hidden" name="subject_id" value="{{ $subject->id }}">
+            	<input type="hidden" name="section_id" value="{{ $section->id }}">
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Name</th>
@@ -36,7 +38,7 @@
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }}</td>
 								<td>
-									<input type="number" name="grade_{{ $s->student->id }}" class="form-control">
+									<input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="" min="0" max="100">
 								</td>
 							</tr>
 						@endforeach

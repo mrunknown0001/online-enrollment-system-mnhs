@@ -27,6 +27,7 @@
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Name</th>
+						<th>Grade</th>
 						<th>Action</th>
 					</thead>
 					<tbody>
@@ -34,7 +35,10 @@
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }}</td>
 								<td>
-									{{-- <a href="" class="btn btn-primary btn-xs">Action</a> --}}
+									{{ Auth::user()->getGrades($s->student->id, $section->id) }}
+								</td>
+								<td>
+									<a href="{{ route('faculty.student.view.details', ['id' => encrypt($s->student->id)]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View</a>
 								</td>
 							</tr>
 						@endforeach

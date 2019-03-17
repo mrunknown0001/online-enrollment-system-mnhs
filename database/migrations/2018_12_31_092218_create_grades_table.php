@@ -20,7 +20,7 @@ class CreateGradesTable extends Migration
             $table->unsignedInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->tinyInteger('grade')->nullable();
-            $table->float('grade_equiv', 4, 2)->nullabe();
+            $table->float('grade_equiv', 4, 2)->nullable();
             $table->boolean('passed')->default(1);
             $table->timestamps();
         });

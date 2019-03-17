@@ -7,6 +7,7 @@ use Auth;
 use App\Section;
 use App\StudentSection;
 use App\Subject;
+use App\User;
 
 class FacultyController extends Controller
 {
@@ -57,6 +58,17 @@ class FacultyController extends Controller
         $students = StudentSection::where('active', 1)->where('section_id', $section->id)->get();
 
         return view('faculty.students', ['students' => $students, 'section' => $section, 'subject' => $subject]);
+    }
+
+
+    // method use to view stuent details
+    public function studentViewDetails($id)
+    {
+        $id = $this->core->decryptString($id);
+
+        $student = User::findorfail($id);
+
+        return view('faculty.student-details', ['student' => $student]);
     }
 
 

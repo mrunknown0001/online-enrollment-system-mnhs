@@ -257,8 +257,18 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	// route to view students on the subject and section assigned
 	Route::get('/subject/{subject_id}/section/{section_id}/view/students', 'FacultyController@subjectViewStudents')->name('faculty.view.students');
 
+	// route to view student details on faculty
+	Route::get('/student/{id}/view/details', 'FacultyController@studentViewDetails')->name('faculty.student.view.details');
+
 	// route to encode grades in subject assigned to faculy
 	Route::get('/subject/{subject_id}/section/{section_id}/encode/grades', 'FacultyController@encodeStudentGrades')->name('faculty.encode.grades');
+
+	// route to save grades of students
+	Route::post('/subject/encode/grades', 'GradeController@saveGrade')->name('faculty.save.grades');
+
+	Route::get('/subject/encode/grades', function () {
+		return redirect()->route('faculty.assigned.subjects');
+	});
 
 
 	// schedule module for faculty
