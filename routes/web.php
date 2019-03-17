@@ -254,6 +254,13 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	// faculty subjects assigned
 	Route::get('/subjects/assigned', 'FacultyController@assignedSubject')->name('faculty.assigned.subjects');
 
+	// route to view students on the subject and section assigned
+	Route::get('/subject/{subject_id}/section/{sectin_id}/view/students', 'FacultyController@subjectViewStudents')->name('faculty.view.students');
+
+
+	// schedule module for faculty
+	Route::get('/my/schedules', 'FacultyController@schedules')->name('faculty.schedules');
+
 });
 
 

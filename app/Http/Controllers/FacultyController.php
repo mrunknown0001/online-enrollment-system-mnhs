@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Section;
+use App\StudentSection;
+use App\Subject;
 
 class FacultyController extends Controller
 {
@@ -39,5 +42,27 @@ class FacultyController extends Controller
     {
         $subjects = Auth::user()->subjects;
         return view('faculty.my-subjects', ['subjects' => $subjects]);
+    }
+
+
+    // method use to view students enrolled in the subject, section and grade level
+    public function subjectViewStudents($subject_id, $section_id)
+    {
+        $subject_id = $this->core->decryptString($subject_id);
+        $section_id = $this->core->decryptString($section_id);
+
+        $section = Section::findorfail($section_id);
+        $subject = Subject::findorfail($subject_id);
+
+        $students = StudentSection::where('active', 1)->where('section_id', $section->id)->get();
+
+        return view('faculty.students', ['students' => $students, 'section' => $section, 'subject' => $subject]);
+    }
+
+
+    // method use to show schedules for faculties
+    public function schedules()
+    {
+        return view('faculty.schedules');
     }
 }

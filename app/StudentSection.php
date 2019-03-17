@@ -11,4 +11,10 @@ class StudentSection extends Model
     {
     	return $this->belongsTo('App\Section', 'section_id');
     }
+
+    // students
+    public function student()
+    {
+    	return $this->belongsTo('App\User', 'user_id');
+    }
 }

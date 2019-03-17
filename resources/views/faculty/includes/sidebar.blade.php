@@ -43,7 +43,7 @@
           </li>
 
           <li>
-            <a title="Schedules" href="" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
+            <a title="Schedules" href="{{ route('faculty.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
           </li>
         </ul>
       </nav>
