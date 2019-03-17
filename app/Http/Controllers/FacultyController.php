@@ -60,9 +60,29 @@ class FacultyController extends Controller
     }
 
 
+    // method view use to encode grades on grade level section and subject assigned to faculty
+    public function encodeStudentGrades($subject_id, $section_id)
+    {
+        $subject_id = $this->core->decryptString($subject_id);
+        $section_id = $this->core->decryptString($section_id);
+
+        $section = Section::findorfail($section_id);
+        $subject = Subject::findorfail($subject_id);
+
+        $students = StudentSection::where('active', 1)->where('section_id', $section->id)->get();
+
+        return view('faculty.students-encode-grades', ['students' => $students, 'section' => $section, 'subject' => $subject]);
+    }
+
+
     // method use to show schedules for faculties
     public function schedules()
     {
+        // get section assigned
+        // from section assigned get all schedules assigned to that grade level and section
+        // get all schedules
+        
+
         return view('faculty.schedules');
     }
 }

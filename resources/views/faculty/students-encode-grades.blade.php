@@ -24,22 +24,28 @@
             @include('includes.all')
 
             @if(count($students) > 0)
+            <form action="" method="POST" autocomplete="off">
+            	{{ csrf_field() }}
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Name</th>
-						<th>Action</th>
+						<th>Grade</th>
 					</thead>
 					<tbody>
 						@foreach($students as $s)
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }}</td>
 								<td>
-									{{-- <a href="" class="btn btn-primary btn-xs">Action</a> --}}
+									<input type="number" name="grade_{{ $s->student->id }}" class="form-control">
 								</td>
 							</tr>
 						@endforeach
 					</tbody>
 	            </table>
+	            <p>
+	            	<button class="btn btn-primary"><i class="fa fa-save"></i> Save Grades</button>
+	            </p>
+	        </form>
             @else
 				<p class="text-center">No Student Enrolled</p>
             @endif
