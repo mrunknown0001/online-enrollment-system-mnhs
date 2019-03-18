@@ -19,6 +19,9 @@
             @include('includes.all')
 
             @if(count($subjects) > 0)
+            	<p>
+            		<button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
+            	</p>
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Grade Level &amp; Section</th>

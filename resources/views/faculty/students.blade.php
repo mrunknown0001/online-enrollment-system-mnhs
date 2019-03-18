@@ -19,6 +19,7 @@
 			
 			<p>
 				<a href="{{ route('faculty.assigned.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+				<button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
 			</p>
 
             @include('includes.all')

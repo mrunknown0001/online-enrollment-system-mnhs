@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Grades @endsection
+@section('title') Subjects @endsection
 
 @section('sidebar')
   @include('student.includes.sidebar')
@@ -15,10 +15,7 @@
       <div class="row">
         <div class="col-md-12">
           <br><br><br>
-          <h1>Grades</h1>
-          <p>
-            <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
-          </p>
+          <h1>Subjects</h1>
         </div>
         <div class="col-md-6 col-md-offset-3">
           @include('includes.all')

@@ -16,6 +16,9 @@
         <div class="col-md-12">
             <br><br><br>
             <h1>Schedules</h1>
+            <p>
+            	<button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
+            </p>
         </div>
     </div>
 </div>
