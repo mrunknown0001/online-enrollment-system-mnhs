@@ -42,6 +42,7 @@ class FacultyController extends Controller
     public function assignedSubject()
     {
         $subjects = Auth::user()->subjects;
+        
         return view('faculty.my-subjects', ['subjects' => $subjects]);
     }
 
