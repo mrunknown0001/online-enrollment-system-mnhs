@@ -26,7 +26,7 @@
               <div class="row">
                 <div class="form-group col-lg-6">
                     <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" value="{{ $faculty == null ? old('firstname') : $faculty->firstname }}" class="form-control" placeholder="Enter Firstname" required>
+                    <input type="text" name="firstname" id="firstname" value="{{ $faculty == null ? old('firstname') : $faculty->firstname }}" class="form-control" placeholder="Enter Firstname" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('firstname'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $faculty == null ? old('lastname') : $faculty->lastname }}" placeholder="Enter Lastname" required>
+                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $faculty == null ? old('lastname') : $faculty->lastname }}" placeholder="Enter Lastname" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('lastname'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="mobile_number">Mobile Number</label>
-                    <input type="text" name="mobile_number" id="mobile_number" class="form-control" value="{{ $faculty == null ? old('mobile_number') : $faculty->mobile_number }}" placeholder="Enter Mobile Number" required>
+                    <input type="text" name="mobile_number" id="mobile_number" class="form-control" value="{{ $faculty == null ? old('mobile_number') : $faculty->mobile_number }}" placeholder="Enter Mobile Number" required >
                     <span class="help-block small"></span>
                     @if ($errors->has('mobile_number'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -84,5 +84,11 @@
           </div>
         </div>
     </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  
