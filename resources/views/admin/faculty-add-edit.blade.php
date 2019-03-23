@@ -47,7 +47,7 @@
 
                 <div class="form-group col-lg-6">
                     <label for="employee_id">Employee ID</label>
-                    <input type="text" name="employee_id" id="employee_id" value="{{ $faculty == null ? old('employee_id') : $faculty->employee_id }}" class="form-control" placeholder="Enter Employee ID" required>
+                    <input type="number" name="employee_id" id="employee_id" value="{{ $faculty == null ? old('employee_id') : $faculty->employee_id }}" class="form-control" placeholder="Enter Employee ID" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('employee_id'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="mobile_number">Mobile Number</label>
-                    <input type="text" name="mobile_number" id="mobile_number" class="form-control" value="{{ $faculty == null ? old('mobile_number') : $faculty->mobile_number }}" placeholder="Enter Mobile Number" required >
+                    <input type="number" name="mobile_number" id="mobile_number" class="form-control" value="{{ $faculty == null ? old('mobile_number') : $faculty->mobile_number }}" placeholder="Enter Mobile Number" required >
                     <span class="help-block small"></span>
                     @if ($errors->has('mobile_number'))
                       <span class="invalid-feedback text-red" role="alert">

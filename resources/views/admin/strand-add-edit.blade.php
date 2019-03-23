@@ -27,7 +27,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="name">Strand Name</label>
-                    <input type="text" name="name" id="name" value="{{ $strand != null ? $strand->name : '' }}" class="form-control" placeholder="Enter Strand Name" autofocus="" required>
+                    <input type="text" name="name" id="name" value="{{ $strand != null ? $strand->name : '' }}" class="form-control" placeholder="Enter Strand Name" autofocus="" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('name'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label for="code">Strand Code</label>
-                    <input type="text" name="code" id="code" value="{{ $strand != null ? $strand->code : '' }}" class="form-control" placeholder="Enter Strand Code" required>
+                    <input type="number" name="code" id="code" value="{{ $strand != null ? $strand->code : '' }}" class="form-control" placeholder="Enter Strand Code" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('code'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -70,5 +70,11 @@
           </div>
         </div>
     </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  

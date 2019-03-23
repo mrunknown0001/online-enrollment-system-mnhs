@@ -27,7 +27,7 @@
           <input type="hidden" name="room_id" value="{{ $room != null ? $room->id : '' }}">
           <div class="form-group">
             <label for="name">Room Name</label>
-            <input type="text" name="name" id="name" value="{{ $room != null ? $room->name : '' }}" class="form-control" placeholder="Enter Room Name" autofocus="" required>
+            <input type="text" name="name" id="name" value="{{ $room != null ? $room->name : '' }}" class="form-control" placeholder="Enter Room Name" autofocus="" required onkeydown="return alphaOnly(event);">
             <span class="help-block small"></span>
             @if ($errors->has('name'))
               <span class="invalid-feedback text-red" role="alert">
@@ -52,5 +52,11 @@
       </div>
     </div>
   </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  

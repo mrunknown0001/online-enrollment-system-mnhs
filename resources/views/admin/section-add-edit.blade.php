@@ -27,7 +27,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="name">Section Name</label>
-                    <input type="text" name="name" id="name" value="{{ $section != null ? $section->name : '' }}" class="form-control" placeholder="Enter Section Name" autofocus="" required>
+                    <input type="text" name="name" id="name" value="{{ $section != null ? $section->name : '' }}" class="form-control" placeholder="Enter Section Name" autofocus="" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('name'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -57,7 +57,7 @@
 
                   <div class="form-group">
                     <label for="student_limit">Student Limit</label>
-                    <input type="number" name="student_limit" id="student_limit" value="{{ $section != null ? $section->student_limit : '' }}" class="form-control" placeholder="Enter Section Name" autofocus="" required>
+                    <input type="number" name="student_limit" id="student_limit" value="{{ $section != null ? $section->student_limit : '' }}" class="form-control" placeholder="Enter Student Limit" autofocus="" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('student_limit'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -93,5 +93,11 @@
           </div>
         </div>
     </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  

@@ -7,8 +7,8 @@
     <div class="left-custom-menu-adp-wrap comment-scrollbar">
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
-          <li class="{{ route('admin.dashboard') == url()->current() ? 'active' : '' }}">
-            <a class="has-arrow" href="javascript:void(0)">
+          <li class="">
+            <a class="has-arrow {{ route('admin.dashboard') == url()->current() ? 'active' : '' }}" href="javascript:void(0)">
                <i class="fa big-icon fa-home icon-wrap"></i>
                <span class="mini-click-non">Home</span>
             </a>
@@ -24,7 +24,7 @@
                <span class="mini-click-non">Users</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
-              <li><a title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculties</span></a></li>
+              <li><a class="{{ route('admin.faculties') == url()->current() ? 'active' : '' }}" title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculties</span></a></li>
 
               <li><a title="Faculty Subject Assignment" href="{{ route('admin.faculty.assignments') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty Subjects</span></a></li>
 
@@ -32,8 +32,8 @@
             </ul>
           </li>
 
-          <li class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}">
-            <a title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Strands</span></a>
+          <li class="">
+            <a class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}"" title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Strands</span></a>
           </li>
 
           <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
@@ -53,7 +53,7 @@
           </li>
 
           <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">
-            <a title="Activity Logs" href="{{ route('admin.activity.logs') }}" aria-expanded="false"><i class="fa fa-history icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Activity Logs</span></a>
+            <a class="active" title="Activity Logs" href="{{ route('admin.activity.logs') }}" aria-expanded="false"><i class="fa fa-history icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Activity Logs</span></a>
           </li>
 
         </ul>

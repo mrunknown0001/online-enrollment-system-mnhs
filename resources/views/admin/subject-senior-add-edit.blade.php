@@ -27,7 +27,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="title">Subject Title</label>
-                    <input type="text" name="title" id="title" value="{{ $subject != null ? $subject->title : '' }}" class="form-control" placeholder="Enter Subject Title" autofocus="" required>
+                    <input type="text" name="title" id="title" value="{{ $subject != null ? $subject->title : '' }}" class="form-control" placeholder="Enter Subject Title" autofocus="" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('title'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label for="code">Subject Code</label>
-                    <input type="text" name="code" id="code" value="{{ $subject != null ? $subject->code : '' }}" class="form-control" placeholder="Enter Subject Code" required="">
+                    <input type="number" name="code" id="code" value="{{ $subject != null ? $subject->code : '' }}" class="form-control" placeholder="Enter Subject Code" required="">
                     <span class="help-block small"></span>
                     @if ($errors->has('code'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -46,8 +46,8 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label for="description">Subject Description</label>
-                    <textarea name="description" id="description" class="form-control" placeholder="Enter Subject Description" required>{{ $subject != null ? $subject->description : '' }}</textarea>
+                    <label for="description">Subject Description <i>(Optional)</i></label>
+                    <textarea name="description" id="description" class="form-control" placeholder="Enter Subject Description" >{{ $subject != null ? $subject->description : '' }}</textarea>
                     <span class="help-block small"></span>
                     @if ($errors->has('description'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -131,5 +131,11 @@
           </div>
         </div>
     </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  

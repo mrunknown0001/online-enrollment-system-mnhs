@@ -24,7 +24,7 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="firstname">Enter Firstname</label>
-                <input type="text" name="firstname" id="firstname" value="{{ Auth::user()->firstname != null ? Auth::user()->firstname : '' }}" class="form-control" placeholder="Enter Firstname" required autofocus="">
+                <input type="text" name="firstname" id="firstname" value="{{ Auth::user()->firstname != null ? Auth::user()->firstname : '' }}" class="form-control" placeholder="Enter Firstname" required autofocus="" onkeydown="return alphaOnly(event);">
                 @if ($errors->has('firstname'))
                   <span class="invalid-feedback text-red" role="alert">
                     <strong>{{ $errors->first('firstname') }}</strong>
@@ -33,7 +33,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="lastname">Enter Lastname</label>
-                <input type="text" name="lastname" id="lastname" value="{{ Auth::user()->lastname != null ? Auth::user()->lastname : '' }}" class="form-control" placeholder="Enter Lastname" required>
+                <input type="text" name="lastname" id="lastname" value="{{ Auth::user()->lastname != null ? Auth::user()->lastname : '' }}" class="form-control" placeholder="Enter Lastname" required onkeydown="return alphaOnly(event);">
                 @if ($errors->has('lastname'))
                   <span class="invalid-feedback text-red" role="alert">
                     <strong>{{ $errors->first('lastname') }}</strong>
@@ -71,5 +71,11 @@
         </div>
       </div>
   </div>
+<script>
+  function alphaOnly(event) {
+    var key = event.keyCode;
+    return ((key >= 65 && key <= 90) || key == 8);
+  }
+</script>
 @endsection
  
