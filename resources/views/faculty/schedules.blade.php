@@ -19,6 +19,7 @@
             <p>
             	<button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
             </p>
+            @include('includes.all')
         </div>
     </div>
 </div>
