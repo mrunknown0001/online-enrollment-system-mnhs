@@ -34,6 +34,9 @@ class FacultyController extends Controller
     // VIEW ENROLED STUDENT UNDER ITS ASSIGNED SUBJECT
     public function myStudents()
     {
+
+        // get all students in section and subjecdt assigned to the teacher
+        
         return view('faculty.my-students');
     }
 
@@ -94,8 +97,37 @@ class FacultyController extends Controller
         // get section assigned
         // from section assigned get all schedules assigned to that grade level and section
         // get all schedules
-        
+        $faculty = Auth::user();
 
-        return view('faculty.schedules');
+        $schedules = NULL;
+
+        if(count($faculty->subjects) > 0) {
+            // get all sched based on active subjects
+
+
+            foreach($faculty->subjects as $s) {
+
+                $sched = \App\Schedule::where('subject_id', $s->subject_id)
+                            ->where('section_id', $s->section_id)
+                            ->where('active', 1)
+                            ->first();
+
+                if(!empty($sched)) {
+                    $schedules[] = [
+                        'section' => $this->core->getGradeSection($sched->section_id),
+                        'subject' => $this->core->getSubject($sched->subject_id),
+                        'room' => $this->core->getRoomName($sched->room_id),
+                        'day' => $this->core->getDay($sched->day),
+                        'start_time' => $this->core->getTime($sched->start_time),
+                        'end_time' => $this->core->getTime($sched->end_time) 
+                    ];
+                }
+
+            }
+        }
+
+        // return $schedules;
+
+        return view('faculty.schedules', ['schedules' => $schedules]);
     }
 }
