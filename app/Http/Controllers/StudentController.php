@@ -26,4 +26,18 @@ class StudentController extends Controller
 		return view('student.password-change');
 	}
 
+
+	// student evaluation method
+	public function evaluation()
+	{
+		return view('student.evaluation');
+	}
+
+
+	// student schedules
+	public function schedules()
+	{
+		return view('student.schedules');
+	}
+
 }

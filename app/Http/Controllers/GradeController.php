@@ -9,13 +9,47 @@ use App\Section;
 use App\Grade;
 
 use DB;
+use Auth;
 
 class GradeController extends Controller
 {
     // VIEW STUDENT GRADES
     public function viewGrades()
     {
-    	return view('student.grades');
+        $student = Auth::user();
+
+        $grades = Grade::where('user_id', $student->id)->count();
+
+    	return view('student.grades', ['grades' => $grades]);
+    }
+
+
+    // student grade forat for datatables
+    public function studentGrades()
+    {
+        $student = Auth::user();
+
+        $grades = Grade::where('user_id', $student->id)->get();
+
+        $g = [
+            'grade_level' => NULL,
+            'subject' => NULL,
+            'grade' => NULL,
+        ];
+
+        if(count($grades) > 0) {
+            $g = NULL;
+
+            foreach($grades as $gr) {
+                $g[] = [
+                    'grade_level' => 'Grade ' . $gr->subject->grade_level,
+                    'subject' => $gr->subject->code,
+                    'grade' => $gr->grade
+                ];
+            }
+        }
+
+        return $g;
     }
 
 
@@ -58,5 +92,27 @@ class GradeController extends Controller
 
     	return redirect()->back()->with('error', 'No Students in the Subject Section');
 
+    }
+
+
+    // method use to  update subject grade
+    public function updateGrade(Request $request)
+    {
+        $request->validate([
+            'grade' => 'required'
+        ]);
+
+        $grade_id = $request['grade_id'];
+        $grade = $request['grade'];
+
+        if($grade_id != NULL) {
+            $g = Grade::findorfail($grade_id);
+            $g->grade = $grade;
+            $g->save();
+
+            return redirect()->back()->with('success', 'Grade Updated!');
+        }
+
+        return abort(500);
     }
 }

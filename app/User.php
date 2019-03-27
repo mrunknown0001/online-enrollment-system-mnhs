@@ -79,7 +79,27 @@ class User extends Authenticatable
         // return $subject_id;
         $grade = \App\Grade::where('user_id', $user_id)->where('subject_id', $subject_id)->first();
 
-        return $grade;
+
+        if(!empty($grade)) {
+            return $grade->grade;
+        }
+
+        return NULL;
+    }
+
+
+    public function getGradePrimKey($user_id, $subject_id)
+    {
+        // return $user_id;
+        // return $subject_id;
+        $grade = \App\Grade::where('user_id', $user_id)->where('subject_id', $subject_id)->first();
+
+
+        if(!empty($grade)) {
+            return $grade->id;
+        }
+
+        return NULL;
     }
 
 

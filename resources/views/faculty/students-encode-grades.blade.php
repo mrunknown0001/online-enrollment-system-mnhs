@@ -36,9 +36,9 @@
 					<tbody>
 						@foreach($students as $s)
 							<tr>
-								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }}</td>
+								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }} - {{ $s->student->student_number }}</td>
 								<td>
-									<input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="" min="0" max="100">
+									<input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}" min="0" max="100">
 								</td>
 							</tr>
 						@endforeach

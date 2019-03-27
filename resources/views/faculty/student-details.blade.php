@@ -22,6 +22,7 @@
             <a href="{{ route('faculty.assigned.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Subject Assigned</a>
           </p>
           <p>Fullname: <strong>{{ $student->lastname }}, {{ $student->firstname }} {{ $student->middlename }} {{ $student->prefix }}</strong></p>
+          <p>LRN: <strong>{{ $student->student_number }}</strong></p>
           <p>Grade &amp; Section: Grade <strong>{{ $student->student_section->section->grade_level . ' - ' . $student->student_section->section->name }}</strong></p>
           <p>Gender: <strong>{{ $student->info->gender }}</strong></p>
           <p>Nataionality: <strong>{{ $student->info->nationality }}</strong></p>

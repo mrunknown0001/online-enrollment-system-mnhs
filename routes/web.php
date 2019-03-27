@@ -271,6 +271,14 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	});
 
 
+	// route to update student grade
+	Route::post('/subject/update/grade/', 'GradeController@updateGrade')->name('faculty.update.grade');
+
+	Route::get('/subject/update/grade', function () {
+		return abort(404);
+	});
+
+
 	// schedule module for faculty
 	Route::get('/my/schedules', 'FacultyController@schedules')->name('faculty.schedules');
 
@@ -298,5 +306,14 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 
 	// STUDENT GRADES
 	Route::get('/grades', 'GradeController@viewGrades')->name('student.grades');
+
+	Route::get('/grades/all', 'GradeController@studentGrades')->name('student.grades.all');
+
+	// student evaluation
+	Route::get('/evaluation', 'StudentController@evaluation')->name('student.evaluation');
+
+
+	// student scheule
+	Route::get('/schedules', 'StudentController@schedules')->name('student.schedules');
 
 });
