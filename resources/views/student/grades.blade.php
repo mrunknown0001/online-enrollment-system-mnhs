@@ -27,7 +27,7 @@
             <table id="grades" class="table table-hover table-striped table-bordered">
               <thead>
                 <th>Grade Level</th>
-                <th>Subjet</th>
+                <th>Subject</th>
                 <th>Grade</th>
               </thead>
             </table>

@@ -151,13 +151,105 @@ class CoreModel extends Model
     // check enrollment
     public function checkEnrollment()
     {
-        $setting = \App\setting::find(1);
+        $setting = \App\Setting::find(1);
 
         if($setting->enrollment == 1) {
             return true;
         }
 
         return false;
+    }
+
+
+    // get grade of student
+    public function getStudentGrade($student_id, $subject_id)
+    {
+        $grade = \App\Grade::where('user_id', $student_id)->where('subject_id', $subject_id)->first();
+
+        if(!empty($grade)) {
+            return $grade->grade;
+        }
+
+        return 'N/A';
+    }
+
+
+
+    /////////////////////////
+    // find the equivalent //
+    /////////////////////////
+    public function equivalent($ave = NULL)
+    {
+        $e = 5.00;
+
+        if($ave != 0) {
+
+            switch ($ave) {
+
+                case $ave >= 99.00 && $ave == 100:
+                    $e = 1.00;
+                    break;
+                
+                case $ave <= 98.99 && $ave >= 95.00:
+                    $e = 1.25;
+                    break;
+
+                case $ave <= 94.99 && $ave >= 92.00:
+                    $e = 1.50;
+                    break;
+
+                case $ave <= 91.99 && $ave >= 89.00:
+                    $e = 1.75;
+                    break;
+
+                case $ave <= 88.99 && $ave >= 86.00:
+                    $e = 2.00;
+                    break;
+
+                case $ave <= 85.99 && $ave >= 83.00:
+                    $e = 2.25;
+                    break;
+
+                case $ave <= 82.99 && $ave >= 80.00:
+                    $e = 2.50;
+                    break;
+
+                case $ave <= 79.99 && $ave >= 77.00:
+                    $e = 2.75;
+                    break;
+
+                case $ave <= 76.99 && $ave >= 75.00:
+                    $e = 3.00;
+                    break;
+
+                case $ave < 74.99:
+                    $e = 5.00;
+                    break;
+
+                default:
+                    $e = 5.00;
+                    break;
+            }
+
+        }
+
+
+        return $e;
+    }
+
+
+    public function remarks($grade = NULL)
+    {
+        if($grade != NULL) {
+            if($grade <= 3) {
+                return 'Passed';
+            }
+            else {
+                return 'Failed';
+            }
+        }
+
+        return 'N/A';
     }
 
 
