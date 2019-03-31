@@ -32,13 +32,15 @@
                     </thead>
                     <tbody>
                         @foreach($schedules as $s)
-                            <td>{{ $s['section'] }}</td>
-                            <td>{{ $s['subject'] }}</td>
-                            <td>{{ $s['room'] }}</td>
-                            <td>{{ $s['day'] }}</td>
-                            <td>
-                                {{ $s['start_time'] }} - {{ $s['end_time'] }}
-                            </td>
+                            <tr>
+                                <td>{{ $s['section'] }}</td>
+                                <td>{{ $s['subject'] }}</td>
+                                <td>{{ $s['room'] }}</td>
+                                <td>{{ $s['day'] }}</td>
+                                <td>
+                                    {{ $s['start_time'] }} - {{ $s['end_time'] }}
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -65,7 +65,48 @@ class StudentController extends Controller
 	// student schedules
 	public function schedules()
 	{
-		return view('student.schedules');
+		$student = Auth::user();
+
+		$grade_level = $student->info->grade_level;
+		$section_id = $student->student_section->section->id;
+
+		$subjects = Subject::where('grade_level', $grade_level)->get(); 
+
+        if(count($subjects) > 0) {
+        	$schedules = NULL;
+        	// return 'hey';
+            foreach($subjects as $s) {
+
+                $sched = \App\Schedule::where('subject_id', $s->id)
+                            ->where('section_id', $section_id)
+                            ->where('active', 1)
+                            ->first();
+
+                if(!empty($sched)) {
+                    $schedules[] = [
+                        'subject' => $this->core->getSubject($s->id),
+                        'room' => $this->core->getRoomName($sched->room_id),
+                        'day' => $this->core->getDay($sched->day),
+                        'start_time' => $this->core->getTime($sched->start_time),
+                        'end_time' => $this->core->getTime($sched->end_time) 
+                    ];
+                }
+                else {
+                	$schedules[] = [
+                		'subject' => $this->core->getSubject($s->id),
+                        'room' => 'N/A',
+                        'day' => 'N/A',
+                        'start_time' => 'N/A',
+                        'end_time' => 'N/A' 
+                	];
+                }
+
+            }
+        }
+
+        // return $schedules;
+
+		return view('student.schedules', ['schedules' => $schedules]);
 	}
 
 }
