@@ -389,7 +389,7 @@ class UserController extends Controller
         $middlename = $request['middlename'];
         $lastname = $request['lastname'];
         $prefix = $request['prefix'];
-        $lrn = 'LRN-106702' . $request['lrn'];
+        $lrn = 'LRN-300970' . $request['lrn'];
         $gender = $request['gender'];
         $nationality = $request['nationality'];
         $birthday = date('Y-m-d', strtotime($request['birthday']));
