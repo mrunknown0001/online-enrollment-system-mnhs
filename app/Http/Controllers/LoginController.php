@@ -49,32 +49,43 @@ class LoginController extends Controller
         }
 
     	$request->validate([
-            'student_number' => 'required',
+            'user_type' => 'required',
+            'identification' => 'required',
             'password' => 'required'
         ]);
 
-        $student_number = 'LRN-106702' . $request['student_number'];
+        $identification = $request['identification'];
         $password = $request['password'];
         $remember_me = $request['remember_me'];
+        $user_type = $request['user_type'];
 
-    try {
-        if(Auth::attempt(['student_number' => $student_number, 'password' => $password], $remember_me)) {
+        try {
+            if(Auth::attempt(['student_number' => $identification, 'password' => $password], $remember_me) || Auth::attempt(['employee_id' => $identification, 'password' => $password], $remember_me)) {
 
-            if(Auth::user()->active != 1) {
-                Auth::logout();
-                return redirect()->route('login')->with('error', 'Inactive Student!');
+                if(Auth::user()->active != 1) {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'Inactive Student!');
+                }
+
+
+                // check if user_type is correct
+                if(Auth::user()->user_type != $user_type) {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'Invalid User Type');
+                }
+
+                // add to audit trail
+                $action = 'Login';
+                AuditTrailController::create($action);
+
+                // return redirect()->route('student.dashboard');
+
+                return $this->authCheck();
             }
-
-            // add to audit trail
-            $action = 'Student Login';
-            AuditTrailController::create($action);
-
-            return redirect()->route('student.dashboard');
         }
-    }
-    catch (QueryException $ex) {
-        return redirect()->back()->with('error', 'Please Check Your Database Server');
-    }
+        catch (QueryException $ex) {
+            return redirect()->back()->with('error', 'Please Check Your Database Server');
+        }
 
         return redirect()->route('login')->with('error', 'Incorrect Student Number or Password!');
     }

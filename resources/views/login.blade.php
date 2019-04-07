@@ -26,12 +26,20 @@
               <form action="{{ route('login.post') }}" method="POST" id="loginForm" autocomplete="off">
                 @csrf
                 <div class="form-group">
-                  <label class="control-label" for="student_number">Student Number</label>
-                  <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">LRN-300970</span>
-                    <input type="text" name="student_number" id="student_number" class="form-control" placeholder="Last 6 Digit LRN" aria-describedby="basic-addon1" autofocus>
-                  </div>
-                  <span class="help-block small">Your Student Number</span>
+                  <label class=control-label for="user_type">Select User</label>
+                  <select name="user_type" id="user_type" class="form-control">
+                    <option value="3">Student</option>
+                    <option value="2">Faculty</option>
+                    <option value="1">Admin</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="identification">Identification</label>
+                  {{-- <div class="input-group"> --}}
+                    {{-- <span class="input-group-addon" id="basic-addon1">LRN-300970</span> --}}
+                    <input type="text" name="identification" id="identification" class="form-control" placeholder="LRN/ID Number" aria-describedby="basic-addon1" autofocus>
+                  {{-- </div> --}}
+                  <span class="help-block small">LRN for Student / ID Number for Employee</span>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="password">Password</label>
