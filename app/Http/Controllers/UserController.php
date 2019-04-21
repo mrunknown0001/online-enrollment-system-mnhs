@@ -192,7 +192,43 @@ class UserController extends Controller
 
         $faculty = User::findorfail($id);
 
-        return view('admin.faculty-add-edit', ['faculty' => $faculty]);    }
+        return view('admin.faculty-add-edit', ['faculty' => $faculty]);    
+    }
+
+
+
+    // method use to reset password of faculty
+    public function facultyResetPassword($id)
+    {
+        $id = decrypt($id);
+
+        $faculty = User::findorfail($id);
+
+        return view('admin.faculty-reset-password', ['faculty' => $faculty]);
+    }
+
+
+    // method use to reset password with save function
+    public function postFacultyResetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $id = $request['faculty_id'];
+        $password = $request['password'];
+
+        $faculty = User::findorfail($id);
+
+        $faculty->password = bcrypt($password);
+        
+        if($faculty->save()) {
+            return redirect()->route('admin.faculties')->with('success', 'Password Reset Successful!');
+        }
+
+        return redirect()->route('admin.faculties')->with('error', 'Password Reset Error. Please Try Again!');
+
+    }
 
 
     // ALL FACULTIES
@@ -219,7 +255,7 @@ class UserController extends Controller
                     'firstname' => strtoupper($f->firstname),
                     'lastname' => strtoupper($f->lastname),
                     'employee_id' => $f->employee_id,
-                    'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <button class='btn btn-danger btn-xs' onclick=\"remove_faculty('" . $f->id . "')\"><i class='fa fa-trash'></i> Delete</button> <a class='btn btn-info btn-xs'>Assign Subject</a>"
+                    'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.faculty.reset.password', ['id' => encrypt($f->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_faculty('" . $f->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                 ];
 
             }
@@ -275,7 +311,7 @@ class UserController extends Controller
                     'firstname' => $s->firstname,
                     'lastname' => $s->lastname,
                     'lrn' => $s->student_number,
-                    'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a>"
+                    'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.reset.student.password', ['id' => encrypt($s->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                 ];
             }
         }
@@ -298,6 +334,38 @@ class UserController extends Controller
         return view('admin.student-details', ['student' => $student]);
     }
 
+
+    // method use to reset password of student
+    public function resetStudentPassword($id)
+    {
+        $id = decrypt($id);
+
+        $student = User::findorfail($id);
+
+        return view('admin.student-reset-password', ['student' => $student]);
+    }
+
+
+    // method use to reset password and save
+    public function postResetStudentPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $id = $request['student_id'];
+        $password = $request['password'];
+
+        $student = User::findorfail($id);
+
+        $student->password = bcrypt($password);
+        
+        if($student->save()) {
+            return redirect()->route('admin.students')->with('success', 'Password Reset Successful!');
+        }
+
+        return redirect()->route('admin.students')->with('error', 'Password Reset Error. Please Try Again!');   
+    }
 
     // method use to print list of students
     public function printStudentList()

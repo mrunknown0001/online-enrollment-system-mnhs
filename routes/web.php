@@ -43,17 +43,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/faculty/update/{id}', 'UserController@updateFaculty')->name('admin.update.faculty');
 
+	Route::get('/faculty/{id}/reset/password', 'UserController@facultyResetPassword')->name('admin.faculty.reset.password');
+
+	Route::post('/faculty/reset/password', 'UserController@postFacultyResetPassword')->name('admin.faculty.reset.password.post');
+
 	Route::get('/faculty/subject/assignments', 'FacultyAssignmentController@index')->name('admin.faculty.assignments');
 
 	Route::get('/faculty/subject/assignments/add', 'FacultyAssignmentController@create')->name('admin.faculty.assignments.add');
 
 	Route::post('/faculty/subject/assignments/add', 'FacultyAssignmentController@store')->name('admin.faculty.assignments.store');
 
+
 	Route::get('/student/management', 'UserController@students')->name('admin.students');
 
 	Route::get('/student/{id}/view/details', 'UserController@studentViewDetails')->name('admin.student.view.details');
 
 	Route::get('/student/print/list', 'UserController@printStudentList')->name('admin.print.student.list');
+
+	Route::get('/student/{id}/reset/password', 'UserController@resetStudentPassword')->name('admin.reset.student.password');
+
+	Route::post('/student/reset/password', 'UserController@postResetStudentPassword')->name('admin.reset.student.password.post');
 
 
 	// SUBJECT MANAGEMENT
@@ -260,7 +269,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	// route to view student details on faculty
 	Route::get('/student/{id}/view/details', 'FacultyController@studentViewDetails')->name('faculty.student.view.details');
 
-	// route to encode grades in subject assigned to faculy
+	// route to encode grades in subject assigned to faculty
 	Route::get('/subject/{subject_id}/section/{section_id}/encode/grades', 'FacultyController@encodeStudentGrades')->name('faculty.encode.grades');
 
 	// route to save grades of students
