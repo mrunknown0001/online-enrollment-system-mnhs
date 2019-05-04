@@ -70,7 +70,7 @@
 					<div class="form-group col-md-4">
 						<label for="lrn">Enter LRN</label>
             <div class="input-group">
-						  <span class="input-group-addon" id="basic-addon1">LRN-106702</span>
+						  <span class="input-group-addon" id="basic-addon1">LRN-300970</span>
 						  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Last 6 Digit LRN" aria-describedby="basic-addon1">
 						</div>
             <span class="help-block small"></span>
