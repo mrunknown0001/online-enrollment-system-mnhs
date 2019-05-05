@@ -79,6 +79,19 @@ class UserController extends Controller
 
 
     // ADMIN SIDE
+    
+    // ADMIN MANAGEMENT
+    public function admins()
+    {
+        return view('admin.admins');
+    }
+
+
+    // add admin
+    public function addAdmin()
+    {
+        return view('admin.admin-add-edit', ['admin' => NULL]);
+    }
 
     // FACULTY MANAGEMENT
     public function faculties()
@@ -228,6 +241,50 @@ class UserController extends Controller
 
         return redirect()->route('admin.faculties')->with('error', 'Password Reset Error. Please Try Again!');
 
+    }
+
+
+    // ALL ADMINS
+    public function allAdmins()
+    {
+        // get all faculties
+        $admins = User::where('user_type', 1)->where('active', 1)->get();
+
+        // format to follow
+        $data = array(
+            'fistname' => null,
+            'lastname' => null,
+            'admin_id' => null,
+            'action' => null
+        );
+
+        if(count($admins) > 0) {
+
+            $data = null;
+
+            foreach($admins as $a) {
+
+                if($a->id != 1) {
+                    $data[] = [
+                        'firstname' => strtoupper($a->firstname),
+                        'lastname' => strtoupper($a->lastname),
+                        'admin_id' => $a->employee_id,
+                        'action' => "<a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
+                    ];
+                }
+                else {
+                    $data[] = [
+                        'firstname' => strtoupper($a->firstname),
+                        'lastname' => strtoupper($a->lastname),
+                        'admin_id' => $a->employee_id,
+                        'action' => "<a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
+                    ];
+                }
+
+            }
+        }
+
+        return $data;
     }
 
 

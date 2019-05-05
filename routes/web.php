@@ -47,6 +47,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/faculty/reset/password', 'UserController@postFacultyResetPassword')->name('admin.faculty.reset.password.post');
 
+	Route::get('/admin/management', 'UserController@admins')->name('admin.admins');
+
+	Route::get('/admin/add', 'UserController@addAdmin')->name('admin.add.admin');
+
+	Route::post('/admin/add', 'UserController@storeAdmin')->name('admin.store.admin');
+
+	Route::get('/admin/remove/admin/{id}', 'UserController@removeAdmin')->name('admin.remove.admin');
+
+	Route::get('/admin/update/admin/{id}', 'UserController@updateAdmin')->name('admin.update.admin');
+
+	Route::get('/admin/reset-password/admin/{id}', 'UserController@resetPasswordAdmin')->name('admin.reset.password.admin');
+
 	Route::get('/faculty/subject/assignments', 'FacultyAssignmentController@index')->name('admin.faculty.assignments');
 
 	Route::get('/faculty/subject/assignments/add', 'FacultyAssignmentController@create')->name('admin.faculty.assignments.add');
@@ -139,6 +151,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	/**
 	 * JSON DATA
 	 */
+	// ADD ADMINS
+	Route::get('/all/admins', 'UserController@allAdmins')->name('all.admins');
 	// ALL FACULTIES
 	Route::get('/all/faculties', 'UserController@allFaculties')->name('all.faculties');
 
