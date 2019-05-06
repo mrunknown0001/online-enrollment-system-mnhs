@@ -76,6 +76,16 @@
                       </span>
                     @endif
                 </div>
+                <div class="form-group col-lg-6">
+                    <label for="position">Position</label>
+                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $faculty->position }}" placeholder="Enter Mobile Number" required >
+                    <span class="help-block small"></span>
+                    @if ($errors->has('position'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('position') }}</strong>
+                      </span>
+                    @endif
+                </div>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ $admin == null ? 'Add Admin' : 'Update Admin' }}</button>
