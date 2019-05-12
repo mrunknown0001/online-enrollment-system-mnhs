@@ -21,7 +21,13 @@
             </p>
             <div class="row">
               <div class="col-md-6">
-                <p>{{ $admin->firstname . ' ' . $admin->lastname }}</p>
+                <hr>
+                <p>Name: <strong>{{ $admin->firstname . ' ' . $admin->lastname }}</strong></p>
+                <p>ID Number: <strong>{{ $admin->employee_id }}</strong></p>
+                <p>DepEd Email: <strong>{{ $admin->email }}</strong></p>
+                <p>Mobile Number: <strong>{{ $admin->mobile_number }}</strong></p>
+                <p>Position: <strong>{{ $admin->position }}</strong></p>
+                <hr>
               </div>
             </div>
 

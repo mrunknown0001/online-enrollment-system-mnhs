@@ -153,6 +153,17 @@ class UserController extends Controller
     }
 
 
+    // method use to edit/update admin
+    public function updateAdmin($id = NULL)
+    {
+        $id = $this->core->decryptString($id);
+
+        $admin = User::findorfail($id);
+
+        return view('admin.admin-add-edit', ['admin' => $admin]);
+    }
+
+
     // FACULTY MANAGEMENT
     public function faculties()
     {
@@ -329,7 +340,7 @@ class UserController extends Controller
                         'firstname' => strtoupper($a->firstname),
                         'lastname' => strtoupper($a->lastname),
                         'admin_id' => $a->employee_id,
-                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                     ];
                 }
                 else {
@@ -337,7 +348,7 @@ class UserController extends Controller
                         'firstname' => strtoupper($a->firstname),
                         'lastname' => strtoupper($a->lastname),
                         'admin_id' => $a->employee_id,
-                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                     ];
                 }
 
