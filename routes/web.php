@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/admin/add', 'UserController@storeAdmin')->name('admin.store.admin');
 
+	Route::get('/admin/view/{id}', 'UserController@viewAdmin')->name('admin.view.admin');
+
 	Route::get('/admin/remove/admin/{id}', 'UserController@removeAdmin')->name('admin.remove.admin');
 
 	Route::get('/admin/update/admin/{id}', 'UserController@updateAdmin')->name('admin.update.admin');

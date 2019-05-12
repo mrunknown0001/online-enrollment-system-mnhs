@@ -93,6 +93,66 @@ class UserController extends Controller
         return view('admin.admin-add-edit', ['admin' => NULL]);
     }
 
+
+    // method use to store admin
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'admin_id' => 'required',
+            'dep_ed_email' => 'required',
+            'mobile_number' => 'required',
+            'position' => 'required'
+        ]);
+
+        $firstname = $request['firstname'];
+        $lastname = $request['lastname'];
+        $admin_id = $request['admin_id'];
+        $email = $request['dep_ed_email'];
+        $mobile_number = $request['mobile_number'];
+        $position = $request['position'];
+
+        $user_id = $request['user_id'];
+
+        // save
+        if($user_id == NULL) {
+            $admin = new User();
+            $admin->password = bcrypt('secret');
+            $admin->user_type = 1;
+        }
+        else {
+            $admin = User::findorfail($user_id);
+        }
+
+        $admin->firstname = $firstname;
+        $admin->lastname = $lastname;
+        $admin->employee_id = $admin_id;
+        $admin->email = $email;
+        $admin->mobile_number = $mobile_number;
+        $admin->position = $position;
+
+        // condition
+        if($admin->save()) {
+            return redirect()->route('admin.add.admin')->with('success', 'New Admin Added');
+        }
+
+        // return redirect
+        return redirect()->route('admin.add.admin')->with('error', 'Error Occured! Please Try Again Later.');
+    }
+
+
+    // method use to view admin details
+    public function viewAdmin($id = NULL)
+    {
+        $id = $this->core->decryptString($id);
+
+        $admin = User::findorfail($id);
+
+        return view('admin.admin-view', ['admin' => $admin]);
+    }
+
+
     // FACULTY MANAGEMENT
     public function faculties()
     {
@@ -269,7 +329,7 @@ class UserController extends Controller
                         'firstname' => strtoupper($a->firstname),
                         'lastname' => strtoupper($a->lastname),
                         'admin_id' => $a->employee_id,
-                        'action' => "<a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                     ];
                 }
                 else {
@@ -277,7 +337,7 @@ class UserController extends Controller
                         'firstname' => strtoupper($a->firstname),
                         'lastname' => strtoupper($a->lastname),
                         'admin_id' => $a->employee_id,
-                        'action' => "<a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                     ];
                 }
 

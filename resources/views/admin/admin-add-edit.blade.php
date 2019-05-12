@@ -22,7 +22,7 @@
             @include('includes.all')
             <form action="{{ route('admin.store.admin') }}" method="POST" autocomplete="off">
               @csrf
-              <input type="hidden" name="admin_id" value="{{ $admin != null ? $admin->id : '' }}">
+              <input type="hidden" name="user_id" value="{{ $admin != null ? $admin->id : '' }}">
               <div class="row">
                 <div class="form-group col-lg-6">
                     <label for="firstname">Firstname</label>
