@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="mobile_number">Mobile Number</label>
-                    <input type="number" name="mobile_number" id="mobile_number" class="form-control" value="{{ $admin == null ? old('mobile_number') : $faculty->mobile_number }}" placeholder="Enter Mobile Number" required >
+                    <input type="number" name="mobile_number" id="mobile_number" class="form-control" value="{{ $admin == null ? old('mobile_number') : $admin->mobile_number }}" placeholder="Enter Mobile Number" required >
                     <span class="help-block small"></span>
                     @if ($errors->has('mobile_number'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="position">Position</label>
-                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $faculty->position }}" placeholder="Enter Mobile Number" required >
+                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $admin->position }}" placeholder="Enter Mobile Number" required >
                     <span class="help-block small"></span>
                     @if ($errors->has('position'))
                       <span class="invalid-feedback text-red" role="alert">

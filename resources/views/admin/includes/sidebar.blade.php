@@ -56,6 +56,18 @@
             <a title="Settings" href="{{ route('admin.settings') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
           </li>
 
+          <li class="">
+            <a class="has-arrow" href="javascript:void(0)">
+               <i class="fa big-icon fa-wrench icon-wrap"></i>
+               <span class="mini-click-non">Maintenance</span>
+            </a>
+            <ul class="submenu-angle" aria-expanded="true">
+              <li>
+                <a href="" title="Maintenance"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Maintenance</span></a>
+              </li>
+            </ul>
+          </li>
+
           <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">
             <a class="active" title="Activity Logs" href="{{ route('admin.activity.logs') }}" aria-expanded="false"><i class="fa fa-history icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Activity Logs</span></a>
           </li>

@@ -55,11 +55,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/admin/view/{id}', 'UserController@viewAdmin')->name('admin.view.admin');
 
-	Route::get('/admin/remove/admin/{id}', 'UserController@removeAdmin')->name('admin.remove.admin');
+	Route::get('/remove/admin/{id}', 'UserController@removeAdmin')->name('admin.remove.admin');
 
 	Route::get('/admin/update/admin/{id}', 'UserController@updateAdmin')->name('admin.update.admin');
 
 	Route::get('/admin/reset-password/admin/{id}', 'UserController@resetPasswordAdmin')->name('admin.reset.password.admin');
+
+	Route::post('/admin/reset-password/admin', 'UserController@postResetPasswordAdmin')->name('admin.reset.password.admin.post');
 
 	Route::get('/faculty/subject/assignments', 'FacultyAssignmentController@index')->name('admin.faculty.assignments');
 
@@ -135,6 +137,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::post('/room/add', 'RoomController@store')->name('admin.room.store');
 
 	Route::get('/room/update/{id}', 'RoomController@update')->name('admin.room.update');
+
+
+	// MAINTENANCE
+	Route::get('/maintenance', 'MaintenanceController@home')->name('admin.maintenance');
 
 
 	// SETTINGS
