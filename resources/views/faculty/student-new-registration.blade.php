@@ -36,7 +36,7 @@
 
 					<div class="form-group col-md-4">
 						<label for="middlename">Enter Middlename</label>
-            <input type="text" name="middlename" id="middlename" value="{{ old('middlename') }}" class="form-control" placeholder="Enter Middlename (Optional)">
+            <input type="text" name="middlename" id="middlename" value="{{ old('middlename') }}" class="form-control" placeholder="Enter Middlename">
             <span class="help-block small"></span>
             @if ($errors->has('middlename'))
               <span class="invalid-feedback text-red" role="alert">
