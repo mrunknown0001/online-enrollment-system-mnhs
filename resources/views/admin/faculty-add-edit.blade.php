@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="form-group col-lg-6">
-                    <label for="employee_id">Employee ID</label>
-                    <input type="number" name="employee_id" id="employee_id" value="{{ $faculty == null ? old('employee_id') : $faculty->employee_id }}" class="form-control" placeholder="Enter Employee ID" required>
+                    <label for="employee_id">Employee Number</label>
+                    <input type="number" name="employee_id" id="employee_id" value="{{ $faculty == null ? old('employee_id') : $faculty->employee_id }}" class="form-control" placeholder="Enter Employee Number" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('employee_id'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -57,8 +57,8 @@
                 </div>
 
                 <div class="form-group col-lg-6">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" value="{{ $faculty == null ? old('email') : $faculty->email }}" placeholder="Enter Enter Email" required>
+                    <label for="email">DepEd Email</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ $faculty == null ? old('email') : $faculty->email }}" placeholder="Enter DepEd Email" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('email'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -73,6 +73,29 @@
                     @if ($errors->has('mobile_number'))
                       <span class="invalid-feedback text-red" role="alert">
                         <strong>{{ $errors->first('mobile_number') }}</strong>
+                      </span>
+                    @endif
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="department">Department</label>
+                    <select class="form-control" name="department" id="department">
+                      <option value="">Select Department</option>
+
+                    </select>
+                    <span class="help-block small"></span>
+                    @if ($errors->has('department'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('department') }}</strong>
+                      </span>
+                    @endif
+                </div>
+                <div class="form-group col-lg-6">
+                    <label for="position">Position</label>
+                    <input type="text" name="position" id="position" class="form-control" value="{{ $faculty == null ? old('position') : $faculty->position }}" placeholder="Enter Position" required >
+                    <span class="help-block small"></span>
+                    @if ($errors->has('position'))
+                      <span class="invalid-feedback text-red" role="alert">
+                        <strong>{{ $errors->first('position') }}</strong>
                       </span>
                     @endif
                 </div>

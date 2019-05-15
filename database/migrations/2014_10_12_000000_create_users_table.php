@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 100)->unique()->nullable();
             $table->string('mobile_number', 100)->unique()->nullable();
             $table->string('position', 200)->nullable();
+            $table->integer('department_id')->unsigned()->nullable();
             $table->string('password', 200);
             $table->tinyInteger('user_type')->default(3);
             // 1 for admin, 2 for faculty, 3 for students

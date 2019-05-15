@@ -37,33 +37,37 @@
           </li>
 
           <li class="">
-            <a class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}"" title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Strands</span></a>
-          </li>
-
-          <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
-            <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
-          </li>
-
-          <li class="{{ route('admin.sections') == url()->current() ? 'active' : '' }}">
-            <a title="Section Management" href="{{ route('admin.sections') }}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Sections</span></a>
-          </li>
-
-          <li class="{{ route('admin.schedules') == url()->current() ? 'active' : '' }}">
-            <a title="Schedules" href="{{ route('admin.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
-          </li>
-
-          <li class="{{ route('admin.settings') == url()->current() ? 'active' : '' }}">
-            <a title="Settings" href="{{ route('admin.settings') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
-          </li>
-
-          <li class="">
             <a class="has-arrow" href="javascript:void(0)">
                <i class="fa big-icon fa-wrench icon-wrap"></i>
                <span class="mini-click-non">Maintenance</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
+
+              <li class="">
+                <a class="{{ route('admin.strands') == url()->current() ? 'active' : '' }}"" title="Strand Management" href="{{ route('admin.strands') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Strands</span></a>
+              </li>
+
+              <li class="{{ route('admin.subjects') == url()->current() || route('admin.add.subject') == url()->current() ? 'active' : '' }}">
+                <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
+              </li>
+
+              <li class="{{ route('admin.sections') == url()->current() ? 'active' : '' }}">
+                <a title="Section Management" href="{{ route('admin.sections') }}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Sections</span></a>
+              </li>
+
+              <li class="{{ route('admin.schedules') == url()->current() ? 'active' : '' }}">
+                <a title="Schedules" href="{{ route('admin.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
+              </li>
+
+              <li class="{{ route('admin.settings') == url()->current() ? 'active' : '' }}">
+                <a title="Settings" href="{{ route('admin.settings') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
+              </li>
+              
               <li>
-                <a href="" title="Maintenance"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Maintenance</span></a>
+                <a href="{{ route('admin.departments') }}" title="Department"><i class="fa fa-building-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Department</span></a>
+              </li>
+              <li>
+                <a href="{{ route('admin.designations') }}" title="Designation"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Designation</span></a>
               </li>
             </ul>
           </li>

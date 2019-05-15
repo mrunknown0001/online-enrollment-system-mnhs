@@ -235,7 +235,9 @@ class UserController extends Controller
                 'lastname' => 'required',
                 'employee_id' =>'required|unique:users,employee_id',
                 'email' => 'nullable|unique:users,email|email',
-                'mobile_number' => 'nullable|unique:users,mobile_number'
+                'mobile_number' => 'nullable|unique:users,mobile_number',
+                'department' => 'nullable',
+                'position' => 'required'
             ]);
 
             $firstname = $request['firstname'];
@@ -243,6 +245,8 @@ class UserController extends Controller
             $employee_id = $request['employee_id'];
             $email = $request['email'];
             $mobile_number = $request['mobile_number'];
+            $department = $request['department'];
+            $position = $request['position'];
 
             // add to database
             $f = new User();
@@ -253,6 +257,7 @@ class UserController extends Controller
             $f->mobile_number = $mobile_number;
             $f->password = bcrypt('secret');
             $f->user_type = 2; // faculty
+            $f->position = $position;
 
             // if save is success, add activity log and return back with message
             if($f->save()) {

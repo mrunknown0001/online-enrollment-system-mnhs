@@ -142,6 +142,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// MAINTENANCE
 	Route::get('/maintenance', 'MaintenanceController@home')->name('admin.maintenance');
 
+	Route::get('/departments', 'DepartmentController@departments')->name('admin.departments');
+
+	Route::get('/designation', 'DesignationController@designations')->name('admin.designations');
+
 
 	// SETTINGS
 	Route::get('/settings', 'SettingController@index')->name('admin.settings');
