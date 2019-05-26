@@ -144,7 +144,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/departments', 'DepartmentController@departments')->name('admin.departments');
 
-	Route::get('/designation', 'DesignationController@designations')->name('admin.designations');
+	Route::get('/department/add', 'DepartmentController@create')->name('admin.department.add');
+
+	Route::post('/department/add', 'DepartmentController@store')->name('admin.store.department');
+
+	Route::get('/department/update/{id}', 'DepartmentController@update')->name('admin.update.department');
+
+	Route::get('/department/remove/{id}', 'DepartmentController@remove')->name('admin.remove.department');
+
+	Route::get('/designations', 'DesignationController@designations')->name('admin.designations');
 
 
 	// SETTINGS
@@ -194,6 +202,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	// ALL FACULTY ASSIGNMENT
 	Route::get('/all/faculty/assignments', 'FacultyAssignmentController@allAssignment')->name('all.faculty.assignments');
+
+	// ALL DEPARTMENTS
+	Route::get('/all/departments', 'DepartmentController@allDepartments')->name('all.departments');
+
+
+	// ALL DESIGNATIONS
+	Route::get('/all/designations', 'DesignationController@allDesignations')->name('all.designations');
 
 
 

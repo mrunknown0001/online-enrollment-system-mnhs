@@ -67,7 +67,7 @@
                 <a href="{{ route('admin.departments') }}" title="Department"><i class="fa fa-building-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Department</span></a>
               </li>
               <li>
-                <a href="{{ route('admin.designations') }}" title="Designation"><i class="fa fa-wrench sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Designation</span></a>
+                <a href="{{ route('admin.designations') }}" title="Designation"><i class="fa fa-tasks sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Designation</span></a>
               </li>
             </ul>
           </li>

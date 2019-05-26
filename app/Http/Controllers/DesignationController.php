@@ -12,9 +12,9 @@ class DesignationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function designations()
     {
-        //
+        return view('admin.designations');
     }
 
     /**
@@ -81,5 +81,34 @@ class DesignationController extends Controller
     public function destroy(Designation $designation)
     {
         //
+    }
+
+
+
+
+    // ALL DESIGNATIONS
+    public function allDesignations()
+    {
+        $designations = \App\FacultyDesignation::get();
+
+        $data = [
+            'name' => NULL,
+            'department' => NULL,
+            'action' => NULL,
+        ];
+
+        if(count($designations) > 0) {
+            $data = NULL;
+
+            foreach($designations as $d) {
+                $data[] = [
+                    'name' => $this->core->get_fullname_by_id($d->user_id),
+                    'department' => $this->core->getDepartmentName($d->department_id),
+                    'action' => "<button class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</button>"
+                ];
+            }
+        }
+
+        return $data;
     }
 }

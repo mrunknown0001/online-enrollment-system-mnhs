@@ -174,6 +174,15 @@ class CoreModel extends Model
     }
 
 
+    // get department
+    public function getDepartmentName($id)
+    {
+        $department = \App\Department::find($id);
+
+        return $department->department_name;
+    }
+
+
 
     /////////////////////////
     // find the equivalent //

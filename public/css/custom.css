@@ -13,3 +13,13 @@
 .isActive {
 	
 }
+
+/*a[href]:after {
+  content: " (" attr(href) ")";
+}*/
+
+@media only print {
+	a[href]:after {
+	  content: "";
+	}
+}

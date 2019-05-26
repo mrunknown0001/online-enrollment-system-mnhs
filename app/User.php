@@ -53,6 +53,13 @@ class User extends Authenticatable
     }
 
 
+    // faculty designation
+    public function designation()
+    {
+        return $this->hasOne('App\FacultyDesignation', 'user_id', 'id');
+    }
+
+
 
     // GLOBAL FUNCTION ACCESS FOR USERS USING AUTH
 

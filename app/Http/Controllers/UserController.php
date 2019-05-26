@@ -219,7 +219,9 @@ class UserController extends Controller
     // ADD FACULTY
     public function createFaculty()
     {
-        return view('admin.faculty-add-edit', ['faculty' => null]);
+        $dept = \App\Department::where('active', 1)->get();
+
+        return view('admin.faculty-add-edit', ['faculty' => null, 'dept' => $dept]);
     }
 
 
@@ -236,7 +238,7 @@ class UserController extends Controller
                 'employee_id' =>'required|unique:users,employee_id',
                 'email' => 'nullable|unique:users,email|email',
                 'mobile_number' => 'nullable|unique:users,mobile_number',
-                'department' => 'nullable',
+                'department' => 'required',
                 'position' => 'required'
             ]);
 
@@ -261,6 +263,12 @@ class UserController extends Controller
 
             // if save is success, add activity log and return back with message
             if($f->save()) {
+
+                $designation = new \App\FacultyDesignation();
+                $designation->user_id = $f->id;
+                $designation->department_id = $department;
+                $designation->save();
+
                 $action = 'Added New Faculty';
                 AuditTrailController::create($action);
 
@@ -274,7 +282,9 @@ class UserController extends Controller
                 'lastname' => 'required',
                 'employee_id' =>'required',
                 'email' => 'nullable',
-                'mobile_number' => 'nullable'
+                'mobile_number' => 'nullable',
+                'department' => 'required',
+                'position' => 'required'
             ]);
 
             $firstname = $request['firstname'];
@@ -283,6 +293,8 @@ class UserController extends Controller
             $employee_id = $request['employee_id'];
             $email = $request['email'];
             $mobile_number = $request['mobile_number'];
+            $department = $request['department'];
+            $position = $request['position'];
 
 
             $f = User::findorfail($faculty_id);
@@ -306,8 +318,21 @@ class UserController extends Controller
             $f->mobile_number = $mobile_number;
             $f->password = bcrypt('secret');
             $f->user_type = 2; // faculty
+            $f->position = $position;
 
             if($f->save()) {
+
+                if(!empty($f->designation)) {
+                    $f->designation->department_id = $department;
+                }
+                else {
+                    $f->designation = new \App\FacultyDesignation();
+                    $f->designation->user_id = $f->id;
+                    $f->designation->department_id = $department;
+                }
+
+                $f->designation->save();
+
                 $action = 'Faculty Details Updated';
                 AuditTrailController::create($action);
 
@@ -325,8 +350,9 @@ class UserController extends Controller
         $id = decrypt($id);
 
         $faculty = User::findorfail($id);
+        $dept = \App\Department::where('active', 1)->get();
 
-        return view('admin.faculty-add-edit', ['faculty' => $faculty]);    
+        return view('admin.faculty-add-edit', ['faculty' => $faculty, 'dept' => $dept]);    
     }
 
 

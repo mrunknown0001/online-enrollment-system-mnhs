@@ -80,7 +80,11 @@
                     <label for="department">Department</label>
                     <select class="form-control" name="department" id="department">
                       <option value="">Select Department</option>
-
+                      @if(count($dept) > 0)
+                        @foreach($dept as $d)
+                          <option value="{{ $d->id }}" {{ $faculty->designation->department_id == $d->id ? 'selected' : '' }}>{{ $d->department_name }}</option>
+                        @endforeach
+                      @endif
                     </select>
                     <span class="help-block small"></span>
                     @if ($errors->has('department'))
