@@ -17,73 +17,16 @@ class DesignationController extends Controller
         return view('admin.designations');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    // view designation
+    public function facultyDesignation($id)
     {
-        //
+        $id = $this->core->decryptString($id);
+
+        $faculty = \App\User::findorfail($id);
+
+        return view('admin.designation-faculty', ['faculty' => $faculty]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Designation $designation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Designation $designation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Designation $designation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Designation $designation)
-    {
-        //
-    }
-
-
 
 
     // ALL DESIGNATIONS
@@ -104,7 +47,7 @@ class DesignationController extends Controller
                 $data[] = [
                     'name' => $this->core->get_fullname_by_id($d->user_id),
                     'department' => $this->core->getDepartmentName($d->department_id),
-                    'action' => "<button class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</button>"
+                    'action' => "<a href=" . route('admin.faculty.designation', ['id' => encrypt($d->user_id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a>"
                 ];
             }
         }

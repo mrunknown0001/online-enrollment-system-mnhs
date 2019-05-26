@@ -82,7 +82,7 @@
                       <option value="">Select Department</option>
                       @if(count($dept) > 0)
                         @foreach($dept as $d)
-                          <option value="{{ $d->id }}" {{ $faculty->designation->department_id == $d->id ? 'selected' : '' }}>{{ $d->department_name }}</option>
+                          <option value="{{ $d->id }}" {{ $faculty != NULL && $faculty->designation != NULL ? $faculty->designation->department_id == $d->id ? 'selected' : '' : '' }}>{{ $d->department_name }}</option>
                         @endforeach
                       @endif
                     </select>

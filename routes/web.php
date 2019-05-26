@@ -154,6 +154,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/designations', 'DesignationController@designations')->name('admin.designations');
 
+	Route::get('/designation/view/{id}', 'DesignationController@facultyDesignation')->name('admin.faculty.designation');
+
 
 	// SETTINGS
 	Route::get('/settings', 'SettingController@index')->name('admin.settings');
