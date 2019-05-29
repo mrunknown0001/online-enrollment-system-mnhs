@@ -30,8 +30,6 @@
 
               <li><a class="{{ route('admin.faculties') == url()->current() ? 'active' : '' }}" title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculties</span></a></li>
 
-              <li><a title="Faculty Subject Assignment" href="{{ route('admin.faculty.assignments') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty Subjects</span></a></li>
-
               <li><a title="Student Management" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Students</span></a></li>
             </ul>
           </li>
@@ -51,16 +49,14 @@
                 <a title="Subject Management" href="{{ route('admin.subjects') }}" aria-expanded="false"><i class="fa fa-book icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Subjects</span></a>
               </li>
 
+              <li><a title="Faculty Subject Assignment" href="{{ route('admin.faculty.assignments') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty Subjects</span></a></li>
+
               <li class="{{ route('admin.sections') == url()->current() ? 'active' : '' }}">
                 <a title="Section Management" href="{{ route('admin.sections') }}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Sections</span></a>
               </li>
 
               <li class="{{ route('admin.schedules') == url()->current() ? 'active' : '' }}">
                 <a title="Schedules" href="{{ route('admin.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Schedules</span></a>
-              </li>
-
-              <li class="{{ route('admin.settings') == url()->current() ? 'active' : '' }}">
-                <a title="Settings" href="{{ route('admin.settings') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Settings</span></a>
               </li>
               
               <li>
@@ -70,6 +66,14 @@
                 <a href="{{ route('admin.designations') }}" title="Designation"><i class="fa fa-tasks sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Designation</span></a>
               </li>
             </ul>
+          </li>
+
+          <li class="{{ route('admin.reports') == url()->current() ? 'active' : '' }}">
+            <a title="Repots" href="{{ route('admin.reports') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Reports</span></a>
+          </li>
+
+          <li class="{{ route('admin.online.enrollment') == url()->current() ? 'active' : '' }}">
+            <a title="Online Enrollment" href="{{ route('admin.online.enrollment') }}" aria-expanded="false"><i class="fa fa-gear icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Online Enrollment</span></a>
           </li>
 
           <li class="{{ route('admin.activity.logs') == url()->current() ? 'active' : '' }}">

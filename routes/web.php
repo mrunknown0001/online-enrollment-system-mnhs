@@ -157,8 +157,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/designation/view/{id}', 'DesignationController@facultyDesignation')->name('admin.faculty.designation');
 
 
-	// SETTINGS
-	Route::get('/settings', 'SettingController@index')->name('admin.settings');
+	// admin reports
+	Route::get('/reports', 'ReportController@index')->name('admin.reports');
+
+
+	// SETTINGS: Online Enrollment
+	Route::get('/online-enrollment', 'SettingController@index')->name('admin.online.enrollment');
 
 	Route::post('/enrollment/toggle', 'SettingController@postToggleEnrollment')->name('admin.enrollment.toggle');
 

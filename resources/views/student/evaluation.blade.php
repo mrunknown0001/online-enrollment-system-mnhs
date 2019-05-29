@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-12">
           <br><br><br>
-          <h1>Grades</h1>
+          <h1>Student Evaluation</h1>
           <p>
             <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
           </p>
@@ -27,7 +27,7 @@
             <table id="grades" class="table table-hover table-striped table-bordered">
               <thead>
                 <th>Subject</th>
-                <th>Grade</th>
+                <th>Evaluation</th>
                 <th>Remarks</th>
               </thead>
               <tbody>
@@ -39,9 +39,11 @@
 						<td>
 							{{ $g['grade'] }}
 						</td>
-						<td>
+						<td bgcolor="{{ $g['remark'] == 'Failed' ? 'red' : 'green' }}">
+
 							{{ $g['remark'] }}
-						</td>
+						
+            </td>
 					</tr>
               	@endforeach
               </tbody>

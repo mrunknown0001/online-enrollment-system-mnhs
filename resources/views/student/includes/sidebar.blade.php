@@ -16,9 +16,9 @@
                 <li><a title="Dashboard" href="{{ route('student.dashboard') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
             </ul>
           </li>
-          <li>
+          {{-- <li>
             <a title="Grades" href="{{ route('student.grades') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Grades</span></a>
-          </li>
+          </li> --}}
           <li>
             <a title="Evaluation" href="{{ route('student.evaluation') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Evaluation</span></a>
           </li>
