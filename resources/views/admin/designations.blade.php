@@ -23,6 +23,7 @@
             <table id="designations" class="table table-hover table-bordered table-striped">
               <thead>
                 <th>Name</th>
+                <th>Position</th>
                 <th>Department</th>
                 <th>Action</th>
               </thead>
@@ -41,6 +42,7 @@
       },
       columns: [
         { data: 'name' },
+        { data: 'position' },
         { data: 'department' },
         { data: 'action' }
       ]

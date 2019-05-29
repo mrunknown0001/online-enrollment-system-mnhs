@@ -46,6 +46,7 @@ class DesignationController extends Controller
             foreach($designations as $d) {
                 $data[] = [
                     'name' => $this->core->get_fullname_by_id($d->user_id),
+                    'position' => $this->core->get_position($d->user_id),
                     'department' => $this->core->getDepartmentName($d->department_id),
                     'action' => "<a href=" . route('admin.faculty.designation', ['id' => encrypt($d->user_id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a>"
                 ];

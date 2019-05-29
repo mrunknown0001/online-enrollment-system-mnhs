@@ -183,6 +183,15 @@ class CoreModel extends Model
     }
 
 
+    // get position
+    public function get_position($id)
+    {
+        $user = \App\User::find($id);
+
+        return $user->position;
+    }
+
+
 
     /////////////////////////
     // find the equivalent //

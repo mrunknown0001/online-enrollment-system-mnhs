@@ -120,9 +120,11 @@ class UserController extends Controller
             $admin = new User();
             $admin->password = bcrypt('secret');
             $admin->user_type = 1;
+            $action = 'Added New Admin';
         }
         else {
             $admin = User::findorfail($user_id);
+            $action = 'Admin Details Updated';
         }
 
         $admin->firstname = $firstname;
@@ -134,6 +136,9 @@ class UserController extends Controller
 
         // condition
         if($admin->save()) {
+
+            AuditTrailController::create($action);
+            
             return redirect()->route('admin.add.admin')->with('success', 'Admin Details Saved');
         }
 
@@ -192,6 +197,10 @@ class UserController extends Controller
         $admin->password = bcrypt($password);
 
         if($admin->save()) {
+
+            $action = 'Admin Password Reset Successfully';
+            AuditTrailController::create($action);
+            
             return redirect()->route('admin.admins')->with('success', 'Admin Password Changed');
         }
 
@@ -206,6 +215,9 @@ class UserController extends Controller
         $admin->active = 0;
 
         $admin->save();
+
+        $action = 'Removed Admin';
+        AuditTrailController::create($action);
     }
 
 
@@ -383,6 +395,10 @@ class UserController extends Controller
         $faculty->password = bcrypt($password);
         
         if($faculty->save()) {
+
+            $action = 'Faculty Password Reset Successfully';
+            AuditTrailController::create($action);
+
             return redirect()->route('admin.faculties')->with('success', 'Password Reset Successful!');
         }
 
@@ -565,6 +581,8 @@ class UserController extends Controller
         $student->password = bcrypt($password);
         
         if($student->save()) {
+            $action = 'Student Password Reset Successfully';
+            AuditTrailController::create($action);
             return redirect()->route('admin.students')->with('success', 'Password Reset Successful!');
         }
 

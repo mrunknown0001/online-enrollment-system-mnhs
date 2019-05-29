@@ -95,7 +95,18 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="position">Position</label>
-                    <input type="text" name="position" id="position" class="form-control" value="{{ $faculty == null ? old('position') : $faculty->position }}" placeholder="Enter Position" required >
+                    {{-- <input type="text" name="position" id="position" class="form-control" value="{{ $faculty == null ? old('position') : $faculty->position }}" placeholder="Enter Position" required  > --}}
+                    <select class="form-control" name="position" id="position">
+                      <option value="">Select Position</option>
+                      <option value="Teacher I - Teacher III">Teacher I - Teacher III</option>
+                      <option value="Master Teacher I - Master Teacher IV">Master Teacher I - Master Teacher IV</option>
+                      <option value="Head Teacher I - Head Teacher IV">Head Teacher I - Head Teacher IV</option>
+                      <option value="Principal I - Principal IV">Principal I - Principal IV</option>
+                      <option value="Non-Teaching - Registrar I">Non-Teaching - Registrar I</option>
+                      <option value="Non-Teaching - Guidance Councilor I">Non-Teaching - Guidance Councilor I</option>
+                      <option value="Non-Teaching - Admin Assistant II - II">Non-Teaching - Admin Assistant II - II</option>
+                      <option value="Non-Teaching - Admin Officer II">Non-Teaching - Admin Officer II</option>
+                    </select>
                     <span class="help-block small"></span>
                     @if ($errors->has('position'))
                       <span class="invalid-feedback text-red" role="alert">
