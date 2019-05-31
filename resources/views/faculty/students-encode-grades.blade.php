@@ -38,7 +38,13 @@
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }} - {{ $s->student->student_number }}</td>
 								<td>
-									<input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}" min="0" max="100">
+									{{-- <input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}" min="0" max="100"> --}}
+
+									<select name="grade_{{ $s->student->id }}" class="form-control" required>
+										<option value="">Remark</option>
+										<option value="Passed" {{ $s->remarks == 'Passed' ? 'selected' : '' }}>Passed</option>
+										<option value="Failed" {{ $s->remarks == 'Failed' ? 'selected' : '' }}>Failed</option>
+									</select>
 								</td>
 							</tr>
 						@endforeach

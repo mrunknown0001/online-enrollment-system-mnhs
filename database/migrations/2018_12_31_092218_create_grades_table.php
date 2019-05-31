@@ -22,6 +22,7 @@ class CreateGradesTable extends Migration
             $table->tinyInteger('grade')->nullable();
             $table->float('grade_equiv', 4, 2)->nullable();
             $table->boolean('passed')->default(1);
+            $table->string('remarks', 50)->nullable();
             $table->timestamps();
         });
     }

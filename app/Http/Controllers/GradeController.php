@@ -79,7 +79,7 @@ class GradeController extends Controller
     			$grades[] = [
     				'user_id' => $s->student->id,
     				'subject_id' => $subject->id,
-    				'grade' => $request['grade_'.$s->student->id],
+    				'remarks' => $request['grade_'.$s->student->id],
     			];
 
     		}
