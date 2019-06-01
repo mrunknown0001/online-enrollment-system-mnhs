@@ -50,8 +50,9 @@ class StudentController extends Controller
 		foreach($subjects as $s) {
 			$grades[] = [
 				'subject' => $s->code . ' - ' . $s->title,
-				'grade' => $this->core->equivalent($this->core->getStudentGrade($student->id, $s->id)),
-				'remark' => $this->core->remarks($this->core->equivalent($this->core->getStudentGrade($student->id, $s->id)))
+				// 'grade' => $this->core->equivalent($this->core->getStudentGrade($student->id, $s->id)),
+				// 'remark' => $this->core->remarks($this->core->equivalent($this->core->getStudentGrade($student->id, $s->id)))
+				'remark' => $this->core->getRemark($student->id, $s->id)
 			];
  		}
 

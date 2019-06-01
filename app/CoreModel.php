@@ -271,6 +271,21 @@ class CoreModel extends Model
     }
 
 
+
+    // get_remark
+    public function getRemark($user_id, $subject_id)
+    {
+        $grade = \App\Grade::where('user_id', $user_id)->where('subject_id', $subject_id)->first();
+
+        if(!empty($grade)) {
+            return $grade->remarks;
+        }
+
+        return 'N/A';
+    }
+
+
+
     public function getDay($id)
     {
         switch ($id) {

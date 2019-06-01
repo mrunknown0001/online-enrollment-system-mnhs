@@ -24,10 +24,18 @@
           @include('includes.all')
           
           @if($grades > 0)
+            <div class="row">
+              <div class="col-md-9">
+                <h4>Year & Section: Grade {{ Auth::user()->student_section->section->grade_level }} - {{ Auth::user()->student_section->section->name }}</h4>
+              </div>
+              <div class="col-md-3">
+                <h4>School Year: {{ Auth::user()->student_section->section->school_year }}</h4>
+              </div>
+            </div>
             <table id="grades" class="table table-hover table-striped table-bordered">
               <thead>
                 <th>Subject</th>
-                <th>Evaluation</th>
+                {{-- <th>Evaluation</th> --}}
                 <th>Remarks</th>
               </thead>
               <tbody>
@@ -36,10 +44,10 @@
 						<td>
 							{{ $g['subject'] }}
 						</td>
-						<td>
+						{{-- <td>
 							{{ $g['grade'] }}
-						</td>
-						<td bgcolor="{{ $g['remark'] == 'Failed' ? 'red' : 'green' }}">
+						</td> --}}
+						<td bgcolor="{{ $g['remark'] == 'Passed' ? 'green' : 'red' }}">
 
 							{{ $g['remark'] }}
 						

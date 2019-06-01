@@ -23,6 +23,9 @@
             <a title="Evaluation" href="{{ route('student.evaluation') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Evaluation</span></a>
           </li>
           <li>
+            <a title="Online Enrollment" href="" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Online Enrollment</span></a>
+          </li>
+          <li>
             <a title="Schedule" href="{{ route('student.schedules') }}" aria-expanded="false"><i class="fa fa-calendar icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Schedule</span></a>
           </li>
         </ul>
