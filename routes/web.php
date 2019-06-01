@@ -368,6 +368,9 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 	// student evaluation
 	Route::get('/evaluation', 'StudentController@evaluation')->name('student.evaluation');
 
+	// enrollment 
+	Route::Get('/enrollment', 'StudentController@enrollment')->name('student.enrollment');
+
 
 	// student scheule
 	Route::get('/schedules', 'StudentController@schedules')->name('student.schedules');

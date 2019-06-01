@@ -10,6 +10,7 @@ use App\Grade;
 
 use DB;
 use Auth;
+use App\Http\Controllers\AuditTrailController;
 
 class GradeController extends Controller
 {
@@ -86,6 +87,9 @@ class GradeController extends Controller
 
     		// save using query builder
     		if(DB::table('grades')->insert($grades)) {
+
+                $action = "Encode Remarks";
+                AuditTrailController::create($action);
     			return redirect()->back()->with('success', 'Student Grade Saved!');
     		}
     	}
@@ -99,18 +103,21 @@ class GradeController extends Controller
     public function updateGrade(Request $request)
     {
         $request->validate([
-            'grade' => 'required'
+            'remark' => 'required'
         ]);
 
         $grade_id = $request['grade_id'];
-        $grade = $request['grade'];
+        $grade = $request['remark'];
 
         if($grade_id != NULL) {
             $g = Grade::findorfail($grade_id);
-            $g->grade = $grade;
+            $g->remarks = $grade;
             $g->save();
 
-            return redirect()->back()->with('success', 'Grade Updated!');
+            $action = "Update Remark";
+            AuditTrailController::create($action);
+
+            return redirect()->back()->with('success', 'Remark Updated!');
         }
 
         return abort(500);

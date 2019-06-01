@@ -31,7 +31,7 @@
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Name</th>
-						<th>Grade</th>
+						<th>Remark</th>
 					</thead>
 					<tbody>
 						@foreach($students as $s)
@@ -42,8 +42,8 @@
 
 									<select name="grade_{{ $s->student->id }}" class="form-control" required>
 										<option value="">Remark</option>
-										<option value="Passed" {{ $s->remarks == 'Passed' ? 'selected' : '' }}>Passed</option>
-										<option value="Failed" {{ $s->remarks == 'Failed' ? 'selected' : '' }}>Failed</option>
+										<option value="Passed" {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Passed' ? 'selected' : '' }}>Passed</option>
+										<option value="Failed" {{ $s->remarks == 'Failed' ? 'selected' : '' }} {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Failed' ? 'selected' : '' }}>Failed</option>
 									</select>
 								</td>
 							</tr>
@@ -51,7 +51,7 @@
 					</tbody>
 	            </table>
 	            <p>
-	            	<button class="btn btn-primary"><i class="fa fa-save"></i> Save Grades</button>
+	            	<button class="btn btn-primary"><i class="fa fa-save"></i> Save Remarks</button>
 	            </p>
 	        </form>
             @else

@@ -63,6 +63,14 @@ class StudentController extends Controller
 	}
 
 
+	// online enrollment module for students
+	public function enrollment()
+	{
+		return view('student.enrollment');
+	}
+
+
+
 	// student schedules
 	public function schedules()
 	{

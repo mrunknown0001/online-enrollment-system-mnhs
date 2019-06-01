@@ -29,7 +29,7 @@
 					<thead>
 						<th>Name</th>
 						<th>LRN</th>
-						<th>Grade</th>
+						<th>Remark</th>
 						<th>Action</th>
 					</thead>
 					<tbody>
@@ -37,12 +37,10 @@
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }}</td>
 								<td>{{ $s->student->student_number }}</td>
-								<td>
-									{{ Auth::user()->getGrades($s->student->id, $section->id) }}
-								</td>
+								<td>{{ Auth::user()->getRemark($s->student->id, $subject->id) }}</td>
 								<td>
 									<a href="{{ route('faculty.student.view.details', ['id' => encrypt($s->student->id)]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Student Details</a>
-									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#id-{{ $s->student->student_number }}"><i class="fa fa-pencil"></i> Update Grade</button>
+									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#id-{{ $s->student->student_number }}"><i class="fa fa-pencil"></i> Update Remark</button>
 
 
 
@@ -52,20 +50,25 @@
 											<div class="modal-content">
 												<div class="modal-header">
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4 class="modal-title">Update Grade on {{ $subject->code }} | Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
+													<h4 class="modal-title">Update Remark on {{ $subject->code }} | Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
 												</div>
 												<div class="modal-body">
 													<p>Name: {{ $s->student->lastname }}, {{ $s->student->firstname }}</p>
 													<p>LRN: {{ $s->student->student_number }}</p>
 													<form action="{{ route('faculty.update.grade') }}" method="POST" autocomplete="off">
 														{{ csrf_field() }}
-														<input type="hidden" name="grade_id" value="{{ Auth::user()->getGradePrimKey($s->student->id, $section->id) }}">
+														<input type="hidden" name="grade_id" value="{{ Auth::user()->getGradePrimKey($s->student->id, $subject->id) }}">
 														<div class="form-group">
-															<label>Grade:</label>
-															<input type="number" name="grade" id="grade" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}">
+															<label>Remark:</label>
+															{{-- <input type="number" name="grade" id="grade" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}"> --}}
+															<select name="remark" id="remark" class="form-control" required>
+																<option value="">Remark</option>
+																<option value="Passed" {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Passed' ? 'selected' : '' }}>Passed</option>
+																<option value="Failed" {{ $s->remarks == 'Failed' ? 'selected' : '' }} {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Failed' ? 'selected' : '' }}>Failed</option>
+															</select>
 														</div>
 														<div class="form-group">
-															<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Grade</button> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+															<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Remark</button> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
 														</div>
 													</form>
 												</div>
