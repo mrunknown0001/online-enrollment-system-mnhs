@@ -136,13 +136,49 @@ class StudentController extends Controller
 	// enrollment save
 	public function saveEnrollment(Request $request)
 	{
-		return $request;
+		$section_id = $request['section_id'];
+
+		$section = \App\Section::findorfail($section_id);
+
+
+		// check student section 
+		$check_sc = \App\StudentSection::where('user_id')->whereActive(1)->first();
+
+		if(!empty($check_sc)) {
+			return redirect()->route('student.enrollment')->with('error', 'Error Occured! Please Try Again');
+		}
+
+		// update grade level in student info
+		Auth::user()->info->grade_level = $section->grade_level;
+		Auth::user()->info->save();
+
+		// add active student section
+		$student_section = new \App\StudentSection();
+		$student_section->user_id = Auth::user()->id;
+		$student_section->section_id = $section->id;
+		$student_section->grade_level = $section->grade_level;
+		$student_section->save();
+
+		// add enrolled count in section student
+		$section->enrolled += 1;
+		$section->save(); 
+
+		// student enrollment log
+		AuditTrailController::create('Student with LRN ' . Auth::user()->student_number . ' enrolled in Grade ' . $section->grade_level .'-' . $section->name );
+
+
+		// print COR
+		$subjects = \App\Subject::where('grade_level', $section->grade_level)->get();
+
+		return view('student.print-cor', ['section' => $section, 'subjects' => $subjects]);
+
+		return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
 	}
 
 	// student select section of the selected grade level
 	public function selectSection(Request $request)
 	{
-		return $request;
+		return redirect()->route('student.dashboard');
 	}
 
 

@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-12">
           <br><br><br>
-          <h1>Enrollment</h1>
+          <h1>Print COR</h1>
         </div>
         <div class="col-md-12">
           <h4>Grade {{ $section->grade_level }} - {{ $section->name }}</h4>

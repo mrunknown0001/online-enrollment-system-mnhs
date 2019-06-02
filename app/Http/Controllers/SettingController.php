@@ -79,6 +79,7 @@ class SettingController extends Controller
 
         DB::table('settings')->where('id', 1)->update(['enrollment' => 0]);
         DB::table('settings')->where('id', 1)->update(['semester' => 1]);
+        DB::table('sections')->where('active', 1)->update(['enrolled' => 0]);
 
         AuditTrailController::create('School Year Closed');
 
