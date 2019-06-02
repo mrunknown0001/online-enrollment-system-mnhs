@@ -56,11 +56,14 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul class="mobile-menu-nav">
-                            <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                                <ul class="collapse dropdown-header-top">
-                                    <li><a href="{{ route('student.dashboard') }}">Dashboard</a></li>
-                                </ul>
-                            </li>
+                          <li><a data-toggle="collapse" data-target="#Charts" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                              <ul class="collapse dropdown-header-top">
+                                <li><a href="{{ route('student.dashboard') }}">Dashboard</a></li>
+                              </ul>
+                          </li>
+                          <li><a href="">Evaluation</a></li>
+                          <li><a href="">Enrollment</a></li>
+                          <li><a href="">Schedule</a></li>
                         </ul>
                     </nav>
                 </div>

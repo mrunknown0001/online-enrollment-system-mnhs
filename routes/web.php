@@ -166,6 +166,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/enrollment/toggle', 'SettingController@postToggleEnrollment')->name('admin.enrollment.toggle');
 
+	Route::post('/enrollment/close', 'SettingController@closeSchoolYear')->name('admin.close.school.year');
+
 	Route::post('/semester/select', 'SettingController@postToggleSemester')->name('admin.semester.toggle');
 
 
@@ -370,6 +372,19 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 
 	// enrollment 
 	Route::Get('/enrollment', 'StudentController@enrollment')->name('student.enrollment');
+
+	// enrollment process select grade level
+	Route::get('/enrollment/select-grade-level', 'StudentController@selectGradeLevel')->name('student.enrollment.select.grade.level');
+
+	// select section
+
+	// show subjects
+
+	// show final subjects
+
+	// confirm enrollment
+
+	// print COR
 
 
 	// student scheule

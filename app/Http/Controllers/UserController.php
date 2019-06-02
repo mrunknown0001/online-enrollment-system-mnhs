@@ -658,6 +658,7 @@ class UserController extends Controller
             'lrn' => 'required|max:6',
             'gender' => 'required',
             'nationality' => 'required',
+            'email' => 'nullable',
             'birthday' => 'required|date_format:Y-m-d',
             'address' => 'required',
             'birth_certificate' => 'required',
@@ -683,6 +684,7 @@ class UserController extends Controller
         $gender = $request['gender'];
         $nationality = $request['nationality'];
         $birthday = date('Y-m-d', strtotime($request['birthday']));
+        $email = $request['email'];
         $address = $request['address'];
         $father = $request['father'];
         $mother = $request['mother'];
@@ -699,6 +701,7 @@ class UserController extends Controller
         $student->student_number = $lrn;
         $student->user_type = 3; // student
         $student->password = bcrypt('12345678');
+        $student->email = $email;
         $student->save();
 
         $info = new StudentInfo();

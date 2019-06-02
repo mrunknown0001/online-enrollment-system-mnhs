@@ -22,7 +22,7 @@
       <div class="col-md-12">
         <p>
           <strong>Academic Year:</strong>
-          {{ date('Y') . '-' . (date('Y') + 1) }}
+          {{ !empty($sy) ? $sy->from . '-' . $sy->to : 'N/A' }}
         </p>
       </div>
       <div class="col-md-12">
@@ -53,6 +53,18 @@
           </form>
         </p>
       </div>
+
+      @if(!empty($sy))
+        <div class="col-md-12">
+          <p><strong>Close School Year</strong></p>
+          <form action="{{ route('admin.close.school.year') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-warning">Close School Year</button>
+            </div>
+          </form>
+        </div>
+      @endif
     </div>
   </div>
 @endsection

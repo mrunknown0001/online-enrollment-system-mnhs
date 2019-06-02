@@ -47,7 +47,7 @@
 						{{-- <td>
 							{{ $g['grade'] }}
 						</td> --}}
-						<td bgcolor="{{ $g['remark'] == 'Passed' ? 'green' : 'red' }}">
+						<td class="white-text" bgcolor="{{ $g['remark'] == 'Passed' ? 'green' : 'red' }}">
 
 							{{ $g['remark'] }}
 						

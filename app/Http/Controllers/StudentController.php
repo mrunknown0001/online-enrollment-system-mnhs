@@ -66,8 +66,14 @@ class StudentController extends Controller
 	// online enrollment module for students
 	public function enrollment()
 	{
-		return view('student.enrollment');
+		// check enrollment is active
+		$enrollment = \App\Setting::find(1);
+
+		return view('student.enrollment', ['enrollment' => $enrollment]);
 	}
+
+
+
 
 
 

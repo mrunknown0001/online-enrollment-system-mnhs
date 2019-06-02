@@ -14,8 +14,9 @@ class SettingController extends Controller
     public function index()
     {
         $setting = DB::table('settings')->first();
+        $sy = \App\SchoolYear::whereActive(1)->first();
 
-    	return view('admin.settings', ['setting' => $setting]);
+    	return view('admin.settings', ['setting' => $setting, 'sy' => $sy]);
     }
 
 
@@ -25,6 +26,28 @@ class SettingController extends Controller
         $enrollment = $request['enrollment'];
 
         if($enrollment == 0) {
+            // check if there is active school year
+            $sy = \App\SchoolYear::whereActive(1)->first();
+
+            $psy = \App\SchoolYear::whereActive(0)->orderBy('created_at', 'desc')->first();
+
+            if(empty($sy)) {
+                if(empty($psy)) {
+                    $from = date('Y');
+                    $to = date('Y', strtotime("+1 year"));                  
+                }
+                else {
+                    $from = $psy->to;
+                    $to = $from + 1;
+                }
+
+                $sy = new \App\SchoolYear();
+                $sy->from = $from;
+                $sy->to = $to;
+                $sy->save();  
+
+            }
+
             DB::table('settings')->where('id', 1)->update(['enrollment' => 1]);
             AuditTrailController::create('Activate Enrollment');
             return redirect()->back()->with('success', 'Enrollment is Active!');
@@ -37,6 +60,24 @@ class SettingController extends Controller
         else {
             return abort(404);
         }
+
+    }
+
+
+    public function closeSchoolYear(Request $request)
+    {
+        // find active sy
+        $sy = \App\SchoolYear::whereActive(1)->first();
+        // make it inactive
+        $sy->active = 0;
+        $sy->save();
+
+        DB::table('settings')->where('id', 1)->update(['enrollment' => 0]);
+        DB::table('settings')->where('id', 1)->update(['semester' => 1]);
+
+        AuditTrailController::create('School Year Closed');
+
+        return redirect()->back()->with('success', 'School Year is Closed');
 
     }
 
