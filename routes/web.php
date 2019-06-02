@@ -374,9 +374,10 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 	Route::Get('/enrollment', 'StudentController@enrollment')->name('student.enrollment');
 
 	// enrollment process select grade level
-	Route::get('/enrollment/select-grade-level', 'StudentController@selectGradeLevel')->name('student.enrollment.select.grade.level');
+	Route::post('/enrollment/select-grade-level', 'StudentController@selectGradeLevel')->name('student.enrollment.select.grade.level');
 
 	// select section
+	Route::post('/enrollment/select-section', 'StudentController@selectSection')->name('student.enrollment.select');
 
 	// show subjects
 

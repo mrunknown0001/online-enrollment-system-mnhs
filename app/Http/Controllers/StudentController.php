@@ -63,6 +63,25 @@ class StudentController extends Controller
 	}
 
 
+	// studen select grade level
+	public function selectGradeLevel(Request $request)
+	{
+		return $request;
+
+		// get the last grade level
+		// validate that the selected grade level is greater than the previous grade level of the student
+
+
+	}
+
+
+	// student select section of the selected grade level
+	public function selectSection(Request $request)
+	{
+		return $request;
+	}
+
+
 	// online enrollment module for students
 	public function enrollment()
 	{

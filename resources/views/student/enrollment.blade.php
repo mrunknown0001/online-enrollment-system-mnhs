@@ -21,7 +21,8 @@
           @include('includes.all')
 
           @if($enrollment->enrollment == 1)
-            <form action="" method="POST">
+            <form action="{{ route('student.enrollment.select.grade.level') }}" method="POST">
+              {{ csrf_field() }}
               <div class="form-group">
                 <select class="form-control" name="grade_level" id="grade_level" required>
                   <option value="">Select Grade Level</option>
@@ -32,6 +33,9 @@
                   <option value="11">Grade 11</option>
                   <option value="12">Grade 12</option>
                 </select>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Continue</button>
               </div>
             </form>
           @else
