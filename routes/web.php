@@ -398,6 +398,10 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 
 	// save erollment and update all needed to udpate, output of these will be the print option of the COR
 	Route::post('enrollment/save', 'StudentController@saveEnrollment')->name('student.enrollment.save');
+	
+	Route::get('/enrollment/save', function () {
+		return redirect()->route('student.enrollment');
+	});
 
 
 	// student scheule
