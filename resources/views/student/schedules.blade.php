@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Student Evaluation @endsection
+@section('title') Student Schedule @endsection
 
 @section('sidebar')
     @include('student.includes.sidebar')
@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <br><br><br>
-            <h1>Student Evaluation</h1>
+            <h1>Student Schedule</h1>
 			<p>
 				<button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
 			</p>

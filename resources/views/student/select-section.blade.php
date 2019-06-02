@@ -22,17 +22,18 @@
 
           @if($enrollment->enrollment == 1)
             @if(empty($student_section))
-              <form action="{{ route('student.enrollment.select.grade.level') }}" method="POST">
+              <form action="{{ route('student.preview.subjects') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
-                  <select class="form-control" name="grade_level" id="grade_level" required>
-                    <option value="">Select Grade Level</option>
-                    <option value="7">Grade 7</option>
-                    <option value="8">Grade 8</option>
-                    <option value="9">Grade 9</option>
-                    <option value="10">Grade 10</option>
-                    <option value="11">Grade 11</option>
-                    <option value="12">Grade 12</option>
+                  <select class="form-control" name="section" id="section" required>
+                    <option value="">Select Section</option>
+                    @if(count($sections) > 0)
+                      @foreach($sections as $s)
+                        <option value="{{ $s->id }}">Grade {{ $s->grade_level }} - {{ $s->name }}</option>
+                      @endforeach
+                    @else
+                      <option value="">No Section Available</option>
+                    @endif
                   </select>
                 </div>
                 <div class="form-group">

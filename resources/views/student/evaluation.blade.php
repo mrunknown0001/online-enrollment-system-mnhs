@@ -29,7 +29,7 @@
                 <h4>Year & Section: Grade {{ Auth::user()->student_section->section->grade_level }} - {{ Auth::user()->student_section->section->name }}</h4>
               </div>
               <div class="col-md-3">
-                <h4>School Year: {{ Auth::user()->student_section->section->school_year }}</h4>
+                <h4>School Year: {{ $sy->from . '-' . $sy->to }}</h4>
               </div>
             </div>
             <table id="grades" class="table table-hover table-striped table-bordered">

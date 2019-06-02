@@ -43,6 +43,8 @@ class StudentController extends Controller
 
 		$grade_level = $student->info->grade_level;
 
+		$sy = \App\SchoolYear::whereActive(1)->first();
+
 		$subjects = Subject::where('grade_level', $grade_level)->where('active', 1)->get(); 
 
 		$grades = NULL;
@@ -59,26 +61,7 @@ class StudentController extends Controller
  		// return $grades;
 
 
-		return view('student.evaluation', ['grades' => $grades]);
-	}
-
-
-	// studen select grade level
-	public function selectGradeLevel(Request $request)
-	{
-		return $request;
-
-		// get the last grade level
-		// validate that the selected grade level is greater than the previous grade level of the student
-
-
-	}
-
-
-	// student select section of the selected grade level
-	public function selectSection(Request $request)
-	{
-		return $request;
+		return view('student.evaluation', ['grades' => $grades, 'sy' => $sy]);
 	}
 
 
@@ -88,7 +71,78 @@ class StudentController extends Controller
 		// check enrollment is active
 		$enrollment = \App\Setting::find(1);
 
-		return view('student.enrollment', ['enrollment' => $enrollment]);
+		// check if the enrolled student has active section, it means the online enrollment is not posible
+		$student_section = \App\StudentSection::where('user_id', Auth::user()->id)->where('active', 1)->first();
+
+		return view('student.enrollment', ['enrollment' => $enrollment, 'student_section' => $student_section]);
+	}
+
+
+	// studen select grade level
+	public function selectGradeLevel(Request $request)
+	{
+		$request->validate([
+			'grade_level' => 'required'
+		]);
+
+		$grade_level = $request['grade_level'];
+
+		$student = Auth::user();
+
+		$next_gl = $student->info->grade_level + 1;
+
+		$enrollment = \App\Setting::find(1);
+
+		// get the last grade level
+		// validate that the selected grade level is greater than the previous grade level of the student
+
+		if($next_gl == $grade_level) {
+			// get all section on grade level
+			$sections = \App\Section::where('grade_level', $grade_level)->whereActive(1)->get();
+			// return view in selecting section on selected grade Level
+
+			// grade 7 to 10
+			return view('student.select-section', ['sections' => $sections, 'enrollment' => $enrollment]);
+
+
+			// grade 11 and 12
+		}
+		else {
+			return redirect()->back()->with('error', 'Invalid Grade Level');
+		}
+
+	}
+
+
+
+	// preview subects junior high grade 7 to 10
+	public function previewSubjecToEnroll(Request $request)
+	{
+		$request->validate([
+			'section' => 'required'
+		]);
+
+		$id = $request['section'];
+
+		$section = \App\Section::findorfail($id);
+
+		// get subjects
+		$subjects = \App\Subject::where('grade_level', $section->grade_level)->where('active', 1)->get();
+
+		return view('student.preview-subject', ['subjects' => $subjects, 'section' => $section]);
+	}
+
+
+	// enrollment save
+	public function saveEnrollment(Request $request)
+	{
+		return $request;
+	}
+
+	// student select section of the selected grade level
+	public function selectSection(Request $request)
+	{
+		return $request;
 	}
 
 

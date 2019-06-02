@@ -375,17 +375,29 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 
 	// enrollment process select grade level
 	Route::post('/enrollment/select-grade-level', 'StudentController@selectGradeLevel')->name('student.enrollment.select.grade.level');
+	
+	Route::get('/enrollment/select-grade-level', function () {
+		return redirect()->route('student.enrollment');
+	});
+
 
 	// select section
 	Route::post('/enrollment/select-section', 'StudentController@selectSection')->name('student.enrollment.select');
+	
+	Route::get('/enrollment/select-section', function () {
+		return redirect()->route('student.enrollment');
+	});
 
 	// show subjects
+	Route::post('/enrollment/show-subjects', 'StudentController@previewSubjecToEnroll')->name('student.preview.subjects');
+	
+	Route::get('/enrollment/show-subjects', function () {
+		return redirect()->route('student.enrollment');
+	});
 
-	// show final subjects
 
-	// confirm enrollment
-
-	// print COR
+	// save erollment and update all needed to udpate, output of these will be the print option of the COR
+	Route::post('enrollment/save', 'StudentController@saveEnrollment')->name('student.enrollment.save');
 
 
 	// student scheule

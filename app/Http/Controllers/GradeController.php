@@ -65,6 +65,15 @@ class GradeController extends Controller
 
     	$students = StudentSection::where('active', 1)->where('section_id', $section_id)->get();
 
+        $sy = \App\SchoolYear::whereActive(1)->first();
+
+        if(!empty($sy)) {
+            $year = $sy->from . '-' . $sy->to;
+        }
+        else {
+            $year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        }
+
     	$grades = [];
 
     	if(count($students) > 0) {
@@ -81,6 +90,8 @@ class GradeController extends Controller
     				'user_id' => $s->student->id,
     				'subject_id' => $subject->id,
     				'remarks' => $request['grade_'.$s->student->id],
+                    'grade_level' => $section->grade_level,
+                    'school_year' => $year
     			];
 
     		}

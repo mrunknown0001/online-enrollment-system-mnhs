@@ -72,6 +72,11 @@ class SettingController extends Controller
         $sy->active = 0;
         $sy->save();
 
+        // student section to inactive
+        DB::table('student_sections')->whereActive(1)->update(['active' => 0]);
+
+        // all active schedules to inactive
+
         DB::table('settings')->where('id', 1)->update(['enrollment' => 0]);
         DB::table('settings')->where('id', 1)->update(['semester' => 1]);
 
@@ -92,6 +97,11 @@ class SettingController extends Controller
         if($setting->enrollment != 1) {
             return redirect()->back()->with('error', 'Please Activate Enrollment!');
         }
+
+
+        // all active sections of grade 11 and 12 will be inactive
+        DB::table('student_sections')->whereActive(1)->where('grade_level', 11)->orWhere('grade_level', 12)->update(['active' => 0]);
+
 
         if($semester == 1) {
             DB::table('settings')->where('id', 1)->update(['semester' => 2]);
