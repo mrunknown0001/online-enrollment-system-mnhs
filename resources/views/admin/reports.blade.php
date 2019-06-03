@@ -16,12 +16,11 @@
           <div class="col-md-12">
             <br><br><br>
             <h1>Reports</h1>
-            <p>
-              <button class="btn btn-warning"><i class="fa fa-file"></i> Reports</button>
-            </p>
+
             @include('includes.all')
-            <ol>
-              <li>List of sections</li>
+
+            <ul type="disc">
+              <li><a href="{{ route('admin.list.of.sections') }}">List of sections</a></li>
               <li>List of students per grade level</li>
               <li>List of students per section</li>
               <li>List of junior high students</li>

@@ -160,6 +160,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// admin reports
 	Route::get('/reports', 'ReportController@index')->name('admin.reports');
 
+	// report- list of section
+	Route::get('/reports/list-of-sections', 'ReportController@listOfSections')->name('admin.list.of.sections');
+
 
 	// SETTINGS: Online Enrollment
 	Route::get('/online-enrollment', 'SettingController@index')->name('admin.online.enrollment');
