@@ -40,14 +40,9 @@
             <p class="text-center">No Subject for the Selected Grade Level</p>
           @endif
           
-          <form action="{{ route('student.enrollment.save') }}" method="POST">
-            {{ csrf_field() }}
-            <input type="hidden" name="section_id" value="{{ $section->id }}">
-            <p>
-              <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
-              <a href="{{ route('student.enrollment') }}" class="btn btn-danger"><i class="fa fa-remove"></i> Cancel</a>
-            </p>
-          </form>
+
+          <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+
 
 
         </div>

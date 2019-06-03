@@ -172,7 +172,7 @@ class StudentController extends Controller
 
 		return view('student.print-cor', ['section' => $section, 'subjects' => $subjects]);
 
-		return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
+		// return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
 	}
 
 	// student select section of the selected grade level
