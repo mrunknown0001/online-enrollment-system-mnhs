@@ -693,7 +693,7 @@ class UserController extends Controller
         $gmc = $request['good_moral_character'];
 
         // check lrn if already in used
-        $check_lrn = User::where('lrn', $lrn)->first();
+        $check_lrn = User::where('student_number', $lrn)->first();
 
         if(!empty($check_lrn)) {
             return redirect()->back()->with('error', 'LRN  ' . $lrn . ' is already used!');
