@@ -21,7 +21,7 @@
 
             <ul type="disc">
               <li><a href="{{ route('admin.list.of.sections') }}">List of sections</a></li>
-              <li>List of students per grade level</li>
+              <li><a href="{{ route('admin.list.of.student.grade.level') }}">List of students per grade level</a></li>
               <li>List of students per section</li>
               <li>List of junior high students</li>
               <li>List of senior high students</li>

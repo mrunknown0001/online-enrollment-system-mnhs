@@ -162,6 +162,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	// report- list of section
 	Route::get('/reports/list-of-sections', 'ReportController@listOfSections')->name('admin.list.of.sections');
+	// reprot- list of students per grade level
+	Route::get('/reports/list-students-per-grade-level', 'ReportController@listOfStudentPerGradeLevel')->name('admin.list.of.student.grade.level');
+	Route::post('/reports/list-students-per-grade-level', 'ReportController@postListOfStudentPerGradeLevel')->name('admin.list.of.student.grade.level.post');
 
 
 	// SETTINGS: Online Enrollment

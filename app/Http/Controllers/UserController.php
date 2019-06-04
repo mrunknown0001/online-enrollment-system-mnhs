@@ -692,6 +692,12 @@ class UserController extends Controller
         $form_137 = $request['form_137'];
         $gmc = $request['good_moral_character'];
 
+        // check lrn if already in used
+        $check_lrn = User::where('lrn', $lrn)->first();
+
+        if(!empty($check_lrn)) {
+            return redirect()->back()->with('error', 'LRN  ' . $lrn . ' is already used!');
+        }
 
         $student = new User();
         $student->firstname = $firstname;
