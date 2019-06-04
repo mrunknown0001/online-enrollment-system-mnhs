@@ -18,7 +18,7 @@
             <h1>Student Management</h1>
             <p>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button> 
-              <a href="{{ route('admin.print.student.list') }}" class="btn btn-primary"><i class="fa fa-print"></i> Print Student List</a>
+              {{-- <a href="{{ route('admin.print.student.list') }}" class="btn btn-primary"><i class="fa fa-print"></i> Print Student List</a> --}}
             </p>
             @include('includes.all')
 
