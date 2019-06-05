@@ -16,7 +16,9 @@
       <div class="col-md-12">
         <br><br><br>
         <h1>Student Per Grade Level</h1>
-
+        <p>
+          <a href="{{ route('admin.reports') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Reports</a>
+        </p>
         @include('includes.all')
 
         <div class="row">

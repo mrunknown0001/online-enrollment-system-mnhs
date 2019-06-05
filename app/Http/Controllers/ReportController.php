@@ -40,6 +40,8 @@ class ReportController extends Controller
     	// get all students in grade
     	$students = \App\StudentSection::whereActive(1)->where('grade_level', $grade_level)->get();
 
-    	return $students;
+    	// return $students;
+
+        return view('admin.report-student-per-grade-level-view', ['students' => $students]);
     }
 }
