@@ -44,4 +44,30 @@ class ReportController extends Controller
 
         return view('admin.report-student-per-grade-level-view', ['students' => $students]);
     }
+
+
+
+    // student per section
+    public function ListOfStudentPerSection()
+    {
+        $sections = \App\Section::whereActive(1)->get();
+
+        return view('admin.report-student-per-section', ['sections' => $sections]);
+    }
+
+
+    public function ListOfStudentPerSectionPost(Request $request)
+    {
+        $request->validate([
+            'grade_level_section' => 'required'
+        ]);
+
+        $id = $request['grade_level_section'];
+
+        $section = \App\Section::findorfail($id);
+
+        $students = \App\StudentSection::whereActive(1)->where('section_id', $section->id)->get();
+
+        return view('admin.report-student-per-section-view', ['section' => $section, 'students' => $students]);
+    }
 }

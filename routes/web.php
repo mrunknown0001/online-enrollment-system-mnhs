@@ -166,6 +166,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/reports/list-students-per-grade-level', 'ReportController@listOfStudentPerGradeLevel')->name('admin.list.of.student.grade.level');
 	Route::post('/reports/list-students-per-grade-level', 'ReportController@postListOfStudentPerGradeLevel')->name('admin.list.of.student.grade.level.post');
 
+	// report- list of student per section
+	Route::get('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSection')->name('admin.list.of.student.per.section');
+	Route::post('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSectionPost')->name('admin.list.of.student.per.section.post');
+
 
 	// SETTINGS: Online Enrollment
 	Route::get('/online-enrollment', 'SettingController@index')->name('admin.online.enrollment');
