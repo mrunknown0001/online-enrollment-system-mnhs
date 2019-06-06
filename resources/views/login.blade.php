@@ -35,7 +35,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="identification">Identification</label>
+                  <label class="control-label" for="identification">LRN/ID Number</label>
                   {{-- <div class="input-group"> --}}
                     {{-- <span class="input-group-addon" id="basic-addon1">LRN-300970</span> --}}
                     <input type="text" name="identification" id="identification" class="form-control" placeholder="LRN/ID Number" aria-describedby="basic-addon1" autofocus>
