@@ -767,7 +767,7 @@ class UserController extends Controller
     // EXISTING STUDENT REGISTRATION
     public function existingStudentRegistration(Request $request)
     {
-        return $request;
+        // return $request;
 
         $id = $request['id'];
         $grade_level = $request['grade_level'];
@@ -775,7 +775,36 @@ class UserController extends Controller
 
         // pass parameters to view and use it as a reference on enrolling existing student
 
-        return view('faculty.student-existing-registration');
+        return view('faculty.student-existing-registration', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section]);
+    }
+
+
+
+    // existing student search to regsiter
+    public function searchExistingStudentToRegister(Request $request)
+    {
+        $request->validate([
+            'keyword' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $section = $request['section'];
+        $keyword = $request['keyword'];
+
+        // search student with the keyword
+        $students = User::where('user_type', 3)->where('firstname', 'like', "%$keyword%")
+                            ->orWhere('lastname', 'like', "%$keyword%")
+                            ->orWhere('student_number', 'like', "%$keyword%")
+                            ->get();
+
+        return view('faculty.student-existing-registration-search-result', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section, 'students' => $students]);
+    }
+
+
+    public function enrollExsitingStudent(Request $request)
+    {
+        return $request;
     }
 
 }

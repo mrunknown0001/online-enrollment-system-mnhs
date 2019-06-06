@@ -319,6 +319,12 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	});
 
 
+	// search active student to enroll
+	Route::post('/student/register/existing/search', 'UserController@searchExistingStudentToRegister')->name('faculty.existing.student.register.search');
+
+	//enroll existing
+	Route::post('/student/register/existing/enroll', 'UserController@enrollExsitingStudent')->name('faculty.existing.student.enroll.post');
+
 	// faculty subjects assigned
 	Route::get('/subjects/assigned', 'FacultyController@assignedSubject')->name('faculty.assigned.subjects');
 

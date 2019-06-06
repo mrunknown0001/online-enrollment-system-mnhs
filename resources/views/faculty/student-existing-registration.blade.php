@@ -20,8 +20,11 @@
       <div class="row">
       	<div class="col-md-6 col-md-offset-3">
       		<h4>Search Student:</h4>
-      		<form action="" method="POST" autocomplete="off">
+      		<form action="{{ route('faculty.existing.student.register.search') }}" method="POST" autocomplete="off">
             {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{ $id }}">
+            <input type="hidden" name="grade_level" value="{{ $grade_level }}">
+            <input type="hidden" name="section_id" value="{{ $section_id }}">
 						<div class="form-group">
 							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search Student" autofocus="">
 						</div>
