@@ -767,7 +767,13 @@ class UserController extends Controller
     // EXISTING STUDENT REGISTRATION
     public function existingStudentRegistration(Request $request)
     {
-        // return $request;
+        return $request;
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $section = $request['section'];
+
+        // pass parameters to view and use it as a reference on enrolling existing student
 
         return view('faculty.student-existing-registration');
     }

@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-md-12">
       <br><br><br>
-      <h1>Register New Student</h1>
+      <h1>Register New/Transferee Student</h1>
       <h3><small>Grade {{ $grade_level }} -- {{ $section->name }}</small></h3>
       @include('includes.all')
       <form action="{{ route('faculty.save.new.student.registration') }}" method="POST" autocomplete="off">
