@@ -40,7 +40,7 @@
                 @endif
               </div>
               <div class="form-group">
-                <label for="password_confirmation">Enter Mobile Number</label>
+                <label for="password_confirmation">Enter Password Confirmation</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password">
                 @if ($errors->has('password'))
                   <span class="invalid-feedback text-red" role="alert">
