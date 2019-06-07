@@ -21,7 +21,7 @@
         	<p>Fullname: <strong>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</strong></p>
             <p>LRN: <strong>{{ Auth::user()->student_number }}</strong></p>
             <p>Grade & Section: <strong>
-                Grade {{ Auth::user()->info->grade_level }} - {{ Auth::user()->student_section->section->name }}
+                Grade {{ Auth::user()->info->grade_level }} - {{ Auth::user()->info->section->name }}
             </strong></p>
             <p>Gender: <strong>{{ Auth::user()->info->gender }}</strong></p>
             <p>Birthday: <strong>{{ Auth::user()->info->birthday }}</strong></p>

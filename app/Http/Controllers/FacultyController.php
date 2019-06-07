@@ -87,6 +87,7 @@ class FacultyController extends Controller
 
         $students = StudentSection::where('active', 1)->where('section_id', $section->id)->get();
 
+
         return view('faculty.students-encode-grades', ['students' => $students, 'section' => $section, 'subject' => $subject]);
     }
 

@@ -714,6 +714,7 @@ class UserController extends Controller
 
         $info = new StudentInfo();
         $info->grade_level = $grade_level;
+        $info->section_id = $section->id;
         $info->user_id = $student->id;
         $info->gender = $gender;
         $info->birthday = $birthday;
@@ -797,7 +798,7 @@ class UserController extends Controller
 
         $id = $request['id'];
         $grade_level = $request['grade_level'];
-        $section = $request['section'];
+        $section = $request['section_id'];
         $keyword = $request['keyword'];
 
         // search student with the keyword
@@ -812,7 +813,32 @@ class UserController extends Controller
 
     public function enrollExsitingStudent(Request $request)
     {
-        return $request;
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $section_id = $request['section_id'];
+        $student_id = $request['student_id'];
+
+        $section = Section::findorfail($section_id);
+
+        // get subjects
+        $subjects = \App\Subject::where('grade_level', $grade_level)
+                        ->whereActive(1)
+                        ->get();
+
+        $student = \App\User::findorfail($student_id);
+
+        $student->info->grade_level = $grade_level;
+        $student->info->section_id = $section->id;
+
+        // add new student section
+        $student_section = new \App\User();
+        $student_section->section_id = $section->id;
+        $student_section->grade_level = $grade_level;
+        $student_section->user_id = $student->id;
+        $student_section->save();
+
+        return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects]);
     }
 
 }

@@ -54,7 +54,7 @@
                   <p class="help-block small">(if this is a private computer)</p>
                 </div>
                 <button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
-                <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a>
+                {{-- <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a> --}}
               </form>
             </div>
           </div>
