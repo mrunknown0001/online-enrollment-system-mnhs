@@ -26,7 +26,7 @@
           @if($grades > 0)
             <div class="row">
               <div class="col-md-9">
-                <h4>Year & Section: Grade {{ Auth::user()->student_section->section->grade_level }} - {{ Auth::user()->student_section->section->name }}</h4>
+                <h4>Year & Section: Grade {{ Auth::user()->info->section->grade_level }} - {{ Auth::user()->info->section->name }}</h4>
               </div>
               <div class="col-md-3">
                 <h4>School Year: {{ $sy->from . '-' . $sy->to }}</h4>
