@@ -26,7 +26,7 @@
             <input type="hidden" name="grade_level" value="{{ $grade_level }}">
             <input type="hidden" name="section_id" value="{{ $section_id }}">
 						<div class="form-group">
-							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search Student" autofocus="">
+							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Student Number / LRN" autofocus="">
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Search</button>

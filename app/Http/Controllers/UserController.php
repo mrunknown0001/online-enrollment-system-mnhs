@@ -802,9 +802,9 @@ class UserController extends Controller
         $keyword = $request['keyword'];
 
         // search student with the keyword
-        $students = User::where('user_type', 3)->where('firstname', 'like', "%$keyword%")
-                            ->orWhere('lastname', 'like', "%$keyword%")
-                            ->orWhere('student_number', 'like', "%$keyword%")
+
+        $students = User::where('user_type', 3)
+                            ->where('student_number', 'like', "%$keyword%")
                             ->get();
 
         return view('faculty.student-existing-registration-search-result', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section, 'students' => $students]);
