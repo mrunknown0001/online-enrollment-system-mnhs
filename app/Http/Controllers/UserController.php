@@ -832,7 +832,7 @@ class UserController extends Controller
         $student->info->section_id = $section->id;
 
         // add new student section
-        $student_section = new \App\User();
+        $student_section = new \App\StudentSection();
         $student_section->section_id = $section->id;
         $student_section->grade_level = $grade_level;
         $student_section->user_id = $student->id;
