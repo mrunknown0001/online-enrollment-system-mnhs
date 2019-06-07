@@ -164,7 +164,7 @@ class StudentController extends Controller
 		$section->save(); 
 
 		// student enrollment log
-		AuditTrailController::create('Student with LRN ' . Auth::user()->student_number . ' enrolled in Grade ' . $section->grade_level .'-' . $section->name );
+		AuditTrailController::create('Student enrolled in Grade ' . $section->grade_level .'-' . $section->name );
 
 
 		// print COR

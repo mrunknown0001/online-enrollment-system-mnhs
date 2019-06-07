@@ -15,15 +15,15 @@ class UsersTableSeeder extends Seeder
         	[
         		'firstname' => 'Admin',
         		'lastname' => 'Lastname',
-        		'employee_id' => '201811111',
+        		'employee_id' => '0000001',
         		'user_type' => 1, // admin
-        		'password' => bcrypt('secret')
+        		'password' => bcrypt('12345678')
         	],[
         		'firstname' => 'Faculty',
         		'lastname' => 'Lastname',
-        		'employee_id' => '201822222',
+        		'employee_id' => '0000002',
         		'user_type' => 2, // faculty
-        		'password' => bcrypt('secret')
+        		'password' => bcrypt('12345678')
         	]
         ]);
     }

@@ -26,22 +26,59 @@
         </p>
       </div>
       <div class="col-md-12">
-        <form action="{{ route('admin.enrollment.toggle') }}" method="POST">
-          {{ csrf_field() }}
-          <input type="hidden" name="enrollment" value="{{ $setting->enrollment }}">
-          <div class="form-group">
-            @if($setting->enrollment == 0)
-              <button type="submit" class="btn btn-primary">Turn On Enrollment</button>
-            @else
-              <button type="submit" class="btn btn-danger">Close Enrollment</button>
+        @if($setting->enrollment == 0)
+          <div class="row">
+            @if(empty($sy))
+              <div class="col-md-6">
+                <form action="{{ route('admin.sy.activate.selected') }}" method="POST">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                    <label for="school_year">School Year To Activate</label>
+                    <select name="school_year" id="school_year" class="form-control" required>
+                      <option value="">Select School Year</option>
+                      @if(count($sys) > 0)
+                        @foreach($sys as $s)
+                          <option value="{{ $s->id }}">{{ $s->from . '-' . $s->to }}</option>
+                        @endforeach
+                      @endif
+                    </select>
+                  </div>
+                  <div class="form-group">
+
+                    <button type="submit" class="btn btn-primary">Active Selected</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-12">
+                <hr>
+              </div>
             @endif
+            <div class="col-md-12">
+              <form action="{{ route('admin.enrollment.toggle') }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="enrollment" value="{{ $setting->enrollment }}">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Turn On Enrollment</button>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
+        @else
+          <div class="row">
+            <div class="col-md-12">
+              <form action="{{ route('admin.enrollment.toggle') }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="enrollment" value="{{ $setting->enrollment }}">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-danger">Close Enrollment</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        @endif
       </div>
       <div class="col-md-12">
-        <p>
-          <strong>Enrollment Setting for Senior High</strong>
-        </p>
+        <h3>Enrollment Setting for Senior High</h3>
         <p>
           Selected Semester: {{ $setting->semester == 1 ? 'First Semester' : 'Second Semester' }}
         </p>

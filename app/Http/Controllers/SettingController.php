@@ -16,7 +16,9 @@ class SettingController extends Controller
         $setting = DB::table('settings')->first();
         $sy = \App\SchoolYear::whereActive(1)->first();
 
-    	return view('admin.settings', ['setting' => $setting, 'sy' => $sy]);
+        $sys = \App\SchoolYear::orderBy('created_at', 'desc')->get();
+
+    	return view('admin.settings', ['setting' => $setting, 'sy' => $sy, 'sys' => $sys]);
     }
 
 
@@ -61,6 +63,27 @@ class SettingController extends Controller
             return abort(404);
         }
 
+    }
+
+
+    public function postActivateSelected(Request $request)
+    {
+        $request->validate([
+            'school_year' => 'required'
+        ]);
+
+        $school_year_id = $request['school_year'];
+
+        $sy = \App\SchoolYear::findorfail($school_year_id);
+        $sy->active = 1;
+
+        if($sy->save()) {
+            AuditTrailController::create('Activated School Year');
+
+            return redirect()->back()->with('success', 'School Year Activated!');
+        }
+
+        return redirect()->back()->with('error', 'Error! Please Try Again!');
     }
 
 

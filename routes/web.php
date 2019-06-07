@@ -180,6 +180,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/semester/select', 'SettingController@postToggleSemester')->name('admin.semester.toggle');
 
+	Route::post('/activate/school-year', 'SettingController@postActivateSelected')->name('admin.sy.activate.selected');
+
 
 	// ACTIVITY LOGS
 	Route::get('/activity-logs', 'AuditTrailController@index')->name('admin.activity.logs');

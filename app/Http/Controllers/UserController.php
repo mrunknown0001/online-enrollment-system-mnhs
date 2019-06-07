@@ -100,7 +100,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'admin_id' => 'required',
+            'admin_id' => 'required|max:7',
             'dep_ed_email' => 'required',
             'mobile_number' => 'required',
             'position' => 'required'
@@ -118,7 +118,7 @@ class UserController extends Controller
         // save
         if($user_id == NULL) {
             $admin = new User();
-            $admin->password = bcrypt('secret');
+            $admin->password = bcrypt('12345678');
             $admin->user_type = 1;
             $action = 'Added New Admin';
         }
@@ -247,7 +247,7 @@ class UserController extends Controller
             $request->validate([
                 'firstname' => 'required',
                 'lastname' => 'required',
-                'employee_id' =>'required|unique:users,employee_id',
+                'employee_id' =>'required|unique:users,employee_id|max:7',
                 'email' => 'nullable|unique:users,email|email',
                 'mobile_number' => 'nullable|unique:users,mobile_number',
                 'department' => 'required',
@@ -269,7 +269,7 @@ class UserController extends Controller
             $f->employee_id = $employee_id;
             $f->email = $email;
             $f->mobile_number = $mobile_number;
-            $f->password = bcrypt('secret');
+            $f->password = bcrypt('12345678');
             $f->user_type = 2; // faculty
             $f->position = $position;
 

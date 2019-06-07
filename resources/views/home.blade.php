@@ -48,7 +48,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">Register
+              {{-- <a class="nav-link" href="{{ route('register') }}">Register --}}
               </a>
             </li>
           </ul>
