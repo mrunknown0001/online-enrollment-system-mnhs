@@ -583,6 +583,8 @@ class UserController extends Controller
         if($student->save()) {
             $action = 'Student Password Reset Successfully';
             AuditTrailController::create($action);
+
+
             return redirect()->route('admin.students')->with('success', 'Password Reset Successful!');
         }
 
@@ -757,6 +759,12 @@ class UserController extends Controller
 
         $action = 'Enrolled New Student';
         AuditTrailController::create($action);
+
+        // return with cor print
+        // get subjects
+        $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
+
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student]);
 
         return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
 
