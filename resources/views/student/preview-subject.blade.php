@@ -44,7 +44,7 @@
             {{ csrf_field() }}
             <input type="hidden" name="section_id" value="{{ $section->id }}">
             <p>
-              <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+              <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Enroll</button>
               <a href="{{ route('student.enrollment') }}" class="btn btn-danger"><i class="fa fa-remove"></i> Cancel</a>
             </p>
           </form>

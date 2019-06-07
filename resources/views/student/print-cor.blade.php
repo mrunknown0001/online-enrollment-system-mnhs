@@ -20,12 +20,10 @@
         <div class="col-md-12">
           <h4>Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
           @include('includes.all')
-          @if($message != NULL)
-            <div class="alert alert-success text-center top-space">
-              <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <b>{{ $message }}</b>
-            </div>
-          @endif
+          <div class="alert alert-success text-center top-space">
+            <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <b>{{ $message }}</b>
+          </div>
           @if(count($subjects) > 0)
             <table class="table table-hover table-bordered table-stiped">
               <thead>
@@ -47,8 +45,6 @@
           
 
           <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
-
-
 
         </div>
       </div>

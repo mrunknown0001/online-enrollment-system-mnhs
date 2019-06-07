@@ -26,6 +26,10 @@
         @include('includes.all')
         <div class="col-md-12">
           @include('includes.all')
+          <div class="alert alert-success text-center top-space">
+            <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <b>{{ $message }}</b>
+          </div>
           <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
           <h5>LRN: {{ $student->student_number }}</h5>
 
