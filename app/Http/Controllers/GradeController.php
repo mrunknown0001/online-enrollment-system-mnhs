@@ -101,7 +101,7 @@ class GradeController extends Controller
 
                 $action = "Encode Remarks";
                 AuditTrailController::create($action);
-    			return redirect()->back()->with('success', 'Student Grade Saved!');
+    			return redirect()->back()->with('success', 'Student Remark Saved!');
     		}
     	}
 

@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label for="code">Subject Code</label>
-                    <input type="number" name="code" id="code" value="{{ $subject != null ? $subject->code : '' }}" class="form-control" placeholder="Enter Subject Code" required="">
+                    <input type="text" name="code" id="code" value="{{ $subject != null ? $subject->code : '' }}" class="form-control" placeholder="Enter Subject Code" required="">
                     <span class="help-block small"></span>
                     @if ($errors->has('code'))
                       <span class="invalid-feedback text-red" role="alert">

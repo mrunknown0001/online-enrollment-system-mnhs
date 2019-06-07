@@ -35,12 +35,12 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="identification">LRN/ID Number</label>
+                  <label class="control-label" for="identification">User ID</label>
                   {{-- <div class="input-group"> --}}
                     {{-- <span class="input-group-addon" id="basic-addon1">LRN-300970</span> --}}
-                    <input type="text" name="identification" id="identification" class="form-control" placeholder="LRN/ID Number" aria-describedby="basic-addon1" autofocus>
+                    <input type="text" name="identification" id="identification" class="form-control" placeholder="Enter Student LRN" aria-describedby="basic-addon1" autofocus>
                   {{-- </div> --}}
-                  <span class="help-block small">LRN for Student / ID Number for Employee</span>
+                  <span class="help-block small">User ID</span>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="password">Password</label>
@@ -49,9 +49,10 @@
                 </div>
                 <div class="checkbox login-checkbox">
                   <label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="checkbox" name="remember_me" value="1" class="i-checks"> Remember me 
                   </label>
-                  <p class="help-block small">(if this is a private computer)</p>
+                  {{-- <p class="help-block small">(if this is a private computer)</p> --}}
                 </div>
                 <button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
                 {{-- <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a> --}}
@@ -67,4 +68,18 @@
         </div>
       </div>
     </div>
+
+    <script>
+      $('#user_type').on('change', function() {
+        if( this.value == 1) {
+          $('#identification').attr('placeholder','Enter Admin ID Number');
+        }
+       if( this.value == 2) {
+          $('#identification').attr('placeholder','Enter Faculty ID Number');
+        }
+        if( this.value == 3) {
+          $('#identification').attr('placeholder','Enter Student LRN');
+        }
+      });
+    </script>
 @endsection

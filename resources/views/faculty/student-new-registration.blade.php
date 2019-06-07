@@ -122,8 +122,8 @@
 					</div>
 
 					<div class="form-group col-md-12">
-						<label for="birthday">Enter Address</label>
-            <input type="text" name="address" id="address" value="{{ old('birthday') }}" class="form-control" placeholder="Enter Address" required>
+						<label for="birthday">Enter Home Address</label>
+            <input type="text" name="address" id="address" value="{{ old('birthday') }}" class="form-control" placeholder="Enter Home Address" required>
             <span class="help-block small"></span>
             @if ($errors->has('address'))
               <span class="invalid-feedback text-red" role="alert">
