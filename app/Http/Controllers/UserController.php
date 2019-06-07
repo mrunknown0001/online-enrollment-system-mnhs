@@ -832,6 +832,10 @@ class UserController extends Controller
         $student->info->section_id = $section->id;
         $student->info->save();
 
+
+        $section->enrolled += 1;
+        $section->save();
+
         // add new student section
         $student_section = new \App\StudentSection();
         $student_section->section_id = $section->id;

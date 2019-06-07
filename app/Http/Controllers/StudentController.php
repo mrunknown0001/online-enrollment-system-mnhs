@@ -150,7 +150,9 @@ class StudentController extends Controller
 
 		// update grade level in student info
 		Auth::user()->info->grade_level = $section->grade_level;
+		Auth::user()->info->section_id = $section->id;
 		Auth::user()->info->save();
+
 
 		// add active student section
 		$student_section = new \App\StudentSection();
