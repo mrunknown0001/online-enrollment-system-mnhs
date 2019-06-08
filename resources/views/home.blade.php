@@ -57,7 +57,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-2 offset-5" id="center-button">
-            <a href="{{ route('login') }}" class="btn btn-danger btn-lg btn-block">Login</a>
+            <a href="{{ route('login') }}" class="btn btn-danger btn-lg btn-block" style="border: 2px solid #cccccc;">Login</a>
           </div>
         </div>
       </div>
