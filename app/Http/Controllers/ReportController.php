@@ -70,4 +70,37 @@ class ReportController extends Controller
 
         return view('admin.report-student-per-section-view', ['section' => $section, 'students' => $students]);
     }
+
+
+
+    // listOfJuniorHighStudents
+    public function listOfJuniorHighStudents()
+    {
+        // get all junior high students in student subjects
+        $students = \App\StudentSection::whereActive(1)
+                                ->where('grade_level', 7)
+                                ->orWhere('grade_level', 8)
+                                ->orWhere('grade_level', 9)
+                                ->orWhere('grade_level', 10)
+                                ->get();
+
+        // return $students;
+
+        // return view with report junior high students
+        return view('admin.report-junior-high-students', ['students' => $students]);
+    }
+
+
+    public function listOfSeniorHighStudents()
+    {
+        $students = \App\StudentSection::whereActive(1)
+                                ->where('grade_level', 11)
+                                ->orWhere('grade_level', 12)
+                                ->get();
+
+        // return $students;
+
+        // return view with report junior high students
+        return view('admin.report-senior-high-students', ['students' => $students]);
+    }
 }

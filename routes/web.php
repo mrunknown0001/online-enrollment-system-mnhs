@@ -170,6 +170,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSection')->name('admin.list.of.student.per.section');
 	Route::post('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSectionPost')->name('admin.list.of.student.per.section.post');
 
+	// report junior students
+	Route::get('/reports/junior-high', 'ReportController@listOfJuniorHighStudents')->name('admin.reports.junior.high');
+
+	// report senior students
+	Route::get('/reports/senior-high', 'ReportController@listOfSeniorHighStudents')->name('admin.list.of.senior.high.students');
+
 
 	// SETTINGS: Online Enrollment
 	Route::get('/online-enrollment', 'SettingController@index')->name('admin.online.enrollment');

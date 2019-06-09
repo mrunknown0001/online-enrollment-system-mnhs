@@ -21,6 +21,10 @@
     vertical-align: middle;
 }
 
+.white {
+    color: #fff !important;
+}
+
 /*a[href]:after {
   content: " (" attr(href) ")";
 }*/
