@@ -25,9 +25,9 @@
               <li><a href="{{ route('admin.list.of.student.per.section') }}">List of students per section</a></li>
               <li><a href="{{ route('admin.reports.junior.high') }}">List of junior high students</a></li>
               <li><a href="{{ route('admin.list.of.senior.high.students') }}">List of senior high students</a></li>
-              <li>List of faculties per grade level with sections assigned</li>
+              {{-- <li>List of faculties per grade level with sections assigned</li>
               <li>List of faculties per department</li>
-              <li>List of class schedule</li>
+              <li>List of class schedule</li> --}}
             </ol>
           </div>
         </div>
