@@ -657,7 +657,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'lrn' => 'required|max:6',
+            'lrn' => 'required|max:16',
             'gender' => 'required',
             'nationality' => 'required',
             'email' => 'nullable',
