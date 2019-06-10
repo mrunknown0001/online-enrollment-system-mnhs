@@ -36,23 +36,23 @@
               <thead>
                 <th>Subject</th>
                 {{-- <th>Evaluation</th> --}}
-                <th>Remarks</th>
+                <th>Grade</th>
               </thead>
               <tbody>
               	@foreach($grades as $g)
-					<tr>
-						<td>
-							{{ $g['subject'] }}
-						</td>
-						{{-- <td>
-							{{ $g['grade'] }}
-						</td> --}}
-						<td class="white-text" bgcolor="{{ $g['remark'] == 'Passed' ? 'green' : 'red' }}">
+        					<tr>
+        						<td>
+        							{{ $g['subject'] }}
+        						</td>
+        						{{-- <td>
+        							{{ $g['grade'] }}
+        						</td> --}}
+        						<td class="white-text" bgcolor="{{ $g['remark'] == 'Passed' ? 'green' : 'red' }}">
 
-							{{ $g['remark'] }}
-						
-            </td>
-					</tr>
+        							{{ $g['grade'] }}
+        						
+                    </td>
+        					</tr>
               	@endforeach
               </tbody>
             </table>
