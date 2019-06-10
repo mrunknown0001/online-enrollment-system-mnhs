@@ -114,15 +114,15 @@ class GradeController extends Controller
     public function updateGrade(Request $request)
     {
         $request->validate([
-            'remark' => 'required'
+            'grade' => 'required'
         ]);
 
         $grade_id = $request['grade_id'];
-        $grade = $request['remark'];
+        $grade = $request['grade'];
 
         if($grade_id != NULL) {
             $g = Grade::findorfail($grade_id);
-            $g->remarks = $grade;
+            $g->grade = $grade;
             $g->save();
 
             $action = "Update Remark";
