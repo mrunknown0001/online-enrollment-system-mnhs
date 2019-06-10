@@ -51,7 +51,7 @@
 					</tbody>
 	            </table>
 	            <p>
-	            	<button class="btn btn-primary"><i class="fa fa-save"></i> Save Remarks</button>
+	            	<button class="btn btn-primary"><i class="fa fa-save"></i> Save Grades</button>
 	            </p>
 	        </form>
             @else

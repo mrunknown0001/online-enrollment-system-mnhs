@@ -35,7 +35,7 @@
 								<td>{{ $s->subject->code }} - {{ $s->subject->title }}</td>
 								<td>
 									<a href="{{ route('faculty.view.students', ['subject_id' => encrypt($s->subject->id), 'section_id' => encrypt($s->section_id)]) }}" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> View Students</a>
-									<a href="{{ route('faculty.encode.grades', ['subject_id' => encrypt($s->subject->id), 'section_id' => encrypt($s->section_id)]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Encode Remarks</a>
+									<a href="{{ route('faculty.encode.grades', ['subject_id' => encrypt($s->subject->id), 'section_id' => encrypt($s->section_id)]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Encode Grades</a>
 								</td>
 							</tr>
 						@endforeach
