@@ -18,9 +18,9 @@
           </li>
 
 
-          <li class="{{ route('faculty.my.students') == url()->current() ? 'active' : '' }}">
+          {{-- <li class="{{ route('faculty.my.students') == url()->current() ? 'active' : '' }}">
             <a title="Students" href="{{ route('faculty.my.students') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Students</span></a>
-          </li>
+          </li> --}}
 
           <li class="{{ route('faculty.new.student.registration') ==  url()->current() || route('faculty.existing.student.registration') == url()->current() ? 'active' : '' }}">
             <a class="has-arrow" href="#">
