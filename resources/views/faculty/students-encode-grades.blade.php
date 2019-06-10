@@ -31,20 +31,20 @@
 	            <table class="table table-hover table-bordered table-striped">
 					<thead>
 						<th>Name</th>
-						<th>Remark</th>
+						<th>Final Grade</th>
 					</thead>
 					<tbody>
 						@foreach($students as $s)
 							<tr>
 								<td>{{ $s->student->lastname }}, {{ $s->student->firstname }} - {{ $s->student->student_number }}</td>
 								<td>
-									{{-- <input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $section->id) }}" min="0" max="100"> --}}
+									<input type="number" name="grade_{{ $s->student->id }}" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $subject->id) }}" min="0" max="100">
 
-									<select name="grade_{{ $s->student->id }}" class="form-control" required>
+									{{-- <select name="grade_{{ $s->student->id }}" class="form-control" required>
 										<option value="">Remark</option>
 										<option value="Passed" {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Passed' ? 'selected' : '' }}>Passed</option>
 										<option value="Failed" {{ $s->remarks == 'Failed' ? 'selected' : '' }} {{ Auth::user()->getRemark($s->student->id, $subject->id) == 'Failed' ? 'selected' : '' }}>Failed</option>
-									</select>
+									</select> --}}
 								</td>
 							</tr>
 						@endforeach

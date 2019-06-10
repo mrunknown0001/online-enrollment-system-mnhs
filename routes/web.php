@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'LoginController@home')->name('home');
+Route::get('/', 'LoginController@login')->name('home');
 
 Route::get('/login', 'LoginController@login')->name('login');
 
