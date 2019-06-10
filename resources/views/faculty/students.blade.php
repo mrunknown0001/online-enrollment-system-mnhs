@@ -40,7 +40,7 @@
 								<td>{{ Auth::user()->getGrades($s->student->id, $subject->id) }}</td>
 								<td>
 									<a href="{{ route('faculty.student.view.details', ['id' => encrypt($s->student->id)]) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View Student Details</a>
-									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#id-{{ $s->student->student_number }}"><i class="fa fa-pencil"></i> Update Remark</button>
+									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#id-{{ $s->student->student_number }}"><i class="fa fa-pencil"></i> Update Grade</button>
 
 
 
@@ -50,7 +50,7 @@
 											<div class="modal-content">
 												<div class="modal-header">
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
-													<h4 class="modal-title">Update Remark on {{ $subject->code }} | Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
+													<h4 class="modal-title">Update Grade on {{ $subject->code }} | Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
 												</div>
 												<div class="modal-body">
 													<p>Name: {{ $s->student->lastname }}, {{ $s->student->firstname }}</p>
@@ -63,7 +63,7 @@
 															<input type="number" name="grade" id="grade" class="form-control" value="{{ Auth::user()->getGrades($s->student->id, $subject->id) }}">
 														</div>
 														<div class="form-group">
-															<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Remark</button> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+															<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update Grade</button> <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
 														</div>
 													</form>
 												</div>
