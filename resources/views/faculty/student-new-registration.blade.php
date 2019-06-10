@@ -57,22 +57,19 @@
 					</div>
 
 					<div class="form-group col-md-4">
-						<label for="prefix_name">Enter Prefixname</label>
-            <input type="text" name="prefix_name" id="prefix_name" value="{{ old('prefix_name') }}" class="form-control" placeholder="Enter Prefixname (Optional)">
+						<label for="suffix_name">Enter Suffix</label>
+            <input type="text" name="suffix_name" id="suffix_name" value="{{ old('suffix_name') }}" class="form-control" placeholder="Enter Suffix">
             <span class="help-block small"></span>
-            @if ($errors->has('prefix_name'))
+            @if ($errors->has('suffix_name'))
               <span class="invalid-feedback text-red" role="alert">
-                <strong>{{ $errors->first('prefix_name') }}</strong>
+                <strong>{{ $errors->first('suffix_name') }}</strong>
               </span>
             @endif
 					</div>
 
 					<div class="form-group col-md-4">
 						<label for="lrn">Enter LRN</label>
-            <div class="input-group">
-						  <span class="input-group-addon" id="basic-addon1">LRN-300970</span>
-						  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Last 6 Digit LRN" aria-describedby="basic-addon1">
-						</div>
+					  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Enter LRN" >
             <span class="help-block small"></span>
             @if ($errors->has('lrn'))
               <span class="invalid-feedback text-red" role="alert">

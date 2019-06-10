@@ -530,7 +530,7 @@ class UserController extends Controller
                 $data[] = [
                     'firstname' => $s->firstname,
                     'lastname' => $s->lastname,
-                    'lrn' => $s->student_number,
+                    'lrn' => substr($s->student_number, 4),
                     'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.reset.student.password', ['id' => encrypt($s->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                 ];
             }
@@ -681,7 +681,7 @@ class UserController extends Controller
         $firstname = $request['firstname'];
         $middlename = $request['middlename'];
         $lastname = $request['lastname'];
-        $prefix = $request['prefix'];
+        $prefix = $request['suffix_name'];
         $lrn = 'LRN-300970' . $request['lrn'];
         $gender = $request['gender'];
         $nationality = $request['nationality'];

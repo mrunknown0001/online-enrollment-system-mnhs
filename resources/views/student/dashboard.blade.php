@@ -18,17 +18,45 @@
             <h1>Student Dashboard</h1>
         </div>
         <div class="col-md-12">
-        	<p>Fullname: <strong>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</strong></p>
-            <p>LRN: <strong>{{ Auth::user()->student_number }}</strong></p>
-            <p>Grade & Section: <strong>
-                Grade {{ Auth::user()->info->grade_level }} - {{ Auth::user()->info->section->name }}
-            </strong></p>
-            <p>Gender: <strong>{{ Auth::user()->info->gender }}</strong></p>
-            <p>Birthday: <strong>{{ Auth::user()->info->birthday }}</strong></p>
-            <p>Address: <strong>{{ Auth::user()->info->address }}</strong></p>
-            <p>Nationality: <strong>{{ Auth::user()->info->nationality }}</strong></p>
-            <p>Father's Name: <strong>{{ Auth::user()->info->father }}</strong></p>
-            <p>Mother's Name: <strong>{{ Auth::user()->info->mother }}</strong></p>
+            <table class="table table-hover table-bordered table-striped">
+                <tr>
+                    <td>Fullname</td>
+                    <td><strong>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</strong></td>
+                </tr>
+                <tr>
+                  <td>LRN</td>
+                  <td><strong>{{ Auth::user()->student_number }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Grade & Section</td>
+                  <td><strong>Grade {{ Auth::user()->info->grade_level }} - {{ Auth::user()->info->section->name }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><strong>{{ Auth::user()->info->gender }}</td>
+                </tr>
+                <tr>
+                  <td>Birthday</td>
+                  <td><strong>{{ Auth::user()->info->birthday }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Home Address</td>
+                  <td><strong>{{ Auth::user()->info->address }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Nationality</td>
+                  <td><strong>{{ Auth::user()->info->nationality }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Father's Name</td>
+                  <td><strong>{{ Auth::user()->info->father }}</strong></td>
+                </tr>
+                <tr>
+                  <td>Mother's Name</td>
+                  <td><strong>{{ Auth::user()->info->mother }}</strong></td>
+                </tr>
+            </table>
+        	
         </div>
     </div>
 </div>

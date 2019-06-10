@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="position">Position</label>
-                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $admin->position }}" placeholder="Enter Mobile Number" required >
+                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $admin->position }}" placeholder="Enter Position" required >
                     <span class="help-block small"></span>
                     @if ($errors->has('position'))
                       <span class="invalid-feedback text-red" role="alert">

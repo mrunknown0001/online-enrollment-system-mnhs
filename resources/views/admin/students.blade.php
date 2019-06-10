@@ -24,8 +24,8 @@
 
             <table id="students" class="table table-hover table-bordered table-striped">
                 <thead>
-                    <th>Lastname</th>
-                    <th>Firstname</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
                     <th>LRN</th>
                     <th>Action</th>
                 </thead>

@@ -28,11 +28,12 @@
                <span class="mini-click-non">Registration</span>
             </a>
             <ul class="submenu-angle" aria-expanded="true">
-                <li><a title="Existing Student" href="{{ route('faculty.register.choose.grade', ['id' => 2]) }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Existing Student</span></a></li>
 
                 {{-- <li><a title="Transferee Student" href=""><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Transferee Student</span></a></li> --}}
 
                 <li><a title="New Student" href="{{ route('faculty.register.choose.grade') }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">New Student</span></a></li>
+                
+                <li><a title="Existing Student" href="{{ route('faculty.register.choose.grade', ['id' => 2]) }}"><i class="fa fa-user-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Existing Student</span></a></li>
             </ul>
           </li>
 
