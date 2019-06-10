@@ -690,6 +690,8 @@ class UserController extends Controller
         $address = $request['address'];
         $father = $request['father'];
         $mother = $request['mother'];
+        $f_number = $request['fathers_contact_number'];
+        $m_number = $request['mothers_contact_number'];
         $birth_certificate = $request['birth_certificate'];
         $form_137 = $request['form_137'];
         $gmc = $request['good_moral_character'];
@@ -722,6 +724,8 @@ class UserController extends Controller
         $info->address = $address;
         $info->father = $father;
         $info->mother = $mother;
+        $info->fathers_contact_number = $f_number;
+        $info->mothers_contact_number = $m_number;
         $info->birth_certificate = $birth_certificate;
         $info->form_137 = $form_137;
         $info->good_moral_character = $gmc;

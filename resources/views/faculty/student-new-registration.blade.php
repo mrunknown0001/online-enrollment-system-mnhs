@@ -143,8 +143,8 @@
             @endif
 					</div>
 
-					<div class="form-group col-md-6">
-						<label for="mother">Enter Mother's Name</label>
+          <div class="form-group col-md-6">
+            <label for="mother">Enter Mother's Name</label>
             <input type="text" name="mother" id="mother" value="{{ old('mother') }}" class="form-control" placeholder="Enter Mother's Name" required>
             <span class="help-block small"></span>
             @if ($errors->has('mother'))
@@ -152,7 +152,29 @@
                 <strong>{{ $errors->first('mother') }}</strong>
               </span>
             @endif
-					</div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="fathers_contact_number">Enter Father's Contact Number</label>
+            <input type="number" name="fathers_contact_number" id="fathers_contact_number" value="{{ old('fathers_contact_number') }}" class="form-control" placeholder="Enter Father's Contact Number" required>
+            <span class="help-block small"></span>
+            @if ($errors->has('fathers_contact_number'))
+              <span class="invalid-feedback text-red" role="alert">
+                <strong>{{ $errors->first('fathers_contact_number') }}</strong>
+              </span>
+            @endif
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="mothers_contact_number">Enter Mother's Contact Number</label>
+            <input type="number" name="mothers_contact_number" id="mothers_contact_number" value="{{ old('mothers_contact_number') }}" class="form-control" placeholder="Enter Mother's Contact Number" required>
+            <span class="help-block small"></span>
+            @if ($errors->has('mothers_contact_number'))
+              <span class="invalid-feedback text-red" role="alert">
+                <strong>{{ $errors->first('mothers_contact_number') }}</strong>
+              </span>
+            @endif
+          </div>
 				</div>
 				<div class="row">
 					<div class="col-md-12">

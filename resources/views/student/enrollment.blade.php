@@ -25,7 +25,7 @@
               <form action="{{ route('student.enrollment.select.grade.level') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
-                  <select class="form-control" name="grade_level" id="grade_level" required>
+                  {{-- <select class="form-control" name="grade_level" id="grade_level" required>
                     <option value="">Select Grade Level</option>
                     <option value="7">Grade 7</option>
                     <option value="8">Grade 8</option>
@@ -33,7 +33,9 @@
                     <option value="10">Grade 10</option>
                     <option value="11">Grade 11</option>
                     <option value="12">Grade 12</option>
-                  </select>
+                  </select> --}}
+                  <input type="hidden" name="grade_level" value="{{ $next_gl }}">
+                  <label>Enrolling for Grade {{ $next_gl }}</label>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">Continue</button>

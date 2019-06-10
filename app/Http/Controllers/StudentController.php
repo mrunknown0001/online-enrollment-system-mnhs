@@ -75,7 +75,11 @@ class StudentController extends Controller
 		// check if the enrolled student has active section, it means the online enrollment is not posible
 		$student_section = \App\StudentSection::where('user_id', Auth::user()->id)->where('active', 1)->first();
 
-		return view('student.enrollment', ['enrollment' => $enrollment, 'student_section' => $student_section]);
+		$student = Auth::user();
+
+		$next_gl = $student->info->grade_level + 1;
+
+		return view('student.enrollment', ['enrollment' => $enrollment, 'student_section' => $student_section, 'next_gl' => $next_gl]);
 	}
 
 

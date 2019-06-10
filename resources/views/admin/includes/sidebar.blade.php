@@ -28,7 +28,7 @@
                 <a href="{{ route('admin.admins') }}" title="Admin Management"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Admins</span></a>
               </li>
 
-              <li><a class="{{ route('admin.faculties') == url()->current() ? 'active' : '' }}" title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculties</span></a></li>
+              <li><a class="{{ route('admin.faculties') == url()->current() ? 'active' : '' }}" title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty</span></a></li>
 
               <li><a title="Student Management" href="{{ route('admin.students') }}"><i class="fa fa-graduation-cap sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Students</span></a></li>
             </ul>

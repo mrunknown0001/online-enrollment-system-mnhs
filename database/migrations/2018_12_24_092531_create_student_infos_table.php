@@ -28,6 +28,8 @@ class CreateStudentInfosTable extends Migration
             $table->string('address', 150)->nullable();
             $table->string('father', 120)->nullable();
             $table->string('mother', 120)->nullable();
+            $table->string('fathers_contact_number', 13)->nullable();
+            $table->string('mothers_contact_number', 13)->nullable();
             $table->boolean('birth_certificate')->default(0);
             $table->boolean('form_137')->default(0);
             $table->boolean('good_moral_character')->default(0);
