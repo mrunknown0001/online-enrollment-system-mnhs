@@ -99,9 +99,9 @@ class GradeController extends Controller
     		// save using query builder
     		if(DB::table('grades')->insert($grades)) {
 
-                $action = "Encode Remarks";
+                $action = "Encode Grades";
                 AuditTrailController::create($action);
-    			return redirect()->back()->with('success', 'Student Remark Saved!');
+    			return redirect()->back()->with('success', 'Student Grade Saved!');
     		}
     	}
 
@@ -125,10 +125,10 @@ class GradeController extends Controller
             $g->grade = $grade;
             $g->save();
 
-            $action = "Update Remark";
+            $action = "Update Grade";
             AuditTrailController::create($action);
 
-            return redirect()->back()->with('success', 'Remark Updated!');
+            return redirect()->back()->with('success', 'Grade Updated!');
         }
 
         return abort(500);

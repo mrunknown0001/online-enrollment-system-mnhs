@@ -70,7 +70,7 @@
                       </span>
                     @endif
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="prerequisite">Subject Prerequisite</label>
                     <select name="prerequisite" id="prerequisite" class="form-control selectpicker" data-live-search="true">
                       <option data-token="" value=""></option>
@@ -89,7 +89,7 @@
                         <strong>{{ $errors->first('prerequisite') }}</strong>
                       </span>
                     @endif
-                  </div>
+                  </div> --}}
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary">{{ $subject == null ? 'Add Subject' : 'Update Subject' }}</button>
                   </div>

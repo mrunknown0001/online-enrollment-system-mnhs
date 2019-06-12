@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-12">
         <br><br><br>
-        <h1>Settings</h1>
+        <h1>Online Enrollment</h1>
         @include('includes.all')
         <p class="">Enrollment is {{ $setting->enrollment == 1 ? 'Active.' : 'Inactive.' }}</p>
       </div>

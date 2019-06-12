@@ -37,7 +37,7 @@
                   </div>
                   <div class="form-group">
                     <label for="code">Strand Code</label>
-                    <input type="number" name="code" id="code" value="{{ $strand != null ? $strand->code : '' }}" class="form-control" placeholder="Enter Strand Code" required>
+                    <input type="text" name="code" id="code" value="{{ $strand != null ? $strand->code : '' }}" class="form-control" placeholder="Enter Strand Code" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('code'))
                       <span class="invalid-feedback text-red" role="alert">

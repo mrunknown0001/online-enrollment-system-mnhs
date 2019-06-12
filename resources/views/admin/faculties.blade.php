@@ -19,8 +19,8 @@
             <p>
               <a href="{{ route('admin.add.faculty') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Faculty</a>
               <button class="btn btn-warning" onclick="reloadTable()"><i class="fa fa-refresh"></i> Reload Table</button>
-              <a href="{{ route('admin.faculty.assignments') }}" class="btn btn-info"><i class="fa fa-user"></i> Faculty Subject Assignment</a>
-              <a href="{{ route('admin.designations') }}" class="btn btn-warning"><i class="fa fa-tasks"></i> Designations</a>
+              {{-- <a href="{{ route('admin.faculty.assignments') }}" class="btn btn-info"><i class="fa fa-user"></i> Faculty Subject Assignment</a>
+              <a href="{{ route('admin.designations') }}" class="btn btn-warning"><i class="fa fa-tasks"></i> Designations</a> --}}
             </p>
             @include('includes.all')
             <table id="faculties" class="table table-hover table-bordered table-striped">

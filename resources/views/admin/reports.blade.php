@@ -13,7 +13,7 @@
 @section('content')
     <div class="section-admin container-fluid">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-3">
             <br><br><br>
             <h1>Reports</h1>
 

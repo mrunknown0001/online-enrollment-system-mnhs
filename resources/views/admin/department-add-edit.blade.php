@@ -37,8 +37,8 @@
               </div>
               <div class="row">
                 <div class="form-group col-lg-6">
-                    <label for="department_description">Department Description</label>
-                    <input type="text" name="department_description" id="department_description" class="form-control" value="{{ $dept == null ? old('department_description') : $dept->department_description }}" placeholder="Enter Department Description" required onkeydown="return alphaOnly(event);">
+                    <label for="department_description">Department Description <em>(Optional)</em></label>
+                    <input type="text" name="department_description" id="department_description" class="form-control" value="{{ $dept == null ? old('department_description') : $dept->department_description }}" placeholder="Enter Department Description (Optional)" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('department_description'))
                       <span class="invalid-feedback text-red" role="alert">

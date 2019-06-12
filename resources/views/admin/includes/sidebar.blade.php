@@ -7,16 +7,10 @@
     <div class="left-custom-menu-adp-wrap comment-scrollbar">
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
-          <li class="">
-            <a class="has-arrow {{ route('admin.dashboard') == url()->current() ? 'active' : '' }}" href="javascript:void(0)">
-               <i class="fa big-icon fa-home icon-wrap"></i>
-               <span class="mini-click-non">Home</span>
-            </a>
-            <ul class="submenu-angle" aria-expanded="true">
-                <li><a title="Dashboard" href="{{ route('admin.dashboard') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
 
-            </ul>
-          </li>
+          <li><a title="Dashboard" href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
+
+            
 
           <li class="{{ route('admin.faculties') == url()->current() || route('admin.students') == url()->current() ? 'active' : '' }}">
             <a class="has-arrow" href="javascript:void(0)">
@@ -25,7 +19,7 @@
             </a>
             <ul class="submenu-angle" aria-expanded="true">
               <li>
-                <a href="{{ route('admin.admins') }}" title="Admin Management"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Admins</span></a>
+                <a href="{{ route('admin.admins') }}" title="Admin Management"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Admin</span></a>
               </li>
 
               <li><a class="{{ route('admin.faculties') == url()->current() ? 'active' : '' }}" title="Faculty Management" href="{{ route('admin.faculties') }}"><i class="fa fa-user sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Faculty</span></a></li>
@@ -62,9 +56,9 @@
               <li>
                 <a href="{{ route('admin.departments') }}" title="Department"><i class="fa fa-building-o sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Department</span></a>
               </li>
-              <li>
+              {{-- <li>
                 <a href="{{ route('admin.designations') }}" title="Designation"><i class="fa fa-tasks sub-icon-mg" aria-hidden="true"></i><span class="mini-sub-pro">Designation</span></a>
-              </li>
+              </li> --}}
             </ul>
           </li>
 

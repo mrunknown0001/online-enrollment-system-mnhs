@@ -77,14 +77,36 @@
                     @endif
                 </div>
                 <div class="form-group col-lg-6">
-                    <label for="position">Position</label>
-                    <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $admin->position }}" placeholder="Enter Position" required >
-                    <span class="help-block small"></span>
-                    @if ($errors->has('position'))
-                      <span class="invalid-feedback text-red" role="alert">
-                        <strong>{{ $errors->first('position') }}</strong>
-                      </span>
-                    @endif
+                  <label for="position">Position</label>
+                  {{-- <input type="text" name="position" id="position" class="form-control" value="{{ $admin == null ? old('position') : $admin->position }}" placeholder="Enter Position" required > --}}
+                  <select class="form-control" name="position" id="position">
+                    <option value="">Select Position</option>
+                    <option value="Teacher I">Teacher I</option>
+                    <option value="Teacher II">Teacher II</option>
+                    <option value="Teacher III">Teacher III</option>
+                    <option value="Master Teacher I">Master Teacher I</option>
+                    <option value="Master Teacher II">Master Teacher II</option>
+                    <option value="Master Teacher III">Master Teacher III</option>
+                    <option value="Master Teacher IV">Master Teacher IV</option>
+                    <option value="Head Teacher I">Head Teacher I</option>
+                    <option value="Head Teacher II">Head Teacher II</option>
+                    <option value="Head Teacher III">Head Teacher III</option>
+                    <option value="Head Teacher IV">Head Teacher IV</option>
+                    <option value="Principal II">Principal II</option>
+                    <option value="Principal III">Principal III</option>
+                    <option value="Principal IV">Principal IV</option>
+                    <option value="Registrar I">Guidance Councelor I</option>
+                    <option value="Admin Officer I">Admin Officer I</option>
+                    <option value="Admin Officer II">Admin Officer II</option>
+                    <option value="Admin Assistant I">Admin Assistant I</option>
+                    <option value="Admin Assistant II">Admin Assistant II</option>
+                  </select>
+                  <span class="help-block small"></span>
+                  @if ($errors->has('position'))
+                    <span class="invalid-feedback text-red" role="alert">
+                      <strong>{{ $errors->first('position') }}</strong>
+                    </span>
+                  @endif
                 </div>
               </div>
               <div class="form-group">

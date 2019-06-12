@@ -28,7 +28,7 @@
 
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
             <div class="admin-content analysis-progrebar-ctn res-mg-t-15" style="background-color: #e52110; color: white;">
-              <h4 class="text-center text-uppercase"><a href="{{ route('admin.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>Enrolled<br></b></a></h4>
+              <h4 class="text-center text-uppercase"><a href="{{ route('admin.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>Enrolled Students<br></b></a></h4>
               <div class="row vertical-center-box vertical-center-box-tablet">
                 <div class="col-xs-3 mar-bot-15 text-left">
 
