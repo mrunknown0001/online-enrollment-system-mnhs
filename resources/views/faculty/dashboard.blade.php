@@ -26,13 +26,13 @@
           </div>
           <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="admin-content analysis-progrebar-ctn res-mg-t-15" style="background-color: #e52110; color: white;">
-              <h4 class="text-center text-uppercase"><i class="fa fa-book"></i><b> Subjects </b></h4>
+              <h4 class="text-center text-uppercase"><a href="{{ route('faculty.assigned.subjects') }}" class="white"><i class="fa fa-book"></i><b> Subjects </b></a></h4>
               <div class="row vertical-center-box vertical-center-box-tablet">
                 <div class="col-xs-3 mar-bot-15 text-left">
 
                 </div>
                 <div class="col-xs-12 cus-gh-hd-pro">
-                    <h2 class="text-center">{{ $subjects_assigned }}</h2>
+                    <h2 class="text-center"><a href="{{ route('faculty.assigned.subjects') }}" class="white">{{ $subjects_assigned }}</a></h2>
                 </div>
               </div>
             </div>
