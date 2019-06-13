@@ -71,7 +71,7 @@
                 @foreach(Auth::user()->enrollment_histories as $h)
                   <tr>
                     <td>{{ $h->created_at }}</td>
-                    <td>{{ $h->student_section->grade_level }}</td>
+                    <td>Grade Level {{ $h->student_section->grade_level }}</td>
                     <td>
                       <a href="javascript:void(0)" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View COR</a>
                     </td>
