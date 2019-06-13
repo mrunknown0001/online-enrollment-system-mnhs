@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentEnrollmentHistory extends Model
 {
-    //
+    public function student_section()
+    {
+    	return $this->belongsTo('App\StudentSection', 'student_section_id');
+    }
 }

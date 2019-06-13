@@ -46,6 +46,13 @@ class User extends Authenticatable
     }
 
 
+    // student enrollment history
+    public function enrollment_histories()
+    {
+        return $this->hasMany('App\StudentEnrollmentHistory', 'user_id');
+    }
+
+
     // faculty subjects
     public function subjects()
     {

@@ -762,6 +762,16 @@ class UserController extends Controller
         $student_section->save();
 
 
+
+        // add enrollment history of the student
+        $std_enrollment = new \App\StudentEnrollmentHistory();
+        $std_enrollment->user_id = $student->id;
+        $std_enrollment->student_section_id = $student_section->id;
+        $std_enrollment->school_year = $academic_year;
+        $std_enrollment->save();
+
+
+
         $action = 'Enrolled New Student';
         AuditTrailController::create($action);
 
@@ -846,6 +856,10 @@ class UserController extends Controller
         $student_section->grade_level = $grade_level;
         $student_section->user_id = $student->id;
         $student_section->save();
+
+
+        // add enrollment history for the student
+
 
         return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Student Successfully Enrolled!']);
     }

@@ -13,6 +13,7 @@ class StudentController extends Controller
 	// STUDENT DASHBOARD
 	public function dashboard()
 	{
+		// return Auth::user()->enrollment_histories;
 		return view('student.dashboard');
 	}
 
@@ -169,6 +170,8 @@ class StudentController extends Controller
 		// add enrolled count in section student
 		$section->enrolled += 1;
 		$section->save(); 
+
+		// enrolment history for students
 
 		// student enrollment log
 		AuditTrailController::create('Student enrolled in Grade ' . $section->grade_level .'-' . $section->name );

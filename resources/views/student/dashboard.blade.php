@@ -56,7 +56,32 @@
                   <td><strong>{{ Auth::user()->info->mother }}</strong></td>
                 </tr>
             </table>
-        	
+        </div>
+
+        <div class="col-md-12">
+          <h3>Enrollment History</h3>
+          @if(count(Auth::user()->enrollment_histories) > 0)
+            <table class="table table-hover table-bordered table-striped">
+              <thead>
+                <th>Registration Date</th>
+                <th>Grade Level</th>
+                <th>Certificate of Registration(COR)</th>
+              </thead>
+              <tbody>
+                @foreach(Auth::user()->enrollment_histories as $h)
+                  <tr>
+                    <td>{{ $h->created_at }}</td>
+                    <td>{{ $h->student_section->grade_level }}</td>
+                    <td>
+                      <a href="javascript:void(0)" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> View COR</a>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          @else
+            <p class="text-center">No Enrollment History Found!</p>
+          @endif
         </div>
     </div>
 </div>
