@@ -768,7 +768,7 @@ class UserController extends Controller
         $std_enrollment = new \App\StudentEnrollmentHistory();
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
-        $std_enrollment->school_year = $academic_year->from . '-' $academic_year->to;
+        $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
         $std_enrollment->save();
 
 
@@ -865,7 +865,7 @@ class UserController extends Controller
         $std_enrollment = new \App\StudentEnrollmentHistory();
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
-        $std_enrollment->school_year = $academic_year->from . '-' $academic_year->to;
+        $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
         $std_enrollment->save();
 
 
