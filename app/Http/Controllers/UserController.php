@@ -736,7 +736,8 @@ class UserController extends Controller
         $section->save();
 
         // year student count
-        $academic_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        // $academic_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
 
         $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $academic_year)
             ->where('active', 1)
@@ -767,7 +768,7 @@ class UserController extends Controller
         $std_enrollment = new \App\StudentEnrollmentHistory();
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
-        $std_enrollment->school_year = $academic_year;
+        $std_enrollment->school_year = $academic_year->from . '-' $academic_year->to;
         $std_enrollment->save();
 
 
@@ -840,6 +841,8 @@ class UserController extends Controller
                         ->whereActive(1)
                         ->get();
 
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+
         $student = \App\User::findorfail($student_id);
 
         $student->info->grade_level = $grade_level;
@@ -859,6 +862,12 @@ class UserController extends Controller
 
 
         // add enrollment history for the student
+        $std_enrollment = new \App\StudentEnrollmentHistory();
+        $std_enrollment->user_id = $student->id;
+        $std_enrollment->student_section_id = $student_section->id;
+        $std_enrollment->school_year = $academic_year->from . '-' $academic_year->to;
+        $std_enrollment->save();
+
 
 
         return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Student Successfully Enrolled!']);

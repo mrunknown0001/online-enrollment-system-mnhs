@@ -146,6 +146,8 @@ class StudentController extends Controller
 
 		$section = \App\Section::findorfail($section_id);
 
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+
 
 		// check student section 
 		$check_sc = \App\StudentSection::where('user_id')->whereActive(1)->first();
@@ -172,6 +174,11 @@ class StudentController extends Controller
 		$section->save(); 
 
 		// enrolment history for students
+        $std_enrollment = new \App\StudentEnrollmentHistory();
+        $std_enrollment->user_id = Auth::user()->id;
+        $std_enrollment->student_section_id = $student_section->id;
+        $std_enrollment->school_year = $academic_year->from . '-' $academic_year->to;
+        $std_enrollment->save();
 
 		// student enrollment log
 		AuditTrailController::create('Student enrolled in Grade ' . $section->grade_level .'-' . $section->name );
