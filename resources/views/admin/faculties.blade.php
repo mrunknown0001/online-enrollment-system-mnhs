@@ -25,8 +25,8 @@
             @include('includes.all')
             <table id="faculties" class="table table-hover table-bordered table-striped">
               <thead>
-                <th>Lastname</th>
-                <th>Firstname</th>
+                <th>Last Name</th>
+                <th>First Name</th>
                 <th>Employee ID</th>
                 <th>Action</th>
               </thead>

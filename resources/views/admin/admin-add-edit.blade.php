@@ -25,8 +25,8 @@
               <input type="hidden" name="user_id" value="{{ $admin != null ? $admin->id : '' }}">
               <div class="row">
                 <div class="form-group col-lg-6">
-                    <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" value="{{ $admin == null ? old('firstname') : $admin->firstname }}" class="form-control" placeholder="Enter Firstname" required onkeydown="return alphaOnly(event);">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname" value="{{ $admin == null ? old('firstname') : $admin->firstname }}" class="form-control" placeholder="Enter First Name" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('firstname'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -35,8 +35,8 @@
                     @endif
                 </div>
                 <div class="form-group col-lg-6">
-                    <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $admin == null ? old('lastname') : $admin->lastname }}" placeholder="Enter Lastname" required onkeydown="return alphaOnly(event);">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $admin == null ? old('lastname') : $admin->lastname }}" placeholder="Enter Last Name" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('lastname'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -58,7 +58,7 @@
 
                 <div class="form-group col-lg-6">
                     <label for="dep_ed_email">DepEd Email</label>
-                    <input type="email" name="dep_ed_email" id="dep_ed_email" class="form-control" value="{{ $admin == null ? old('dep_ed_email') : $admin->email }}" placeholder="Enter Enter Email" required>
+                    <input type="email" name="dep_ed_email" id="dep_ed_email" class="form-control" value="{{ $admin == null ? old('dep_ed_email') : $admin->email }}" placeholder="Enter DepEd Email" required>
                     <span class="help-block small"></span>
                     @if ($errors->has('dep_ed_email'))
                       <span class="invalid-feedback text-red" role="alert">

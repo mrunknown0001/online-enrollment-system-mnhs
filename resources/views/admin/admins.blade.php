@@ -23,8 +23,8 @@
             @include('includes.all')
             <table id="admins" class="table table-hover table-bordered table-striped">
               <thead>
-                <th>Lastname</th>
-                <th>Firstname</th>
+                <th>Last Name</th>
+                <th>First Name</th>
                 <th>Admin ID</th>
                 <th>Action</th>
               </thead>

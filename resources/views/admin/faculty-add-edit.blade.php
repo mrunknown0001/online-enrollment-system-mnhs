@@ -25,8 +25,8 @@
               <input type="hidden" name="faculty_id" value="{{ $faculty != null ? $faculty->id : '' }}">
               <div class="row">
                 <div class="form-group col-lg-6">
-                    <label for="firstname">Firstname</label>
-                    <input type="text" name="firstname" id="firstname" value="{{ $faculty == null ? old('firstname') : $faculty->firstname }}" class="form-control" placeholder="Enter Firstname" required onkeydown="return alphaOnly(event);">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname" value="{{ $faculty == null ? old('firstname') : $faculty->firstname }}" class="form-control" placeholder="Enter First Name" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('firstname'))
                       <span class="invalid-feedback text-red" role="alert">
@@ -35,8 +35,8 @@
                     @endif
                 </div>
                 <div class="form-group col-lg-6">
-                    <label for="lastname">Lastname</label>
-                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $faculty == null ? old('lastname') : $faculty->lastname }}" placeholder="Enter Lastname" required onkeydown="return alphaOnly(event);">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $faculty == null ? old('lastname') : $faculty->lastname }}" placeholder="Enter Last Name" required onkeydown="return alphaOnly(event);">
                     <span class="help-block small"></span>
                     @if ($errors->has('lastname'))
                       <span class="invalid-feedback text-red" role="alert">

@@ -429,16 +429,16 @@ class UserController extends Controller
 
                 if($a->id != 1) {
                     $data[] = [
-                        'firstname' => strtoupper($a->firstname),
-                        'lastname' => strtoupper($a->lastname),
+                        'firstname' => $a->firstname,
+                        'lastname' => $a->lastname,
                         'admin_id' => $a->employee_id,
                         'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                     ];
                 }
                 else {
                     $data[] = [
-                        'firstname' => strtoupper($a->firstname),
-                        'lastname' => strtoupper($a->lastname),
+                        'firstname' => $a->firstname,
+                        'lastname' => $a->lastname,
                         'admin_id' => $a->employee_id,
                         'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                     ];
@@ -472,8 +472,8 @@ class UserController extends Controller
             foreach($faculties as $f) {
 
                 $data[] = [
-                    'firstname' => strtoupper($f->firstname),
-                    'lastname' => strtoupper($f->lastname),
+                    'firstname' => $f->firstname,
+                    'lastname' => $f->lastname,
                     'employee_id' => $f->employee_id,
                     'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.faculty.reset.password', ['id' => encrypt($f->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_faculty('" . $f->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
                 ];

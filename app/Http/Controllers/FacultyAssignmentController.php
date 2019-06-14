@@ -39,7 +39,19 @@ class FacultyAssignmentController extends Controller
 
         $assignment = $request['assignment'];
 
-        $ay = date('Y') . '-' . date('Y', strtotime("-1 year"));
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+        $ay = $academic_year->from . '-' . $academic_year->to;
+
+        // faculty assignment if dedicated to others
+        $check = \App\FacultyAssignment::whereActive(1)
+                            ->where('section_id', $section_id)
+                            ->where('subject_id', $subject_id)
+                            ->where('academic_year', $ay)
+                            ->first();
+
+        if(!empty($check)) {
+            return redirect()->back()->with('error', 'Error! Subject Alredy Assigned');
+        }
 
         if($assignment == null) {
             // create
