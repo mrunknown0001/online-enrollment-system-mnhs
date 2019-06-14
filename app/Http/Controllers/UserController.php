@@ -745,7 +745,7 @@ class UserController extends Controller
 
         if(empty($enrolled_counter)) {
             $enrolled_counter = new \App\EnrolledStudentCounter();
-            $enrolled_counter->academic_year = $academic_year;
+            $enrolled_counter->academic_year = $academic_year->from . '-' . $academic_year->to;
             $enrolled_counter->count = 1;
             $enrolled_counter->save();
         }
