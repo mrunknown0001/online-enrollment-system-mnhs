@@ -30,11 +30,22 @@
             <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <b>{{ $message }}</b>
           </div>
-          <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
-          <h5>LRN: {{ $student->student_number }}</h5>
+        
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
+              <h5>LRN: {{ $student->student_number }}</h5>
+              <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+            </div>
+            <div class="col-md-4">
+              
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+            </div>
+          </div>
 
-          <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
-
+          
           @if(count($subjects) > 0)
             <table class="table table-hover table-bordered table-stiped">
               <thead>
@@ -55,8 +66,7 @@
           @endif
           
 
-          <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
-
+          <a href="{{ route('faculty.register.choose.grade') }}" class="btn btn-success"><i class="fa fa-print"></i> Save</a>
 
 
         </div>
