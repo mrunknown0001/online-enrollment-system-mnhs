@@ -59,6 +59,18 @@ class LoginController extends Controller
         $remember_me = $request['remember_me'];
         $user_type = $request['user_type'];
 
+        $error_message = 'Incorrect Login Details';
+
+        if($user_type == 1) {
+            $error_message = 'Incorrect Admin Employee ID or Password!';
+        }
+        elseif($user_type == 2) {
+            $error_message = 'Incorrect Faculty Employee ID or Password!';
+        }
+        elseif($user_type == 3) {
+            $error_message = 'Incorrect Student Number or Password!';
+        }
+
         try {
             if(Auth::attempt(['student_number' => $identification, 'password' => $password], $remember_me) || Auth::attempt(['employee_id' => $identification, 'password' => $password], $remember_me)) {
 
@@ -87,7 +99,7 @@ class LoginController extends Controller
             return redirect()->back()->with('error', 'Please Check Your Database Server');
         }
 
-        return redirect()->route('login')->with('error', 'Incorrect Student Number or Password!');
+        return redirect()->route('login')->with('error', $error_message);
     }
 
 
