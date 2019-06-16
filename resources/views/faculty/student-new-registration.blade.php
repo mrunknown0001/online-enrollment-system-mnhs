@@ -24,8 +24,8 @@
       	<input type="hidden" name="section_id" value="{{ $section->id }}">
 				<div class="row">
 					<div class="form-group col-md-4">
-						<label for="firstname">Enter Firstname</label>
-            <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}" class="form-control" placeholder="Enter Firstname" required>
+						<label for="firstname">Enter First Name</label>
+            <input type="text" name="firstname" id="firstname" value="{{ old('firstname') }}" class="form-control" placeholder="Enter First Name" required>
             <span class="help-block small"></span>
             @if ($errors->has('firstname'))
               <span class="invalid-feedback text-red" role="alert">
@@ -35,8 +35,8 @@
 					</div>
 
 					<div class="form-group col-md-4">
-						<label for="middlename">Enter Middlename</label>
-            <input type="text" name="middlename" id="middlename" value="{{ old('middlename') }}" class="form-control" placeholder="Enter Middlename">
+						<label for="middlename">Enter Middle Name</label>
+            <input type="text" name="middlename" id="middlename" value="{{ old('middlename') }}" class="form-control" placeholder="Enter Middle Name">
             <span class="help-block small"></span>
             @if ($errors->has('middlename'))
               <span class="invalid-feedback text-red" role="alert">
@@ -46,8 +46,8 @@
 					</div>
 
 					<div class="form-group col-md-4">
-						<label for="lastname">Enter Lastname</label>
-            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}" class="form-control" placeholder="Enter Lastname" required>
+						<label for="lastname">Enter Last Name</label>
+            <input type="text" name="lastname" id="lastname" value="{{ old('lastname') }}" class="form-control" placeholder="Enter Last Name" required>
             <span class="help-block small"></span>
             @if ($errors->has('lastname'))
               <span class="invalid-feedback text-red" role="alert">
@@ -69,7 +69,7 @@
 
 					<div class="form-group col-md-4">
 						<label for="lrn">Enter LRN</label>
-					  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Enter LRN" >
+					  <input type="text" name="lrn" id="lrn" class="form-control" placeholder="Enter LRN" maxLength="12" onkeypress="allowNumbersOnly(event)" >
             <span class="help-block small"></span>
             @if ($errors->has('lrn'))
               <span class="invalid-feedback text-red" role="alert">
@@ -153,7 +153,7 @@
 
           <div class="form-group col-md-6">
             <label for="fathers_contact_number">Enter Father's Contact Number</label>
-            <input type="number" name="fathers_contact_number" id="fathers_contact_number" value="{{ old('fathers_contact_number') }}" class="form-control" placeholder="Enter Father's Contact Number" required>
+            <input type="text" name="fathers_contact_number" id="fathers_contact_number" value="{{ old('fathers_contact_number') }}" class="form-control" placeholder="Enter Father's Contact Number" required onkeypress="allowNumbersOnly(event)" maxlength="11">
             <span class="help-block small"></span>
             @if ($errors->has('fathers_contact_number'))
               <span class="invalid-feedback text-red" role="alert">
@@ -164,7 +164,7 @@
 
           <div class="form-group col-md-6">
             <label for="mothers_contact_number">Enter Mother's Contact Number</label>
-            <input type="number" name="mothers_contact_number" id="mothers_contact_number" value="{{ old('mothers_contact_number') }}" class="form-control" placeholder="Enter Mother's Contact Number" required>
+            <input type="text" name="mothers_contact_number" id="mothers_contact_number" value="{{ old('mothers_contact_number') }}" class="form-control" placeholder="Enter Mother's Contact Number" required onkeypress="allowNumbersOnly(event)" maxlength="11">
             <span class="help-block small"></span>
             @if ($errors->has('mothers_contact_number'))
               <span class="invalid-feedback text-red" role="alert">
@@ -220,5 +220,13 @@
     </div>
   </div>
 </div>
+<script>
+  function allowNumbersOnly(e) {
+    var code = (e.which) ? e.which : e.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+        e.preventDefault();
+    }
+  }
+</script>
 @endsection
  

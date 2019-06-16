@@ -530,7 +530,8 @@ class UserController extends Controller
                 $data[] = [
                     'firstname' => $s->firstname,
                     'lastname' => $s->lastname,
-                    'lrn' => substr($s->student_number, 4),
+                    // 'lrn' => substr($s->student_number, 4),
+                    'lrn' => $s->student_number,
                     'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.reset.student.password', ['id' => encrypt($s->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                 ];
             }
@@ -657,7 +658,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'lrn' => 'required|max:16',
+            'lrn' => 'required|max:12|unique:users,student_number',
             'gender' => 'required',
             'nationality' => 'required',
             'email' => 'nullable',
