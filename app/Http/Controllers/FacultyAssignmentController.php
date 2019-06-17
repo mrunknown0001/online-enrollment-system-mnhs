@@ -78,6 +78,7 @@ class FacultyAssignmentController extends Controller
         $fa->faculty_id = $faculty_id;
         $fa->section_id = $section_id;
         $fa->subject_id = $subject_id;
+        $fa->academic_year = $academic_year->from . '-' . $academic_year->to;
 
         if($fa->save()) {
             return redirect()->route('admin.faculty.assignments.add')->with('success', $message);

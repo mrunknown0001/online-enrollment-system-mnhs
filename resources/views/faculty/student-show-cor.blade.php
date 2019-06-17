@@ -66,7 +66,7 @@
           @endif
           
 
-          <a href="{{ route('faculty.register.choose.grade') }}" class="btn btn-success"><i class="fa fa-print"></i> Save</a>
+          <a href="{{ route('faculty.register.choose.grade') }}" class="btn btn-success" onclick="alert('Student COR Saved!')"><i class="fa fa-print"></i> Save</a>
 
 
         </div>

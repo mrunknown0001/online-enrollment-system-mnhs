@@ -713,6 +713,7 @@ class UserController extends Controller
         $student->user_type = 3; // student
         $student->password = bcrypt('12345678');
         $student->email = $email;
+        $student->student_status = 'Active';
         $student->save();
 
         $info = new StudentInfo();
@@ -853,6 +854,13 @@ class UserController extends Controller
         // check if the grade level is okay
         if($grade_level != $grade_level_enroll) {
             return redirect()->back()->with('error', 'Invalid Grade Level');
+        }
+
+        // check if the student is currently enrolled
+        $check_enroll = \App\StudentSection::whereActive(1)->where('student_id', $studet->id)->first();
+
+        if(!empty($check_enroll)) {
+            return redirect()->back()->with('error', 'Student is Currently enrolled!');
         }
 
         $student->info->grade_level = $grade_level;
