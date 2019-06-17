@@ -857,10 +857,10 @@ class UserController extends Controller
         }
 
         // check if the student is currently enrolled
-        $check_enroll = \App\StudentSection::whereActive(1)->where('student_id', $studet->id)->first();
+        $check_enroll = \App\StudentSection::whereActive(1)->where('user_id', $student->id)->first();
 
         if(!empty($check_enroll)) {
-            return redirect()->back()->with('error', 'Student is Currently enrolled!');
+            return redirect()->route('faculty.register.choose.grade', ['id' => 2])->with('error', 'Student is Currently enrolled!');
         }
 
         $student->info->grade_level = $grade_level;
