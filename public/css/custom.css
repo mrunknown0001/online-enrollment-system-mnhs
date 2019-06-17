@@ -25,12 +25,19 @@
     color: #fff !important;
 }
 
-/*a[href]:after {
-  content: " (" attr(href) ")";
-}*/
-
-@media only print {
-	a[href]:after {
-	  content: "";
-	}
+@media print {
+  body *, #printButton {
+    visibility: hidden;
+  }
+  #printArea, #printArea * {
+    visibility: visible;
+  }
+  #printArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #printButton {
+    visibility: hidden;
+  }
 }

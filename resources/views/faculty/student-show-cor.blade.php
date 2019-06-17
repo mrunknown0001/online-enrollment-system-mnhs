@@ -31,42 +31,43 @@
             <b>{{ $message }}</b>
           </div>
         
-          <div class="row">
-            <div class="col-md-4">
-              <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
-              <h5>LRN: {{ $student->student_number }}</h5>
-              <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+          <div id="printArea">
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
+                <h5>LRN: {{ $student->student_number }}</h5>
+                <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+              </div>
+              <div class="col-md-4">
+                
+              </div>
+              <div class="col-md-4">
+                <button type="button" id="printButton" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+              </div>
             </div>
-            <div class="col-md-4">
-              
-            </div>
-            <div class="col-md-4">
-              <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
-            </div>
+
+            @if(count($subjects) > 0)
+              <table class="table table-hover table-bordered table-stiped">
+                <thead>
+                  <th>Subject Code</th>
+                  <th>Subject Title</th>
+                </thead>
+                <tbody>
+                  @foreach($subjects as $s)
+                    <tr>
+                      <td>{{ $s->code }}</td>
+                      <td>{{ $s->title }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            @else
+              <p class="text-center">No Subject for the Selected Grade Level</p>
+            @endif
           </div>
-
-          
-          @if(count($subjects) > 0)
-            <table class="table table-hover table-bordered table-stiped">
-              <thead>
-                <th>Subject Code</th>
-                <th>Subject Title</th>
-              </thead>
-              <tbody>
-                @foreach($subjects as $s)
-                  <tr>
-                    <td>{{ $s->code }}</td>
-                    <td>{{ $s->title }}</td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-          @else
-            <p class="text-center">No Subject for the Selected Grade Level</p>
-          @endif
           
 
-          <a href="{{ route('faculty.register.choose.grade') }}" class="btn btn-success" onclick="alert('Student COR Saved!')"><i class="fa fa-print"></i> Save</a>
+          <a href="{{ route('faculty.register.choose.grade') }}" class="btn btn-success hide-element" onclick="alert('Student COR Saved!')"><i class="fa fa-print"></i> Save</a>
 
 
         </div>
