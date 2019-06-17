@@ -844,7 +844,16 @@ class UserController extends Controller
 
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
+        $semester = \App\Setting::find(1);
+
         $student = \App\User::findorfail($student_id);
+
+        $grade_level_enroll = $student->info->grade_level + 1;
+
+        // check if the grade level is okay
+        if($grade_level != $grade_level_enroll) {
+            return redirect()->back()->with('error', 'Invalid Grade Level');
+        }
 
         $student->info->grade_level = $grade_level;
         $student->info->section_id = $section->id;
