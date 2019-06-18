@@ -22,20 +22,22 @@
             @include('includes.all')
 
             @if(count($sections) > 0)
-              <table class="table table-hover table-bordered table-triped">
-                <thead>
-                  <th>Section</th>
-                  <th>Grade Level</th>
-                </thead>
-                <tbody>
-                  @foreach($sections as $s)
-                    <tr>
-                      <td>{{ $s->name }}</td>
-                      <td>Grade {{ $s->grade_level }}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
+              <div id="printArea">
+                <table class="table table-hover table-bordered table-triped">
+                  <thead>
+                    <th>Section</th>
+                    <th>Grade Level</th>
+                  </thead>
+                  <tbody>
+                    @foreach($sections as $s)
+                      <tr>
+                        <td>{{ $s->name }}</td>
+                        <td>Grade {{ $s->grade_level }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
             @else
               <p class="text-center"><strong>No Section Available.</strong></p>
             @endif
