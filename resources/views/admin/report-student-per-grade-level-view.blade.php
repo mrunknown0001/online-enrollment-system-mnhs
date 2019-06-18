@@ -20,27 +20,31 @@
           <a href="{{ route('admin.reports') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Reports</a>
         </p>
         @include('includes.all')
-
-        <div class="row">
-          <div class="col-md-12">
-            @if(count($students) > 0)
-              <table class="table table-striped table-hovered table-bordered">
-                <thead>
-                  <th>Student Name/LRN</th>
-                  <th>Grade &amp; Section</th>
-                </thead>
-                <tbody>
-                  @foreach($students as $s)
-                    <tr>
-                      <td>{{ $s->student->lastname . ', ' . $s->student->firstname . '-' . $s->student->student_number }}</td>
-                      <td>Grade {{ $s->section->grade_level }} - {{ $s->section->name }}</td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            @else
-              <p class="text-center"><strong>No Student on Selected Grade Level</strong></p>
-            @endif
+        <p>
+          <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+        </p>
+        <div id="printArea">
+          <div class="row">
+            <div class="col-md-12">
+              @if(count($students) > 0)
+                <table class="table table-striped table-hovered table-bordered">
+                  <thead>
+                    <th>Student Name/LRN</th>
+                    <th>Grade &amp; Section</th>
+                  </thead>
+                  <tbody>
+                    @foreach($students as $s)
+                      <tr>
+                        <td>{{ $s->student->lastname . ', ' . $s->student->firstname . '-' . $s->student->student_number }}</td>
+                        <td>Grade {{ $s->section->grade_level }} - {{ $s->section->name }}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              @else
+                <p class="text-center"><strong>No Student on Selected Grade Level</strong></p>
+              @endif
+            </div>
           </div>
         </div>
 

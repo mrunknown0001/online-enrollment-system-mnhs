@@ -20,30 +20,34 @@
           <a href="{{ route('admin.reports') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Reports</a>
         </p>
         @include('includes.all')
-
-        <div class="row">
-          <div class="col-md-12">
-            @if(count($students) > 0)
-              <table class="table table-hover table-bordered table-striped">
-                <thead>
-                  <th>Student Name/Student Number</th>
-                  <th>Grade Level &amp; Section</th>
-                </thead>
-                <tbody>
-                  @foreach($students as $s)
-                    <tr>
-                      <td>{{  $s->student->lastname . ', ' . $s->student->firstname . ' - ' . $s->student->student_number}}
-                      </td>
-                      <td>
-                        Grade {{ $s->grade_level }} - {{ $s->section->name }}
-                      </td>
-                    </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            @else
-              <p class="text-center"><strong>No Students on Selected Grade Level and Section</strong></p>
-            @endif
+        <p>
+          <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+        </p>
+        <div id="printArea">
+          <div class="row">
+            <div class="col-md-12">
+              @if(count($students) > 0)
+                <table class="table table-hover table-bordered table-striped">
+                  <thead>
+                    <th>Student Name/Student Number</th>
+                    <th>Grade Level &amp; Section</th>
+                  </thead>
+                  <tbody>
+                    @foreach($students as $s)
+                      <tr>
+                        <td>{{  $s->student->lastname . ', ' . $s->student->firstname . ' - ' . $s->student->student_number}}
+                        </td>
+                        <td>
+                          Grade {{ $s->grade_level }} - {{ $s->section->name }}
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              @else
+                <p class="text-center"><strong>No Students on Selected Grade Level and Section</strong></p>
+              @endif
+            </div>
           </div>
         </div>
 

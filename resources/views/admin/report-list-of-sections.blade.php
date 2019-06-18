@@ -22,6 +22,9 @@
             @include('includes.all')
 
             @if(count($sections) > 0)
+              <p>
+                <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+              </p>
               <div id="printArea">
                 <table class="table table-hover table-bordered table-triped">
                   <thead>
