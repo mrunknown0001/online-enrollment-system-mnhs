@@ -668,7 +668,14 @@ class UserController extends Controller
         // sections based on grade level
         $sections = Section::where('grade_level', $grade_level)->where('active', 1)->orderBy('name', 'asc')->get();
 
-        return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level, 'sections' => $sections]);
+        $strands = \App\Strand::whereActive(1)->get();
+
+        if($grade_level <= 10) {
+            return view('faculty.student-new-section', ['id' => $id, 'grade_level' => $grade_level, 'sections' => $sections]);
+        }
+        else {
+            return view('faculty.student-new-select-strand', ['id' => $id, 'grade_level' => $grade_level, 'strands' => $strands]);
+        }
     }
 
     // NEW STUDENT REGISTRATION
@@ -820,11 +827,197 @@ class UserController extends Controller
         // get subjects
         $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
 
-        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'message' => 'Student Successfully Enrolled!']);
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => NULL, 'strand' => NULL, 'message' => 'Student Successfully Enrolled!']);
 
         return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
 
         
+    }
+
+
+
+    // select strand senior high
+    public function registrationSelectStrand(Request $request)
+    {
+
+        $request->validate([
+            'strand' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $strand_id = $request['strand'];
+
+        $sections = \App\Section::where('strand_id', $strand_id)->where('grade_level', $grade_level)->get();
+
+        return view('faculty.student-new-section-senior', ['id' => $id, 'grade_level' => $grade_level, 'strand_id' => $strand_id, 'sections' => $sections]);
+    }
+
+
+    // select senior high section for new student
+    public function selectSeniorHighSection(Request $request)
+    {
+        $request->validate([
+            'section' => 'required'
+        ]);
+
+        $id = $request['id'];
+        $grade_level = $request['grade_level'];
+        $strand_id = $request['strand_id'];
+
+        $section_id = $request['section'];
+
+        $section = \App\Section::findorfail($section_id);
+        $strand = \App\Strand::findorfail($strand_id);
+
+        return view('faculty.student-new-registration-senior', ['grade_level' => $grade_level, 'strand' => $strand, 'section' => $section]);
+
+
+    }
+
+
+    // save new senior high student
+    public function saveStudentRegisterNewSenior(Request $request)
+    {
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'lrn' => 'required|max:12|unique:users,student_number',
+            'gender' => 'required',
+            'nationality' => 'required',
+            'email' => 'nullable',
+            'birthday' => 'required|date_format:Y-m-d',
+            'address' => 'required',
+            'birth_certificate' => 'required',
+            'form_137' => 'required',
+            'good_moral_character' => 'required'
+        ]);
+
+        $grade_level = $request['grade_level'];
+        $section_id = $request['section_id'];
+        $strand_id = $request['strand_id'];
+
+        // check if slot is full
+        $section = Section::findorfail($section_id);
+        $strand = \App\Strand::findorfail($strand_id);
+
+        // get semester 
+        $settings = \App\Setting::find(1);
+
+        $semester = $settings->semester;
+
+        if($section->enrolled == $section->student_limit) {
+            return redirect()->route('faculty.register.choose.grade')->with('error', 'Section slot is full');
+        }
+
+        $firstname = $request['firstname'];
+        $middlename = $request['middlename'];
+        $lastname = $request['lastname'];
+        $prefix = $request['suffix_name'];
+        $lrn = $request['lrn'];
+        $gender = $request['gender'];
+        $nationality = $request['nationality'];
+        $birthday = date('Y-m-d', strtotime($request['birthday']));
+        $email = $request['email'];
+        $address = $request['address'];
+        $father = $request['father'];
+        $mother = $request['mother'];
+        $f_number = $request['fathers_contact_number'];
+        $m_number = $request['mothers_contact_number'];
+        $birth_certificate = $request['birth_certificate'];
+        $form_137 = $request['form_137'];
+        $gmc = $request['good_moral_character'];
+
+        // check lrn if already in used
+        $check_lrn = User::where('student_number', $lrn)->first();
+
+        if(!empty($check_lrn)) {
+            return redirect()->back()->with('error', 'LRN  ' . $lrn . ' is already used!');
+        }
+
+        $student = new User();
+        $student->firstname = $firstname;
+        $student->middlename = $middlename;
+        $student->lastname = $lastname;
+        $student->prefix_name = $prefix;
+        $student->student_number = $lrn;
+        $student->user_type = 3; // student
+        $student->password = bcrypt('12345678');
+        $student->email = $email;
+        $student->student_status = 'Active';
+        $student->save();
+
+        $info = new StudentInfo();
+        $info->grade_level = $grade_level;
+        $info->section_id = $section->id;
+        $info->user_id = $student->id;
+        $info->gender = $gender;
+        $info->birthday = $birthday;
+        $info->nationality = $nationality;
+        $info->address = $address;
+        $info->father = $father;
+        $info->mother = $mother;
+        $info->fathers_contact_number = $f_number;
+        $info->mothers_contact_number = $m_number;
+        $info->birth_certificate = $birth_certificate;
+        $info->form_137 = $form_137;
+        $info->good_moral_character = $gmc;
+        $info->save();
+
+        // increment number of enrolled student in the section
+        $section->enrolled += 1;
+        $section->save();
+
+        // year student count
+        // $academic_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+
+        $ay_a = $academic_year->from . '-' . $academic_year->to;
+
+        $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $ay_a)
+            ->where('active', 1)
+            ->first();
+
+        if(empty($enrolled_counter)) {
+            $enrolled_counter = new \App\EnrolledStudentCounter();
+            $enrolled_counter->academic_year = $academic_year->from . '-' . $academic_year->to;
+            $enrolled_counter->count = 1;
+            $enrolled_counter->save();
+        }
+        else {
+            $enrolled_counter->count += 1;
+            $enrolled_counter->save();            
+        }
+
+
+        // section and student enrollment record
+        $student_section = new \App\StudentSection();
+        $student_section->user_id = $student->id;
+        $student_section->section_id = $section->id;
+        $student_section->grade_level = $grade_level;
+        $student_section->save();
+
+
+
+        // add enrollment history of the student
+        $std_enrollment = new \App\StudentEnrollmentHistory();
+        $std_enrollment->user_id = $student->id;
+        $std_enrollment->student_section_id = $student_section->id;
+        $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
+        $std_enrollment->save();
+
+
+
+        $action = 'Enrolled New Student';
+        AuditTrailController::create($action);
+
+        // return with cor print
+        // get subjects
+        $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
+
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => $semester, 'strand' => $strand, 'message' => 'Student Successfully Enrolled!']);
+
+        return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
     }
 
 

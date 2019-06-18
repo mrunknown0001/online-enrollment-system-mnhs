@@ -40,7 +40,8 @@
               </div>
               <div class="col-md-4">
                 @if($student->info->grade_level == 11 || $student->info->grade_level == 12)
-                  Semester
+                  <h5>{{ $strand->name }}</h5>
+                  <h5>{{ $semester == 1 ? '1st' : '2nd' }} Semester</h5>
                 @endif
               </div>
               <div class="col-md-4">

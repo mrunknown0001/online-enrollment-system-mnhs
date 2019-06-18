@@ -309,19 +309,29 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 		return redirect()->route('faculty.register.choose.grade');
 	});
 
-	// NEW STUDENT REGISTRATION
+	// NEW STUDENT REGISTRATION junior high
 	Route::post('/student/register/new/', 'UserController@newStudentRegistration')->name('faculty.new.student.registration');
 
 	Route::get('/student/register/new/', function () {
 		return redirect()->route('faculty.register.choose.grade');
 	});
 
-	// save new student
+	// save new student junior high
 	Route::post('/student/register/save', 'UserController@saveNewStudentRegistration')->name('faculty.save.new.student.registration');
 
 	Route::get('/student/register/save', function () {
 		return redirect()->route('faculty.register.choose.grade');
 	});
+
+
+	// senior high registration select strand
+	Route::post('/student/register/select/strand', 'UserController@registrationSelectStrand')->name('admin.regitration.select.strand');
+
+
+	Route::post('/student/register/select/section/senior', 'UserController@selectSeniorHighSection')->name('faculty.select.senior.high.section');
+
+	Route::post('/student/register/new/senior-high', 'UserController@saveStudentRegisterNewSenior')->name('faculty.save.new.register.senior.high');
+
 
 	// EXISTING STUDENT REGISTRATION
 	Route::post('/student/register/existing', 'UserController@existingStudentRegistration')->name('faculty.existing.student.registration');
