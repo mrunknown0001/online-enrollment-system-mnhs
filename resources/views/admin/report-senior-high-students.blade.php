@@ -23,14 +23,10 @@
         <p>
           <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
         </p>
-
-        <div class="row">
-          <div class="col-md-12">
-            @if(count($students) > 0)
-              <p>
-                <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
-              </p>
-              <div id="printArea">
+        <div id="printArea">
+          <div class="row">
+            <div class="col-md-12">
+              @if(count($students) > 0)
                 <table class="table table-hover table-bordered table-striped">
                   <thead>
                     <th>Student Name/Student Number</th>
@@ -48,10 +44,10 @@
                     @endforeach
                   </tbody>
                 </table>
-              </div>
-            @else
-              <p class="text-center"><strong>No Students on Senior High School</strong></p>
-            @endif
+              @else
+                <p class="text-center"><strong>No Enrolled Students on Senior High School</strong></p>
+              @endif
+            </div>
           </div>
         </div>
 

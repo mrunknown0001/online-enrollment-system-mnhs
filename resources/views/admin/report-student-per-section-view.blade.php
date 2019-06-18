@@ -45,7 +45,7 @@
                   </tbody>
                 </table>
               @else
-                <p class="text-center"><strong>No Students on Selected Grade Level and Section</strong></p>
+                <p class="text-center"><strong>No Enrolled Students on Selected Grade Level and Section</strong></p>
               @endif
             </div>
           </div>

@@ -45,7 +45,7 @@
                   </tbody>
                 </table>
               @else
-                <p class="text-center"><strong>No Students on Junior High School</strong></p>
+                <p class="text-center"><strong>No Enrolled Students on Junior High School</strong></p>
               @endif
             </div>
           </div>

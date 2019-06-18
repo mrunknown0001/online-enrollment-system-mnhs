@@ -18,7 +18,7 @@
 	  <h1>{{ $id == 1 ? 'Register New Student' : 'Register Existing Student' }}</h1>
 	  <h2><small>Choose Section for Grade {{ $grade_level }}</small></h2>
 	  @include('includes.all')
-	  <form action="{{ route('faculty.select.senior.high.section') }}" method="POST">
+	  <form action="{{ $id == 1 ? route('faculty.select.senior.high.section') : route('faculty.existing.student.registration') }}" method="POST">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 form-group">
 					{{ csrf_field() }}

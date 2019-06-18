@@ -857,6 +857,7 @@ class UserController extends Controller
     // select senior high section for new student
     public function selectSeniorHighSection(Request $request)
     {
+        // return $request;
         $request->validate([
             'section' => 'required'
         ]);
@@ -870,7 +871,7 @@ class UserController extends Controller
         $section = \App\Section::findorfail($section_id);
         $strand = \App\Strand::findorfail($strand_id);
 
-        return view('faculty.student-new-registration-senior', ['grade_level' => $grade_level, 'strand' => $strand, 'section' => $section]);
+        return view('faculty.student-new-registration-senior', ['id' => $id, 'grade_level' => $grade_level, 'strand' => $strand, 'section' => $section]);
 
 
     }
@@ -1066,6 +1067,7 @@ class UserController extends Controller
         $grade_level = $request['grade_level'];
         $section_id = $request['section_id'];
         $student_id = $request['student_id'];
+        $strand_id = $request['strand_id'];
 
         $section = Section::findorfail($section_id);
 
@@ -1084,7 +1086,7 @@ class UserController extends Controller
 
         // check if the grade level is okay
         if($grade_level != $grade_level_enroll) {
-            return redirect()->back()->with('error', 'Invalid Grade Level');
+            return redirect()->route('faculty.register.choose.grade')->with('error', 'Invalid Grade Level');
         }
 
         // check if the student is currently enrolled
@@ -1118,8 +1120,14 @@ class UserController extends Controller
         $std_enrollment->save();
 
 
-
-        return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Student Successfully Enrolled!']);
+        if($grade_level <= 10) {
+            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Student Successfully Enrolled!']);
+        }
+        else {
+            $strand = \App\Strand::findorfail($strand_id);
+            
+            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'message' => 'Student Successfully Enrolled!']);
+        }
     }
 
 }
