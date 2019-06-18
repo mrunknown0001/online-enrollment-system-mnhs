@@ -44,6 +44,9 @@
     margin: auto;
   }
   #printButton {
-    visibility: hidden;
+    visibility: hidden !important;
+  }
+  .hidden {
+    visibility: hidden !important;
   }
 }

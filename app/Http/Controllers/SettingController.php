@@ -125,7 +125,8 @@ class SettingController extends Controller
 
 
         // all active sections of grade 11 and 12 will be inactive
-        DB::table('student_sections')->whereActive(1)->where('grade_level', 11)->orWhere('grade_level', 12)->update(['active' => 0]);
+        DB::table('student_sections')->whereActive(1)->where('grade_level', 11)->update(['active' => 0]);
+        DB::table('student_sections')->whereActive(1)->where('grade_level', 12)->update(['active' => 0]);
 
 
         if($semester == 1) {
