@@ -100,7 +100,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'admin_id' => 'required|max:7|unique:users,employee_id',
+            'admin_id' => 'required|max:7',
             'dep_ed_email' => 'required',
             'mobile_number' => 'required',
             'position' => 'required'
@@ -128,6 +128,13 @@ class UserController extends Controller
             $admin = User::findorfail($user_id);
             $action = 'Admin Details Updated';
             $status = $request['status'];
+
+            // check admin id existing
+            $admin_id_check = User::where('employee_id', $admin_id)->first();
+
+            if(!empty($admin_id_check) && $admin->id != $admin_id_check->id) {
+                return redirect()->back()->with('error', 'Admin ID already exist!');
+            }
         }
 
         $admin->firstname = $firstname;
