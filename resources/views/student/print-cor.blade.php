@@ -25,20 +25,22 @@
             <b>{{ $message }}</b>
           </div>
           @if(count($subjects) > 0)
-            <table class="table table-hover table-bordered table-stiped">
-              <thead>
-                <th>Subject Code</th>
-                <th>Subject Title</th>
-              </thead>
-              <tbody>
-                @foreach($subjects as $s)
-                  <tr>
-                    <td>{{ $s->code }}</td>
-                    <td>{{ $s->title }}</td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
+            <div id="printArea">
+              <table class="table table-hover table-bordered table-stiped">
+                <thead>
+                  <th>Subject Code</th>
+                  <th>Subject Title</th>
+                </thead>
+                <tbody>
+                  @foreach($subjects as $s)
+                    <tr>
+                      <td>{{ $s->code }}</td>
+                      <td>{{ $s->title }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           @else
             <p class="text-center">No Subject for the Selected Grade Level</p>
           @endif
