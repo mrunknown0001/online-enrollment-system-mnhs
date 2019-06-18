@@ -438,7 +438,7 @@ class UserController extends Controller
                         'lastname' => $a->lastname,
                         'admin_id' => $a->employee_id,
                         'status' => $a->status,
-                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <a href='' class='btn btn-info btn-xs'>Update Status</a>"
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                     ];
                 }
                 else {
