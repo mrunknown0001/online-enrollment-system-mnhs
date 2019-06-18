@@ -100,7 +100,7 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'admin_id' => 'required|max:7',
+            'admin_id' => 'required|max:7|unique:users,employee_id',
             'dep_ed_email' => 'required',
             'mobile_number' => 'required',
             'position' => 'required'
@@ -113,6 +113,7 @@ class UserController extends Controller
         $mobile_number = $request['mobile_number'];
         $position = $request['position'];
 
+
         $user_id = $request['user_id'];
 
         // save
@@ -121,10 +122,12 @@ class UserController extends Controller
             $admin->password = bcrypt('12345678');
             $admin->user_type = 1;
             $action = 'Added New Admin';
+            $status = 'Active';
         }
         else {
             $admin = User::findorfail($user_id);
             $action = 'Admin Details Updated';
+            $status = $request['status'];
         }
 
         $admin->firstname = $firstname;
@@ -133,6 +136,7 @@ class UserController extends Controller
         $admin->email = $email;
         $admin->mobile_number = $mobile_number;
         $admin->position = $position;
+        $admin->status = $status;
 
         // condition
         if($admin->save()) {
@@ -418,6 +422,7 @@ class UserController extends Controller
             'fistname' => null,
             'lastname' => null,
             'admin_id' => null,
+            'status' => null,
             'action' => null
         );
 
@@ -432,7 +437,8 @@ class UserController extends Controller
                         'firstname' => $a->firstname,
                         'lastname' => $a->lastname,
                         'admin_id' => $a->employee_id,
-                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_admin('" . $a->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
+                        'status' => $a->status,
+                        'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <a href='' class='btn btn-info btn-xs'>Update Status</a>"
                     ];
                 }
                 else {
@@ -440,6 +446,7 @@ class UserController extends Controller
                         'firstname' => $a->firstname,
                         'lastname' => $a->lastname,
                         'admin_id' => $a->employee_id,
+                        'status' => $a->status,
                         'action' => "<a href='" . route('admin.view.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.update.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.reset.password.admin', ['id' => encrypt($a->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                     ];
                 }
