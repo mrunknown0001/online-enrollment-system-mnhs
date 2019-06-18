@@ -1062,6 +1062,7 @@ class UserController extends Controller
 
     public function enrollExsitingStudent(Request $request)
     {
+        // return $request;
 
         $id = $request['id'];
         $grade_level = $request['grade_level'];

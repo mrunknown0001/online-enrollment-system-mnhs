@@ -26,7 +26,7 @@
 }
 
 @media print {
-  body *, #printButton {
+  body * {
     visibility: hidden;
   }
   #printArea, #printArea * {
@@ -43,10 +43,8 @@
     bottom:0px;
     margin: auto;
   }
-  #printButton {
+  .hidden-on-print {
     visibility: hidden !important;
   }
-  .hidden {
-    visibility: hidden !important;
-  }
+
 }
