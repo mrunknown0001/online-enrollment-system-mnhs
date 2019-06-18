@@ -777,7 +777,9 @@ class UserController extends Controller
         // $academic_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
-        $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $academic_year)
+        $ay_a = $academic_year->from . '-' . $academic_year->to;
+
+        $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $ay_a)
             ->where('active', 1)
             ->first();
 
