@@ -399,6 +399,10 @@ Route::group(['prefix' => 's', 'middleware' => ['check_student', 'prevent.back.h
 	Route::post('/password', 'UserController@postChangePassword')->name('student.password.update');
 
 
+	// view previous cor of the student
+	Route::get('/view/enrollment/{id}', 'StudentController@viewEnrollment')->name('student.view.enrollment');
+
+
 
 	// STUDENT GRADES
 	Route::get('/grades', 'GradeController@viewGrades')->name('student.grades');

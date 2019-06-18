@@ -19,23 +19,44 @@
         </div>
         <div class="col-md-12">
           @include('includes.all')
-          <p>
-            Fullname &amp; LRN: {{ Auth::user()->fullname() }} / {{ Auth::user()->student_number }}
-          </p>
-          <p>
-            Gender, Birthday &amp; Nationality: {{ Auth::user()->info->gender }}
-            / {{ date('F j, Y', strtotime(Auth::user()->info->birthday)) }}
-            / {{ Auth::user()->info->nationality }}
-          </p>
-          <p>
-            Address: {{ Auth::user()->info->address }}
-          </p>
-          <p>
-            Parents: {{ Auth::user()->info->father }} &amp; {{ Auth::user()->info->mother }}
-          </p>
-          <p>
-            Email &amp; Mobile Number: {{ Auth::user()->email != null ? Auth::user()->email : 'N/A' }} &amp; {{ Auth::user()->mobile_number != null ? Auth::user()->mobile_number : 'N/A' }}
-          </p>
+          <table class="table table-hover table-bordered table-striped">
+              <tr>
+                  <td>Fullname</td>
+                  <td><strong>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</strong></td>
+              </tr>
+              <tr>
+                <td>LRN</td>
+                <td><strong>{{ Auth::user()->student_number }}</strong></td>
+              </tr>
+              <tr>
+                <td>Grade & Section</td>
+                <td><strong>Grade {{ Auth::user()->info->grade_level }} - {{ Auth::user()->info->section->name }}</strong></td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td><strong>{{ Auth::user()->info->gender }}</td>
+              </tr>
+              <tr>
+                <td>Birthday</td>
+                <td><strong>{{ Auth::user()->info->birthday }}</strong></td>
+              </tr>
+              <tr>
+                <td>Home Address</td>
+                <td><strong>{{ Auth::user()->info->address }}</strong></td>
+              </tr>
+              <tr>
+                <td>Nationality</td>
+                <td><strong>{{ Auth::user()->info->nationality }}</strong></td>
+              </tr>
+              <tr>
+                <td>Father's Name</td>
+                <td><strong>{{ Auth::user()->info->father }}</strong></td>
+              </tr>
+              <tr>
+                <td>Mother's Name</td>
+                <td><strong>{{ Auth::user()->info->mother }}</strong></td>
+              </tr>
+          </table>
           <p>
             <a href="{{ route('student.password') }}" class="btn btn-primary">Change Password</a>
           </p>

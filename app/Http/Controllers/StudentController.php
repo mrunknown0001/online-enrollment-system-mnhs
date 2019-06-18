@@ -18,6 +18,22 @@ class StudentController extends Controller
 	}
 
 
+	// view enrollment
+	public function viewEnrollment($id)
+	{
+		$id = decrypt($id);
+
+		$student_section = \App\StudentSection::findorfail($id);
+
+		// get subjects
+		$subjects = \App\Subject::where('grade_level', $student_section->grade_level)->get();
+
+		$section = $student_section->section;
+
+		return view('student.print-priviews-enrollment', ['subjects' => $subjects, 'section' => $section]);
+	}
+
+
 	// STUDENT PROFILE
 	public function profile()
 	{
