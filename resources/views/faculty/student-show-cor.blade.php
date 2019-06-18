@@ -34,12 +34,14 @@
           <div id="printArea">
             <div class="row">
               <div class="col-md-4">
-                <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname }}</h5>
+                <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
                 <h5>LRN: {{ $student->student_number }}</h5>
                 <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
               </div>
               <div class="col-md-4">
-                
+                @if($student->info->grade_level == 11 || $student->info->grade_level == 12)
+                  Semester
+                @endif
               </div>
               <div class="col-md-4">
                 <button type="button" id="printButton" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
