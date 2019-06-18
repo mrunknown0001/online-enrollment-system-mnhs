@@ -20,6 +20,8 @@
         <div class="col-md-12">
           
           <div id="printArea">
+            <h4>{{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }}</h4>
+            <h4>{{ Auth::user()->student_number }}</h4>
             <h4>Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
             <table class="table table-hover table-bordered table-stiped">
               <thead>
