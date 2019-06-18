@@ -7,15 +7,11 @@
     <div class="left-custom-menu-adp-wrap comment-scrollbar">
       <nav class="sidebar-nav left-sidebar-menu-pro">
         <ul class="metismenu" id="menu1">
-          <li class="">
-            <a class="has-arrow" href="javascript:void(0)">
-               <i class="fa big-icon fa-home icon-wrap"></i>
-               <span class="mini-click-non">Home</span>
-            </a>
-            <ul class="submenu-angle" aria-expanded="true">
-                <li><a title="Dashboard" href="{{ route('student.dashboard') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a></li>
-            </ul>
+          
+          <li>
+            <a title="Dashboard" href="{{ route('student.dashboard') }}"><i class="fa fa-bullseye sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Dashboard</span></a>
           </li>
+            
           {{-- <li>
             <a title="Grades" href="{{ route('student.grades') }}" aria-expanded="false"><i class="fa fa-file icon-wrap sub-icon-mg" aria-hidden="true"></i><span class="mini-click-non"> Grades</span></a>
           </li> --}}

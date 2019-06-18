@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('user_type')->default(3);
             // 1 for admin, 2 for faculty, 3 for students
             $table->string('student_status', 10)->nullable();
+            $table->string('status', 10)->nullable();
             $table->boolean('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
