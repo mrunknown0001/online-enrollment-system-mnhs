@@ -27,6 +27,7 @@
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>LRN</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </thead>
             </table>
@@ -44,6 +45,7 @@
         { data: 'lastname' },
         { data: 'firstname' },
         { data: 'lrn' },
+        { data: 'status' },
         { data: 'action' }
       ]
     });

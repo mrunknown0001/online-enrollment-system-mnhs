@@ -517,6 +517,7 @@ class UserController extends Controller
             'firstname' => null,
             'lastname' => null,
             'lrn' => null,
+            'status' => null,
             'action' => null
         );
 
@@ -532,7 +533,8 @@ class UserController extends Controller
                     'lastname' => $s->lastname,
                     // 'lrn' => substr($s->student_number, 4),
                     'lrn' => $s->student_number,
-                    'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.reset.student.password', ['id' => encrypt($s->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
+                    'status' => $s->student_status,
+                    'action' => "<a href=" . route('admin.student.view.details', ['id' => encrypt($s->id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-eye'></i> View</a> <a href='" . route('admin.reset.student.password', ['id' => encrypt($s->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <a href='" . route('admin.update.student.status', ['id' => encrypt($s->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update Status</a>"
                 ];
             }
         }
@@ -590,6 +592,40 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.students')->with('error', 'Password Reset Error. Please Try Again!');   
+    }
+
+
+
+    // method use to update student status
+    public function updateStudentStatus($id)
+    {
+        $id = decrypt($id);
+
+        $student = \App\User::findorfail($id);
+
+        return view('admin.student-change-status', ['student' => $student]);
+    }
+
+
+    public function postUpdateStudentStatus(Request $request)
+    {
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+        $student_id = $request['student_id'];
+        $status = $request['status'];
+
+        $student = User::findorfail($student_id);
+
+        $student->student_status = $status;
+
+        if($student->save()) {
+            $action = 'Admin Updated Student Status';
+            AuditTrailController::create($action);
+
+            return redirect()->route('admin.students')->with('success', 'Updated Student Status!');
+        }
     }
 
     // method use to print list of students

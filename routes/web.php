@@ -80,6 +80,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::post('/student/reset/password', 'UserController@postResetStudentPassword')->name('admin.reset.student.password.post');
 
+	Route::get('/student/{id}/update/status', 'UserController@updateStudentStatus')->name('admin.update.student.status');
+
+	Route::post('/student/update/status', 'UserController@postUpdateStudentStatus')->name('admin.update.student.status.post');
+
 
 	// SUBJECT MANAGEMENT
 	Route::get('/subject/management', 'SubjectController@index')->name('admin.subjects');
