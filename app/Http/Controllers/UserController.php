@@ -1051,10 +1051,11 @@ class UserController extends Controller
         $id = $request['id'];
         $grade_level = $request['grade_level'];
         $section = $request['section'];
+        $strand_id = $request['strand_id'];
 
         // pass parameters to view and use it as a reference on enrolling existing student
 
-        return view('faculty.student-existing-registration', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section]);
+        return view('faculty.student-existing-registration', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section, 'strand_id' => $strand_id]);
     }
 
 
@@ -1070,6 +1071,7 @@ class UserController extends Controller
         $grade_level = $request['grade_level'];
         $section = $request['section_id'];
         $keyword = $request['keyword'];
+        $strand_id = $request['strand_id'];
 
         // search student with the keyword
 
@@ -1077,7 +1079,7 @@ class UserController extends Controller
                             ->where('student_number', 'like', "%$keyword%")
                             ->get();
 
-        return view('faculty.student-existing-registration-search-result', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section, 'students' => $students]);
+        return view('faculty.student-existing-registration-search-result', ['id' => $id, 'grade_level' => $grade_level, 'section_id' => $section, 'strand_id' => $strand_id, 'students' => $students]);
     }
 
 
