@@ -262,7 +262,8 @@ class UserController extends Controller
                 'email' => 'nullable|unique:users,email|email',
                 'mobile_number' => 'nullable|unique:users,mobile_number',
                 'department' => 'required',
-                'position' => 'required'
+                'position' => 'required',
+                'status' => 'required'
             ]);
 
             $firstname = $request['firstname'];
@@ -272,6 +273,7 @@ class UserController extends Controller
             $mobile_number = $request['mobile_number'];
             $department = $request['department'];
             $position = $request['position'];
+            $status = $request['status'];
 
             // add to database
             $f = new User();
@@ -307,7 +309,8 @@ class UserController extends Controller
                 'email' => 'nullable',
                 'mobile_number' => 'nullable',
                 'department' => 'required',
-                'position' => 'required'
+                'position' => 'required',
+                'status' => 'required'
             ]);
 
             $firstname = $request['firstname'];
@@ -318,6 +321,7 @@ class UserController extends Controller
             $mobile_number = $request['mobile_number'];
             $department = $request['department'];
             $position = $request['position'];
+            $status = $request['status'];
 
 
             $f = User::findorfail($faculty_id);
@@ -342,6 +346,7 @@ class UserController extends Controller
             $f->password = bcrypt('secret');
             $f->user_type = 2; // faculty
             $f->position = $position;
+            $f->status = $status;
 
             if($f->save()) {
 
@@ -476,6 +481,7 @@ class UserController extends Controller
             'fistname' => null,
             'lastname' => null,
             'employee_id' => null,
+            'status' => null,
             'action' => null
         );
 
@@ -489,7 +495,8 @@ class UserController extends Controller
                     'firstname' => $f->firstname,
                     'lastname' => $f->lastname,
                     'employee_id' => $f->employee_id,
-                    'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.faculty.reset.password', ['id' => encrypt($f->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a> <button class='btn btn-danger btn-xs' onclick=\"remove_faculty('" . $f->id . "')\"><i class='fa fa-trash'></i> Delete</button>"
+                    'status' => $f->status,
+                    'action' => "<a href='" . route('admin.update.faculty', ['id' => encrypt($f->id)]) . "' class='btn btn-info btn-xs'><i class='fa fa-pencil'></i> Update</a> <a href='" . route('admin.faculty.reset.password', ['id' => encrypt($f->id)]) . "' class='btn btn-warning btn-xs'><i class='fa fa-key'></i> Reset Password</a>"
                 ];
 
             }

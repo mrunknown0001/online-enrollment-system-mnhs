@@ -28,6 +28,7 @@
                 <th>Last Name</th>
                 <th>First Name</th>
                 <th>Employee ID</th>
+                <th>Status</th>
                 <th>Action</th>
               </thead>
             </table>
@@ -45,6 +46,7 @@
         { data: 'lastname' },
         { data: 'firstname' },
         { data: 'employee_id' },
+        { data: 'status' },
         { data: 'action' }
       ]
     });

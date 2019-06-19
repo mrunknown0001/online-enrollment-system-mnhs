@@ -125,6 +125,13 @@
                       </span>
                     @endif
                 </div>
+                <div class="form-group col-lg-6">
+                  <label>Status</label>
+                  <select class="form-control" name="status" id="status" required>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">{{ $faculty == null ? 'Add Faculty' : 'Update Faculty' }}</button>
