@@ -54,12 +54,12 @@
                   </label>
                   {{-- <p class="help-block small">(if this is a private computer)</p> --}}
                 </div>
-                <div class="checkbox login-checkbox">
+                {{-- <div class="checkbox login-checkbox">
                   <label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="checkbox" name="data_privacy" value="1" class="i-checks"> Agree to <a>Data Privacy</a>
                   </label>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
                 {{-- <a class="btn btn-default btn-block" href="{{ route('register') }}">Register</a> --}}
               </form>
