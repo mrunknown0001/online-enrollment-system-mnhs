@@ -41,7 +41,7 @@ class FacultyAssignmentController extends Controller
 
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
-        if(emtpy($academic_year)) {
+        if(empty($academic_year)) {
             return redirect()->route('admin.faculty.assignments.add')->with('error', 'Activate School Year!');
         }
 
