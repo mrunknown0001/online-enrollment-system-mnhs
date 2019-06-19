@@ -25,6 +25,7 @@
             <input type="hidden" name="id" value="{{ $id }}">
             <input type="hidden" name="grade_level" value="{{ $grade_level }}">
             <input type="hidden" name="section_id" value="{{ $section_id }}">
+            <input type="hidden" name="strand_id" value="{{ $strand_id }}">
 						<div class="form-group">
 							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Student Number / LRN" autofocus="">
 						</div>
