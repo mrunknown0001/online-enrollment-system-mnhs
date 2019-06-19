@@ -1153,7 +1153,7 @@ class UserController extends Controller
         else {
             $strand = \App\Strand::findorfail($strand_id);
             
-            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'message' => 'Student Successfully Enrolled!']);
+            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'semester' => $semester->semester, 'message' => 'Student Successfully Enrolled!']);
         }
     }
 
