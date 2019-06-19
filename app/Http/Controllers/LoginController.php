@@ -74,6 +74,11 @@ class LoginController extends Controller
         try {
             if(Auth::attempt(['student_number' => $identification, 'password' => $password], $remember_me) || Auth::attempt(['employee_id' => $identification, 'password' => $password], $remember_me)) {
 
+                if(Auth::user()->status == 'Inactive' || Auth::user()->status == 'Transfered') {
+                    Auth::logout();
+                    return redirect()->route('login')->with('error', 'Account Inactive. Please Contact Administrator!');
+                }
+
                 if(Auth::user()->active != 1) {
                     Auth::logout();
                     return redirect()->route('login')->with('error', 'Inactive Student!');
