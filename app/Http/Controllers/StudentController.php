@@ -30,7 +30,7 @@ class StudentController extends Controller
 
 		$section = $student_section->section;
 
-		return view('student.print-priviews-enrollment', ['subjects' => $subjects, 'section' => $section]);
+		return view('student.print-priviews-enrollment', ['student' => Auth::user(), 'subjects' => $subjects, 'section' => $section]);
 	}
 
 

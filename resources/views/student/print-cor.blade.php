@@ -18,14 +18,27 @@
           <h1>Print COR</h1>
         </div>
         <div class="col-md-12">
-          <h4>Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
           @include('includes.all')
-          <div class="alert alert-success text-center top-space">
-            <a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <b>{{ $message }}</b>
-          </div>
+          
+          
           @if(count($subjects) > 0)
             <div id="printArea">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
+                  <h5>LRN: {{ $student->student_number }}</h5>
+                  <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+                </div>
+                <div class="col-md-6">
+                  @if($student->info->grade_level == 11 || $student->info->grade_level == 12)
+                    <h5>{{ $strand->name }}</h5>
+                    <h5>{{ $student_section->semester == 1 ? '1st' : '2nd' }} Semester</h5>
+                  @endif
+                </div>
+                <div class="col-md-12">
+                  <h5>Assessor Name: {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h5>
+                </div>
+              </div>
               <table class="table table-hover table-bordered table-stiped">
                 <thead>
                   <th>Subject Code</th>

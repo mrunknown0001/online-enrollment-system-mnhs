@@ -17,4 +17,12 @@ class StudentSection extends Model
     {
     	return $this->belongsTo('App\User', 'user_id');
     }
+
+
+    // assessor
+    public function assessor()
+    {
+        return $this->belongsTo('App\User', 'assessor_id');
+    }
+
 }

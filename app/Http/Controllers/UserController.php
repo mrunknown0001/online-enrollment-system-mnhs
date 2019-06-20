@@ -739,6 +739,9 @@ class UserController extends Controller
         // check if slot is full
         $section = Section::findorfail($section_id);
 
+        // enrollmet setting and semester
+        $setting = \App\Setting::find(1);
+
         if($section->enrolled == $section->student_limit) {
             return redirect()->route('faculty.register.choose.grade')->with('error', 'Section slot is full');
         }
@@ -765,7 +768,7 @@ class UserController extends Controller
         $check_lrn = User::where('student_number', $lrn)->first();
 
         if(!empty($check_lrn)) {
-            return redirect()->back()->with('error', 'LRN  ' . $lrn . ' is already used!');
+            return redirect()->route('faculty.register.choose.grade')->with('error', 'LRN  ' . $lrn . ' is already used!');
         }
 
         $student = new User();
@@ -828,6 +831,10 @@ class UserController extends Controller
         $student_section->user_id = $student->id;
         $student_section->section_id = $section->id;
         $student_section->grade_level = $grade_level;
+        $student_section->assessor_id = Auth::user()->id;
+        if($grade_level == 11 || $grade_level == 12 ) {
+            $student_section->semester = $setting->semester;
+        }
         $student_section->save();
 
 
@@ -848,7 +855,7 @@ class UserController extends Controller
         // get subjects
         $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
 
-        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => NULL, 'strand' => NULL, 'message' => 'Student Successfully Enrolled!']);
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => NULL, 'strand' => NULL, 'student_section' => $student->section, 'message' => 'Student Successfully Enrolled!']);
 
         return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
 
@@ -954,7 +961,7 @@ class UserController extends Controller
         $check_lrn = User::where('student_number', $lrn)->first();
 
         if(!empty($check_lrn)) {
-            return redirect()->back()->with('error', 'LRN  ' . $lrn . ' is already used!');
+            return redirect()->route('faculty.register.choose.grade')->with('error', 'LRN  ' . $lrn . ' is already used!');
         }
 
         $student = new User();
@@ -1017,6 +1024,9 @@ class UserController extends Controller
         $student_section->user_id = $student->id;
         $student_section->section_id = $section->id;
         $student_section->grade_level = $grade_level;
+        if($grade_level == 11 || $grade_level == 12) {
+            $student_section->semester = $semester;
+        }
         $student_section->save();
 
 
@@ -1037,7 +1047,7 @@ class UserController extends Controller
         // get subjects
         $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
 
-        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => $semester, 'strand' => $strand, 'message' => 'Student Successfully Enrolled!']);
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => $semester, 'strand' => $strand, 'enrolled_counter' => $enrolled_counter, 'student_section' => $student_section, 'message' => 'Student Successfully Enrolled!']);
 
         return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
     }
@@ -1128,6 +1138,21 @@ class UserController extends Controller
         $student->info->save();
 
 
+        $enrolled_counter = \App\EnrolledStudentCounter::where('academic_year', $ay_a)
+            ->where('active', 1)
+            ->first();
+
+        if(empty($enrolled_counter)) {
+            $enrolled_counter = new \App\EnrolledStudentCounter();
+            $enrolled_counter->academic_year = $academic_year->from . '-' . $academic_year->to;
+            $enrolled_counter->count = 1;
+            $enrolled_counter->save();
+        }
+        else {
+            $enrolled_counter->count += 1;
+            $enrolled_counter->save();            
+        }
+
         $section->enrolled += 1;
         $section->save();
 
@@ -1148,12 +1173,12 @@ class UserController extends Controller
 
 
         if($grade_level <= 10) {
-            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Student Successfully Enrolled!']);
+            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'student_section' => $student_section, 'semester' => NULL, 'enrolled_counter' => $enrolled_counter, 'message' => 'Student Successfully Enrolled!']);
         }
         else {
             $strand = \App\Strand::findorfail($strand_id);
             
-            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'semester' => $semester->semester, 'message' => 'Student Successfully Enrolled!']);
+            return view('faculty.student-show-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'semester' => $semester->semester,'student_section' => $student_section, 'enrolled_counter' => $enrolled_counter, 'message' => 'Student Successfully Enrolled!']);
         }
     }
 
