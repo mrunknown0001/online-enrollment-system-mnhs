@@ -25,6 +25,15 @@
         </p>
         <div id="printArea">
           <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <p class="text-center">Republic of the Philippines
+                <br>
+                Maliwalo Nation High School
+                <br>
+                Tarlac City
+              </p>
+              <h4 class="text-center">Certificate of Registration</h4>
+            </div>
             <div class="col-md-6">
               <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
               <h5>LRN: {{ $student->student_number }}</h5>
