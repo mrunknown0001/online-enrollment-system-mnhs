@@ -20,6 +20,7 @@ class CreateStudentSectionsTable extends Migration
             $table->unsignedInteger('section_id');
             $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedInteger('assessor_id')->nullable();
+            $table->foreign('assessor_id')->references('id')->on('users');
             $table->tinyInteger('grade_level')->nullable();
             $table->string('semester', 15)->nullable();
             $table->boolean('active')->default(1);
