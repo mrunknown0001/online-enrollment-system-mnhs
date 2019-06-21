@@ -87,7 +87,7 @@
             </table>
              <div class="row">
                 <div class="col-md-6">
-                  <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
+                  <h5>Assessor Name: {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h5>
                 </div>
                 <div class="col-md-6">
                   Date Printed: {{ date('M d, Y h:m:i A') }}
