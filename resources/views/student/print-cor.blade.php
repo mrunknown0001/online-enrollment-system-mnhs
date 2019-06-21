@@ -63,9 +63,7 @@
                     <h5>{{ $student_section->semester == 1 ? '1st' : '2nd' }} Semester</h5>
                   @endif
                 </div>
-                <div class="col-md-12">
-                  <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
-                </div>
+
               </div>
               <table class="table table-hover table-bordered table-stiped">
                 <thead>
@@ -81,6 +79,14 @@
                   @endforeach
                 </tbody>
               </table>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
+                </div>
+                <div class="col-md-6">
+                  Date Printed: {{ date('M d, Y h:m:i A') }}
+                </div>
+              </div>
             </div>
           @else
             <p class="text-center">No Subject for the Selected Grade Level</p>
