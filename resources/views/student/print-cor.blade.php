@@ -81,7 +81,9 @@
               </table>
               <div class="row">
                 <div class="col-md-6">
-                  <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
+                  @if($student_section->assessor_id != NULL)
+                    <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
+                  @endif
                 </div>
                 <div class="col-md-6">
                   Date Printed: {{ date('M d, Y h:m:i A') }}
