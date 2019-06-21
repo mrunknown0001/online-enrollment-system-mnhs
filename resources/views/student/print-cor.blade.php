@@ -64,7 +64,7 @@
                   @endif
                 </div>
                 <div class="col-md-12">
-                  <h5>Assessor Name: {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h5>
+                  <h5>Assessor Name: {{ $student_section->assessor->firstname . ' ' . $student_section->assessor->lastname }}</h5>
                 </div>
               </div>
               <table class="table table-hover table-bordered table-stiped">
