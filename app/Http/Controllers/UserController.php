@@ -855,7 +855,7 @@ class UserController extends Controller
         // get subjects
         $subjects = \App\Subject::where('grade_level', $student_section->grade_level)->whereActive(1)->get();
 
-        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => NULL, 'strand' => NULL, 'student_section' => $student->section, 'message' => 'Student Successfully Enrolled!']);
+        return view('faculty.student-show-cor', ['subjects' => $subjects, 'section' => $section, 'student' => $student, 'semester' => NULL, 'strand' => NULL, 'enrolled_counter' => $enrolled_counter, 'student_section' => $student->section, 'message' => 'Student Successfully Enrolled!']);
 
         return redirect()->route('faculty.register.choose.grade')->with('success', 'Student Enrolled!');
 
