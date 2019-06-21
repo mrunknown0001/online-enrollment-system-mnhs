@@ -26,9 +26,16 @@
         <div id="printArea">
           <div class="row">
             <div class="col-md-6 col-md-offset-3">
-              <p class="text-center">Republic of the Philippines
+              <p class="text-center">
+                Republic of the Philippines
                 <br>
+                <img src="{{ asset('images/ched.png') }}" width="50px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Maliwalo National High School
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <img src="{{ asset('images/deped.png') }}" width="50px">
                 <br>
                 Tarlac City
               </p>
