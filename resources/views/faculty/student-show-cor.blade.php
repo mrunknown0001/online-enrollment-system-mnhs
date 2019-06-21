@@ -65,9 +65,9 @@
                 <h5>{{ $student_section->semester == 1 ? '1st' : '2nd' }} Semester</h5>
               @endif
             </div>
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
               <h5>Assessor Name: {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h5>
-            </div>
+            </div> --}}
           </div>
 
           @if(count($subjects) > 0)
