@@ -28,7 +28,7 @@
             <div class="col-md-6 col-md-offset-3">
               <p class="text-center">Republic of the Philippines
                 <br>
-                Maliwalo Nation High School
+                Maliwalo National High School
                 <br>
                 Tarlac City
               </p>
