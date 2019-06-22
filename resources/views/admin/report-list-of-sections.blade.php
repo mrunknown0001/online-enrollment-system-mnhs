@@ -26,6 +26,7 @@
                 <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
               </p>
               <div id="printArea">
+                @include('includes.print-header')
                 <table class="table table-hover table-bordered table-triped">
                   <thead>
                     <th>Section</th>

@@ -24,6 +24,7 @@
           <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
         </p>
         <div id="printArea">
+          @include('inlcudes.print-header')
           <div class="row">
             <div class="col-md-12">
               @if(count($students) > 0)
