@@ -164,6 +164,8 @@ class StudentController extends Controller
 
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
+        $student = Auth::user();
+
 
 		// check student section 
 		$check_sc = \App\StudentSection::where('user_id')->whereActive(1)->first();
@@ -203,7 +205,7 @@ class StudentController extends Controller
 		// print COR
 		$subjects = \App\Subject::where('grade_level', $section->grade_level)->get();
 
-		return view('student.print-cor', ['section' => $section, 'subjects' => $subjects, 'message' => 'Enrollement Successful!']);
+		return view('student.print-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Enrollement Successful!']);
 
 		// return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
 	}
