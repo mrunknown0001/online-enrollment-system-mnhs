@@ -209,6 +209,28 @@ class StudentController extends Controller
         $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
         $std_enrollment->save();
 
+
+        if(empty($academic_year)) {
+            return redirect()->route('student.enrollment')->with('error', 'No Active School Year!');
+        }
+
+        $ay_a = $academic_year->from . '-' . $academic_year->to;
+
+        $enrolled_counter = \App\OnlineEnrollment::where('academic_year', $ay_a)
+            ->where('active', 1)
+            ->first();
+
+        if(empty($enrolled_counter)) {
+            $enrolled_counter = new \App\OnlineEnrollment();
+            $enrolled_counter->academic_year = $academic_year->from . '-' . $academic_year->to;
+            $enrolled_counter->count = 1;
+            $enrolled_counter->save();
+        }
+        else {
+            $enrolled_counter->count += 1;
+            $enrolled_counter->save();            
+        }
+
 		// student enrollment log
 		AuditTrailController::create('Student enrolled in Grade ' . $section->grade_level .'-' . $section->name );
 
