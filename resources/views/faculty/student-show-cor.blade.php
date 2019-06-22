@@ -51,12 +51,18 @@
               <thead>
                 <th>Subject Code</th>
                 <th>Subject Title</th>
+                <th>Schedule</th>
+                <th>Room</th>
+                <th>Faculty</th>
               </thead>
               <tbody>
                 @foreach($subjects as $s)
                   <tr>
                     <td>{{ $s->code }}</td>
                     <td>{{ $s->title }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                 @endforeach
               </tbody>
