@@ -148,10 +148,16 @@ class StudentController extends Controller
 
 		$section = \App\Section::findorfail($id);
 
+		$strand_id = NULL;
+
+		if($section->strand_id != NULL) {
+			$strand_id = $section->strand_id;
+		}
+
 		// get subjects
 		$subjects = \App\Subject::where('grade_level', $section->grade_level)->where('active', 1)->get();
 
-		return view('student.preview-subject', ['subjects' => $subjects, 'section' => $section]);
+		return view('student.preview-subject', ['subjects' => $subjects, 'section' => $section, 'strand_id' => $strand_id]);
 	}
 
 
@@ -159,12 +165,17 @@ class StudentController extends Controller
 	public function saveEnrollment(Request $request)
 	{
 		$section_id = $request['section_id'];
+		$strand_id = $request['strand_id'];
 
 		$section = \App\Section::findorfail($section_id);
 
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
         $student = Auth::user();
+
+        if($strand_id != NULL) {
+        	$strand = \App\Strand::findorfail($strand_id);
+        }
 
 
 		// check student section 
@@ -205,7 +216,7 @@ class StudentController extends Controller
 		// print COR
 		$subjects = \App\Subject::where('grade_level', $section->grade_level)->get();
 
-		return view('student.print-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'message' => 'Enrollement Successful!']);
+		return view('student.print-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'message' => 'Enrollement Successful!']);
 
 		// return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
 	}
