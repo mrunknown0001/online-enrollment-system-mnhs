@@ -28,13 +28,13 @@
 
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" >
             <div class="admin-content analysis-progrebar-ctn res-mg-t-15" style="background-color: #e52110; color: white;">
-              <h4 class="text-center text-uppercase"><a href="{{ route('admin.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>ONLINE ENROLLMENT<br></b></a></h4>
+              <h4 class="text-center text-uppercase"><a href="{{ route('admin.online.enrolled.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>ONLINE ENROLLMENT<br></b></a></h4>
               <div class="row vertical-center-box vertical-center-box-tablet">
                 <div class="col-xs-3 mar-bot-15 text-left">
 
                 </div>
                 <div class="col-xs-12 cus-gh-hd-pro">
-                    <h2 class="text-center">{{ $online_enrollment != null ? $online_enrollment->count : '0' }}<a href="{{ route('admin.students') }}" class="white"></a></h2>
+                    <h2 class="text-center">{{ $online_enrollment != null ? $online_enrollment->count : '0' }}<a href="{{ route('admin.online.enrolled.students') }}" class="white"></a></h2>
                 </div>
               </div>
             </div>
@@ -42,13 +42,13 @@
 
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" >
             <div class="admin-content analysis-progrebar-ctn res-mg-t-15" style="background-color: #e52110; color: white;">
-              <h4 class="text-center text-uppercase"><a href="{{ route('admin.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>ASSISTED ENROLLMENT<br></b></a></h4>
+              <h4 class="text-center text-uppercase"><a href="{{ route('admin.assisted.enrolled.students') }}" class="white"><i class="fa fa-graduation-cap"></i> <b>ASSISTED ENROLLMENT<br></b></a></h4>
               <div class="row vertical-center-box vertical-center-box-tablet">
                 <div class="col-xs-3 mar-bot-15 text-left">
 
                 </div>
                 <div class="col-xs-12 cus-gh-hd-pro">
-                    <h2 class="text-center"><a href="{{ route('admin.students') }}" class="white">{{ $total_enroll != null ? $total_enroll->count : '0' }}</a></h2>
+                    <h2 class="text-center"><a href="{{ route('admin.assisted.enrolled.students') }}" class="white">{{ $assisted_students != null ? $assisted_students->count : '0' }}</a></h2>
                 </div>
               </div>
             </div>

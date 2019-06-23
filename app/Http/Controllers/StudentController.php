@@ -234,6 +234,20 @@ class StudentController extends Controller
             $enrolled_counter->save();            
         }
 
+
+        $online_enrolled = new \App\OnlineEnrolledStudent();
+        $online_enrolled->student_id = $student->id;
+        $online_enrolled->section_id = $section->id;
+        $online_enrolled->academic_year = $ay_a;
+        $online_enrolled->student_section_id = $student_section->id;
+        if($section->grade_level == 11 || $section->grade_level == 12) {
+            $online_enrolled->strand_id = $strand->id;
+            $online_enrolled->semester = $semester;
+        }
+        $online_enrolled->save();
+
+
+
 		// student enrollment log
 		AuditTrailController::create('Student enrolled in Grade ' . $section->grade_level .'-' . $section->name );
 

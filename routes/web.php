@@ -72,6 +72,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 
 	Route::get('/student/management', 'UserController@students')->name('admin.students');
 
+
+	Route::get('/student/online-enrolled', 'UserController@onlineEnrolledStudents')->name('admin.online.enrolled.students');
+
+
+	Route::get('/student/assisted-enrolled', 'UserController@assistedEnrolledStuents')->name('admin.assisted.enrolled.students');
+
+	// data on all assisted data
+	Route::get('/student/assisted/students/{ay?}', 'UserController@assisted_students')->name('admin.assisted.students.data');
+	// data on all online enrolled data
+	Route::get('/student/online/enrolled/students/{ay?}', 'UserController@online_enrolled_students')->name('admin.online.enrolled.students.data');
+
+
 	Route::get('/student/{id}/view/details', 'UserController@studentViewDetails')->name('admin.student.view.details');
 
 	Route::get('/student/print/list', 'UserController@printStudentList')->name('admin.print.student.list');

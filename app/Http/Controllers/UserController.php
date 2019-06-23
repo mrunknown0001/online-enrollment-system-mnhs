@@ -531,6 +531,89 @@ class UserController extends Controller
     }
 
 
+
+    // assisted student 
+    public function assistedEnrolledStuents()
+    {
+        // reviews academic year
+        $ays = \App\AssistedStudent::distinct()->orderBy('academic_year', 'desc')->get(['academic_year']);
+
+        return view('admin.students-assisted', ['ays' => $ays]);
+    }
+
+
+
+    // assisted students
+    public function assisted_students($ay)
+    {
+        $data = [
+            'lastname' => NULL,
+            'firstname' => NULL,
+            'lrn' => NULL,
+            'grade_section' => NULL,
+            'status' => NULL
+        ];
+
+        $students = \App\AssistedStudent::where('academic_year', $ay)->get();
+
+        if(count($students) > 0) {
+            $data = NULL;
+            foreach($students as $s) {
+                $data[] = [
+                    'lastname' => $s->student->lastname,
+                    'firstname' => $s->student->firstname,
+                    'lrn' => $s->student->student_number,
+                    'grade_section' => 'Grade ' . $s->student_section->grade_level . '-' . $s->student_section->section->name,
+                    'status' => $s->student->student_status 
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+
+
+    // online enrolled students
+    public function onlineEnrolledStudents()
+    {
+        // previews academic year
+        $ays = \App\OnlineEnrolledStudent::distinct()->orderBy('academic_year', 'desc')->get(['academic_year']);
+
+        return view('admin.students-online-enrolled', ['ays' => $ays]);
+    }
+
+
+    // assisted students
+    public function online_enrolled_students($ay)
+    {
+        $data = [
+            'lastname' => NULL,
+            'firstname' => NULL,
+            'lrn' => NULL,
+            'grade_section' => NULL,
+            'status' => NULL
+        ];
+
+        $students = \App\OnlineEnrolledStudent::where('academic_year', $ay)->get();
+
+        if(count($students) > 0) {
+            $data = NULL;
+            foreach($students as $s) {
+                $data[] = [
+                    'lastname' => $s->student->lastname,
+                    'firstname' => $s->student->firstname,
+                    'lrn' => $s->student->student_number,
+                    'grade_section' => 'Grade ' . $s->student_section->grade_level . '-' . $s->student_section->section->name,
+                    'status' => $s->student->student_status 
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+
     // ALL STUDENTS
     public function allStudents()
     {
@@ -844,6 +927,14 @@ class UserController extends Controller
 
 
 
+        $assisted_student = new \App\AssistedStudent();
+        $assisted_student->student_id = $student->id;
+        $assisted_student->section_id = $section->id;
+        $assisted_student->academic_year = $ay_a;
+        $assisted_student->student_section_id = $student_section->id;
+        $assisted_student->save();
+
+
         // add enrollment history of the student
         $std_enrollment = new \App\StudentEnrollmentHistory();
         $std_enrollment->user_id = $student->id;
@@ -1036,7 +1127,14 @@ class UserController extends Controller
         $student_section->school_year = $ay_a;
         $student_section->save();
 
-
+        $assisted_student = new \App\AssistedStudent();
+        $assisted_student->student_id = $student->id;
+        $assisted_student->section_id = $section->id;
+        $assisted_student->academic_year = $ay_a;
+        $assisted_student->strand_id = $strand->id;
+        $assisted_student->semester = $semester;
+        $assisted_student->student_section_id = $student_section->id;
+        $assisted_student->save();
 
         // add enrollment history of the student
         $std_enrollment = new \App\StudentEnrollmentHistory();
@@ -1172,10 +1270,23 @@ class UserController extends Controller
         $student_section->grade_level = $grade_level;
         $student_section->user_id = $student->id;
         if($grade_level == 11 || $grade_level == 12) {
+            $student_section->strand_id = $strand->id;
             $student_section->semester = $semester;
         }
         $student_section->school_year = $ay_a;
         $student_section->save();
+
+
+        $assisted_student = new \App\AssistedStudent();
+        $assisted_student->student_id = $student->id;
+        $assisted_student->section_id = $section->id;
+        $assisted_student->academic_year = $ay_a;
+        $assisted_student->student_section_id = $student_section->id;
+        if($grade_level == 11 || $grade_level == 12) {
+            $assisted_student->strand_id = $strand->id;
+            $assisted_student->semester = $semester;
+        }
+        $assisted_student->save();
 
 
         // add enrollment history for the student
