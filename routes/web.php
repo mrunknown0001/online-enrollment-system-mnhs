@@ -176,6 +176,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	// admin reports
 	Route::get('/reports', 'ReportController@index')->name('admin.reports');
 
+	// student enrollment history
+	Route::get('/enrollment/history', 'UserController@enrollmentHistory')->name('admin.student.enrollment.history');
+
+	Route::get('/enrollment/history/data/{ay?}', 'UserController@enrollment_history_data');
+
 	// report- list of section
 	Route::get('/reports/list-of-sections', 'ReportController@listOfSections')->name('admin.list.of.sections');
 	// reprot- list of students per grade level
@@ -361,6 +366,14 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 
 	// faculty subjects assigned
 	Route::get('/subjects/assigned', 'FacultyController@assignedSubject')->name('faculty.assigned.subjects');
+
+
+
+	// get faculty subject data
+	Route::get('/subjects/assigned/all/{ay?}', 'FacultyController@allSubjectAssigned');
+
+
+
 
 	// route to view students on the subject and section assigned
 	Route::get('/subject/{subject_id}/section/{section_id}/view/students', 'FacultyController@subjectViewStudents')->name('faculty.view.students');

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Online Enrolled Students @endsection
+@section('title') Enrollment History @endsection
 
 @section('sidebar')
     @include('admin.includes.sidebar')
@@ -15,17 +15,17 @@
         <div class="row">
           <div class="col-md-12">
             <br><br><br>
-            <h1>Online Enrolled Students</h1>
+            <h1>Enrollment History</h1>
             <div class="row">
               <div class="col-md-3">
                 <form>
-                  <input type="hidden" name="current" id="current" value="{{ $ay }}">
+                  <input type="hidden" id="current" value="{{ $ay }}">
                   <div class="form-group">
                     <select onchange="selectChange()" class="form-control" name="academic_year" id="academic_year">
                       <option value="">Select Academic Year</option>
                       @if(count($ays) > 0)
                         @foreach($ays as $a)  
-                          <option value="{{ $a->academic_year }}">{{ $a->academic_year }}</option>
+                          <option value="{{ $a->school_year }}">{{ $a->school_year }}</option>
                         @endforeach
                       @else
                         <option value="">No Record</option>
@@ -36,14 +36,14 @@
               </div>
             </div>
             @include('includes.all')
-
+            
             <table id="students" class="table table-hover table-bordered table-striped">
                 <thead>
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>LRN</th>
                     <th>Grade &amp; Section</th>
-                    <th>Status</th>
+                    <th>Enrollment Type</th>
                     <th>Date Enrolled</th>
                 </thead>
             </table>
@@ -52,10 +52,10 @@
     </div>
 <script>
   $(document).ready(function() {
-    var ay = null;
+    var ay = $("#current").val();
     $('#students').DataTable({
       ajax: {
-        url: "/admin/student/online/enrolled/students/" + ay,
+        url: "/admin/enrollment/history/data/" + ay,
         dataSrc: ""
       },
       columns: [
@@ -63,7 +63,7 @@
         { data: 'firstname' },
         { data: 'lrn' },
         { data: 'grade_section' },
-        { data: 'status' },
+        { data: 'type' },
         { data: 'date_enrolled' }
       ],
       destroy: true,
@@ -78,7 +78,7 @@
     // alert(ay);
     $('#students').DataTable({
       ajax: {
-        url: "/admin/student/online/enrolled/students/" + ay,
+        url: "/admin/enrollment/history/data/" + ay,
         dataSrc: ""
       },
       columns: [
@@ -86,7 +86,7 @@
         { data: 'firstname' },
         { data: 'lrn' },
         { data: 'grade_section' },
-        { data: 'status' },
+        { data: 'type' },
         { data: 'date_enrolled' }
       ],
       destroy: true,

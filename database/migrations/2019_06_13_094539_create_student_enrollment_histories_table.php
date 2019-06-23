@@ -20,6 +20,7 @@ class CreateStudentEnrollmentHistoriesTable extends Migration
             $table->unsignedInteger('student_section_id');
             $table->foreign('student_section_id')->references('id')->on('student_sections');
             $table->string('school_year', 10)->nullable();
+            $table->string('type', 20)->nullable();
             $table->timestamps();
         });
     }

@@ -45,8 +45,49 @@ class FacultyController extends Controller
     public function assignedSubject()
     {
         $subjects = Auth::user()->subjects;
+
+        $current = \App\SchoolYear::whereActive(1)->first();
+
+        $ay = NULL;
+        if(!empty($current)) {
+            $ay = $current->from . '-' . $current->to;
+        }
+
+        $sy = \App\FacultyAssignment::where('faculty_id', Auth::user()->id)
+                            ->distinct()
+                            ->get(['academic_year']);
         
-        return view('faculty.my-subjects', ['subjects' => $subjects]);
+        return view('faculty.my-subjects', ['subjects' => $subjects, 'sy' => $sy, 'ay' => $ay]);
+    }
+
+
+
+    // data on assigned subject
+    public function allSubjectAssigned($ay)
+    {
+        $data = [
+            'grade_section' => NULL,
+            'subject' => NULl,
+            'action' => NULL,
+        ];
+
+        $assigned = \App\FacultyAssignment::where('faculty_id', Auth::user()->id)
+                                    ->where('academic_year', $ay)
+                                    ->get();
+
+        if(count($assigned) > 0) {
+            $data = NULL;
+            foreach($assigned as $a) {
+                $data[] = [
+                    'grade_section' => 'Grade ' . $a->section->grade_level . ' - ' . $a->section->name,
+                    'subject' => $a->subject->code,
+                    'action' => "<a href=" .  route('faculty.view.students', ['subject_id' => encrypt($a->subject_id), 'section_id' => encrypt($a->section_id)]) . " class='btn btn-success btn-xs'><i class='fa fa-eye'></i> View Students</a>
+                        <a href=" . route('faculty.encode.grades', ['subject_id' => encrypt($a->subject_id), 'section_id' => encrypt($a->section_id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Encode Grades</a>"
+                ];
+            }
+        }
+
+        return $data;
     }
 
 

@@ -76,5 +76,8 @@
         </div>
       </div>
   </div>
+<script>
+  alert('Enrollment Successful!');
+</script>
 @endsection
  

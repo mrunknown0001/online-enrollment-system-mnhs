@@ -19,6 +19,7 @@
             <div class="row">
               <div class="col-md-3">
                 <form>
+                  <input type="hidden" id="current" value="{{ $ay }}">
                   <div class="form-group">
                     <select onchange="selectChange()" class="form-control" name="academic_year" id="academic_year">
                       <option value="">Select Academic Year</option>
@@ -43,6 +44,7 @@
                     <th>LRN</th>
                     <th>Grade &amp; Section</th>
                     <th>Status</th>
+                    <th>Date Enrolled</th>
                 </thead>
             </table>
           </div>
@@ -50,7 +52,7 @@
     </div>
 <script>
   $(document).ready(function() {
-    var ay = null;
+    var ay = $("#current").val();
     $('#students').DataTable({
       ajax: {
         url: "/admin/student/assisted/students/" + ay,
@@ -61,7 +63,8 @@
         { data: 'firstname' },
         { data: 'lrn' },
         { data: 'grade_section' },
-        { data: 'status' }
+        { data: 'status' },
+        { data: 'date_enrolled' }
       ],
       destroy: true,
     });
@@ -83,7 +86,8 @@
         { data: 'firstname' },
         { data: 'lrn' },
         { data: 'grade_section' },
-        { data: 'status' }
+        { data: 'status' },
+        { data: 'date_enrolled' }
       ],
       destroy: true,
     });

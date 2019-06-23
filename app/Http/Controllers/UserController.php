@@ -532,13 +532,70 @@ class UserController extends Controller
 
 
 
+
+    // enrollment history
+    public function enrollmentHistory()
+    {
+        // reviews academic year
+        $ays = \App\StudentEnrollmentHistory::distinct()->orderBy('school_year', 'desc')->get(['school_year']);
+
+        // get current ay
+        $current = \App\SchoolYear::whereActive(1)->first();
+        $ay = NULL;
+        if(!empty($current)) {
+            $ay = $current->from . '-' . $current->to;
+        }
+
+        return view('admin.students-enrollment-history', ['ays' => $ays, 'ay' => $ay]);
+    }
+
+
+    // enrollment history data
+    public function enrollment_history_data($ay)
+    {
+        $data = [
+            'lastname' => NULL,
+            'firstname' => NULL,
+            'lrn' => NULL,
+            'grade_section' => NULL,
+            'type' => NULL,
+            'date_enrolled' => NULL,
+        ];
+
+        $students = \App\StudentEnrollmentHistory::where('school_year', $ay)->get();
+
+        if(count($students) > 0) {
+            $data = NULL;
+            foreach($students as $s) {
+                $data[] = [
+                    'lastname' => $s->student->lastname,
+                    'firstname' => $s->student->firstname,
+                    'lrn' => $s->student->student_number,
+                    'grade_section' => 'Grade ' . $s->student_section->grade_level . '-' . $s->student_section->section->name,
+                    'type' => $s->type,
+                    'date_enrolled' => date('F j, Y h:m:i a', strtotime($s->created_at)),
+                ];
+            }
+        }
+
+        return $data;
+    }
+
+
     // assisted student 
     public function assistedEnrolledStuents()
     {
         // reviews academic year
         $ays = \App\AssistedStudent::distinct()->orderBy('academic_year', 'desc')->get(['academic_year']);
 
-        return view('admin.students-assisted', ['ays' => $ays]);
+        // get current ay
+        $current = \App\SchoolYear::whereActive(1)->first();
+        $ay = NULL;
+        if(!empty($current)) {
+            $ay = $current->from . '-' . $current->to;
+        }
+
+        return view('admin.students-assisted', ['ays' => $ays, 'ay' => $ay]);
     }
 
 
@@ -551,7 +608,8 @@ class UserController extends Controller
             'firstname' => NULL,
             'lrn' => NULL,
             'grade_section' => NULL,
-            'status' => NULL
+            'status' => NULL,
+            'date_enrolled' => NULL,
         ];
 
         $students = \App\AssistedStudent::where('academic_year', $ay)->get();
@@ -564,7 +622,8 @@ class UserController extends Controller
                     'firstname' => $s->student->firstname,
                     'lrn' => $s->student->student_number,
                     'grade_section' => 'Grade ' . $s->student_section->grade_level . '-' . $s->student_section->section->name,
-                    'status' => $s->student->student_status 
+                    'status' => $s->student->student_status,
+                    'date_enrolled' => date('F j, Y h:m:i a', strtotime($s->created_at)),
                 ];
             }
         }
@@ -580,7 +639,14 @@ class UserController extends Controller
         // previews academic year
         $ays = \App\OnlineEnrolledStudent::distinct()->orderBy('academic_year', 'desc')->get(['academic_year']);
 
-        return view('admin.students-online-enrolled', ['ays' => $ays]);
+        // get current ay
+        $current = \App\SchoolYear::whereActive(1)->first();
+        $ay = NULL;
+        if(!empty($current)) {
+            $ay = $current->from . '-' . $current->to;
+        }
+
+        return view('admin.students-online-enrolled', ['ays' => $ays, 'ay' => $ay]);
     }
 
 
@@ -592,7 +658,8 @@ class UserController extends Controller
             'firstname' => NULL,
             'lrn' => NULL,
             'grade_section' => NULL,
-            'status' => NULL
+            'status' => NULL,
+            'date_enrolled' => NULL,
         ];
 
         $students = \App\OnlineEnrolledStudent::where('academic_year', $ay)->get();
@@ -605,7 +672,8 @@ class UserController extends Controller
                     'firstname' => $s->student->firstname,
                     'lrn' => $s->student->student_number,
                     'grade_section' => 'Grade ' . $s->student_section->grade_level . '-' . $s->student_section->section->name,
-                    'status' => $s->student->student_status 
+                    'status' => $s->student->student_status,
+                    'date_enrolled' => date('F j, Y h:m:i a', strtotime($s->created_at)),
                 ];
             }
         }
@@ -940,7 +1008,27 @@ class UserController extends Controller
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
         $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
+        $std_enrollment->type = 'Assisted Enrollment';
         $std_enrollment->save();
+
+        // add count to section student counter
+        $section_student_counter = \App\SectionStudentCount::where('school_year', $ay_a)
+                                        ->where('section_id', $section->id)
+                                        ->first();
+
+        if(empty($section_student_counter)) {
+            // create new counter
+            $ssc = new \App\SectionStudentCount();
+            $ssc->section_id = $section->id;
+            $ssc->school_year = $ay_a;
+            $ssc->count = 1;
+            $ssc->save();
+        }
+        else {
+            // increment count by 1
+            $section_student_counter->count += 1;
+            $section_student_counter->save();
+        }
 
 
 
@@ -1141,9 +1229,28 @@ class UserController extends Controller
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
         $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
+        $std_enrollment->type = 'Assisted Enrollment';
         $std_enrollment->save();
 
 
+        // add count to section student counter
+        $section_student_counter = \App\SectionStudentCount::where('school_year', $ay_a)
+                                        ->where('section_id', $section->id)
+                                        ->first();
+
+        if(empty($section_student_counter)) {
+            // create new counter
+            $ssc = new \App\SectionStudentCount();
+            $ssc->section_id = $section->id;
+            $ssc->school_year = $ay_a;
+            $ssc->count = 1;
+            $ssc->save();
+        }
+        else {
+            // increment count by 1
+            $section_student_counter->count += 1;
+            $section_student_counter->save();
+        }
 
         $action = 'Enrolled New Student';
         AuditTrailController::create($action);
@@ -1294,7 +1401,28 @@ class UserController extends Controller
         $std_enrollment->user_id = $student->id;
         $std_enrollment->student_section_id = $student_section->id;
         $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
+        $std_enrollment->type = 'Assisted Enrollment';
         $std_enrollment->save();
+
+
+        // add count to section student counter
+        $section_student_counter = \App\SectionStudentCount::where('school_year', $ay_a)
+                                        ->where('section_id', $section->id)
+                                        ->first();
+
+        if(empty($section_student_counter)) {
+            // create new counter
+            $ssc = new \App\SectionStudentCount();
+            $ssc->section_id = $section->id;
+            $ssc->school_year = $ay_a;
+            $ssc->count = 1;
+            $ssc->save();
+        }
+        else {
+            // increment count by 1
+            $section_student_counter->count += 1;
+            $section_student_counter->save();
+        }
 
 
         if($grade_level <= 10) {

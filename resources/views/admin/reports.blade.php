@@ -18,8 +18,9 @@
             <h1>Reports</h1>
 
             @include('includes.all')
-
-            
+              <p><a href="{{ route('admin.student.enrollment.history') }}" class="btn btn-primary btn-sm btn-block">Enrollment History</a></p>
+              <p><a href="{{ route('admin.online.enrolled.students') }}" class="btn btn-primary btn-sm btn-block">Online Enrollment</a></p>
+              <p><a href="{{ route('admin.assisted.enrolled.students') }}" class="btn btn-primary btn-sm btn-block">Assisted Enrollment</a></p>
               <p><a href="{{ route('admin.list.of.sections') }}" class="btn btn-primary btn-sm btn-block">List of sections</a></p>
               <p><a href="{{ route('admin.list.of.student.grade.level') }}" class="btn btn-primary btn-sm btn-block">List of students per grade level</a></p>
               <p><a href="{{ route('admin.list.of.student.per.section') }}" class="btn btn-primary btn-sm btn-block">List of students per section</a></p>

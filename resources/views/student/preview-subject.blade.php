@@ -22,6 +22,7 @@
           @include('includes.all')
 
           @if(count($subjects) > 0)
+            
             <table class="table table-hover table-bordered table-stiped">
               <thead>
                 <th>Subject Code</th>

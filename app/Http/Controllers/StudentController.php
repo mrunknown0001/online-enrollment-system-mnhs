@@ -210,6 +210,7 @@ class StudentController extends Controller
         $std_enrollment->user_id = Auth::user()->id;
         $std_enrollment->student_section_id = $student_section->id;
         $std_enrollment->school_year = $academic_year->from . '-' . $academic_year->to;
+        $std_enrollment->type = 'Online Enrollment';
         $std_enrollment->save();
 
 
@@ -246,6 +247,25 @@ class StudentController extends Controller
         }
         $online_enrolled->save();
 
+
+        // add count to section student counter
+        $section_student_counter = \App\SectionStudentCount::where('school_year', $ay_a)
+                                        ->where('section_id', $section->id)
+                                        ->first();
+
+        if(empty($section_student_counter)) {
+            // create new counter
+            $ssc = new \App\SectionStudentCount();
+            $ssc->section_id = $section->id;
+            $ssc->school_year = $ay_a;
+            $ssc->count = 1;
+            $ssc->save();
+        }
+        else {
+            // increment count by 1
+            $section_student_counter->count += 1;
+            $section_student_counter->save();
+        }
 
 
 		// student enrollment log
