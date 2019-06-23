@@ -241,7 +241,7 @@ class StudentController extends Controller
 		// print COR
 		$subjects = \App\Subject::where('grade_level', $section->grade_level)->get();
 
-		return view('student.print-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'message' => 'Enrollement Successful!']);
+		return view('student.print-cor', ['student' => $student, 'section' => $section, 'subjects' => $subjects, 'strand' => $strand, 'student_section' => $student_section, 'message' => 'Enrollement Successful!']);
 
 		// return redirect()->route('student.enrollment')->with('success', 'Online Registration Successful!');
 	}
