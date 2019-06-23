@@ -44,13 +44,44 @@
                 @endif
               </div>
               <div class="form-group">
-                <label for="day">Select Day</label>
+                {{-- <label for="day">Select Day</label>
                 <select name="day" id="day" class="form-control selectpicker" data-live-search="true" required>
                   <option value="">Select Day</option>
                   @foreach($days as $d)
                     <option value="{{ $d['id'] }}">{{ $d['name'] }}</option>
                   @endforeach
-                </select>
+                </select> --}}
+                <div class="row">
+                  <div class="col-md-6">
+                    <p><label for="mon">
+                      Monday
+                      <input type="checkbox" name="day[]" id="mon" value="M">
+                    </label></p>
+                    <p><label for="tue">
+                      Tuesday
+                      <input type="checkbox" name="day[]" id="tue" value="T">
+                    </label></p>
+                    <p><label for="wed">
+                      Wednesday
+                      <input type="checkbox" name="day[]" id="wed" value="W">
+                    </label></p>                    
+                  </div>
+                  <div class="col-md-6">
+                    <p><label for="thu">
+                      Thursday
+                      <input type="checkbox" name="day[]" id="thu" value="Th">
+                    </label></p>
+                    <p><label for="fri">
+                      Friday
+                      <input type="checkbox" name="day[]" id="fri" value="F">
+                    </label></p>
+                    <p><label for="sat">
+                      Saturday
+                      <input type="checkbox" name="day[]" id="sat" value="S">
+                    </label></p>
+                  </div>
+                </div>
+
                 <span class="help-block small"></span>
                 @if ($errors->has('day'))
                   <span class="invalid-feedback text-red" role="alert">

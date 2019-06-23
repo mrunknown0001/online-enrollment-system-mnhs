@@ -13,6 +13,11 @@ class FacultyAssignment extends Model
 
     public function subject()
     {
-    	return $this->belongsTo('\App\Subject', 'subject_id');
+    	return $this->belongsTo('App\Subject', 'subject_id');
+    }
+
+    public function faculty()
+    {
+    	return $this->belongsTo('App\User', 'faculty_id');
     }
 }

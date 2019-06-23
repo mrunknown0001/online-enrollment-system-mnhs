@@ -60,9 +60,9 @@
                   <tr>
                     <td>{{ $s->code }}</td>
                     <td>{{ $s->title }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ \App\Http\Controllers\GeneralController::get_time_and_day($enrolled_counter->academic_year, $section->id, $s->id) }}</td>
+                    <td>{{ \App\Http\Controllers\GeneralController::get_room_name($enrolled_counter->academic_year, $section->id, $s->id) }}</td>
+                    <td>{{ \App\Http\Controllers\GeneralController::faculty_assigned($enrolled_counter->academic_year, $section->id, $s->id) }}</td>
                   </tr>
                 @endforeach
               </tbody>

@@ -20,7 +20,8 @@ class CreateSchedulesTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->tinyInteger('day');
+            // $table->tinyInteger('day');
+            $table->string('days');
             $table->tinyInteger('start_time')->nullable();
             $table->tinyInteger('end_time')->nullable();
             $table->unsignedInteger('subject_id');

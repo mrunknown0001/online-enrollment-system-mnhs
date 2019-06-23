@@ -80,12 +80,18 @@ class ScheduleController extends Controller
 
         $section_id = $this->core->decryptString($request['section_id']);
         $room = $request['room'];
-        $day = $request['day'];
+        $day = json_encode($request['day']);
         $start_time = $request['start_time'];
         $end_time = $request['end_time'];
         $subject = $request['subject'];
 
-        $school_year = date('Y') . '-' . date('Y', strtotime("+1 year"));
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+
+        if(empty($academic_year)) {
+            return redirect()->route('admin.schedule.add')->with('error', 'No Active School Year. Please Activate School Year!');
+        }
+
+        $school_year = $academic_year->from . '-' . $academic_year->to;
 
         // check start time and end time
         if($start_time >= $end_time) {
@@ -96,7 +102,7 @@ class ScheduleController extends Controller
         $section_day_time_conflict = Schedule::where('school_year', $school_year)
             ->where('active', 1)
             ->where('section_id', $section_id)
-            ->where('day', $day)
+            ->where('days', $day)
             ->where('start_time', $start_time)
             ->first();
 
@@ -119,7 +125,7 @@ class ScheduleController extends Controller
         $conflict_room_time_date = Schedule::where('school_year', $school_year)
             ->where('active', 1)
             ->where('room_id', $room)
-            ->where('day', $day)
+            ->where('days', $day)
             ->where('start_time', $start_time)
             ->where('end_time', $end_time)
             ->first();
@@ -132,7 +138,7 @@ class ScheduleController extends Controller
         $range_room_time_date_conflict = Schedule::where('school_year', $school_year)
             ->where('active', 1)
             ->where('room_id', $room)
-            ->where('day', $day)
+            ->where('days', $day)
             ->where(function ($query) use ($start_time) {
                 $query->where('start_time', '<=', $start_time);
             })
@@ -148,7 +154,7 @@ class ScheduleController extends Controller
         $room_date_time_range_conflict = Schedule::where('school_year', $school_year)
             ->where('active', 1)
             ->where('room_id', $room)
-            ->where('day', $day)
+            ->where('days', $day)
             ->where('end_time', '<', $start_time)
             ->where('end_time', '>', $end_time )
             ->first();
@@ -162,7 +168,7 @@ class ScheduleController extends Controller
         $schedule->school_year = $school_year;
         $schedule->section_id = $section_id;
         $schedule->room_id = $room;
-        $schedule->day = $day;
+        $schedule->days = $day;
         $schedule->start_time = $start_time;
         $schedule->end_time = $end_time;
         $schedule->subject_id = $subject;
@@ -254,7 +260,7 @@ class ScheduleController extends Controller
             foreach($schedules as $s) {
                 $data[] = [
                     'section' => $this->core->getGradeSection($s->section_id),
-                    'day' => $this->core->getDay($s->day),
+                    'day' => json_decode($s->days),
                     'room' => $this->core->getRoomName($s->room_id),
                     'time' => $this->core->getTime($s->start_time) . ' - ' . $this->core->getTime($s->end_time),
                     'subject' => $this->core->getSubject($s->subject_id),

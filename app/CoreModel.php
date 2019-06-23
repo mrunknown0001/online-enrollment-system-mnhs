@@ -193,6 +193,17 @@ class CoreModel extends Model
 
 
 
+
+
+    
+
+
+
+
+
+
+
+
     /////////////////////////
     // find the equivalent //
     /////////////////////////
