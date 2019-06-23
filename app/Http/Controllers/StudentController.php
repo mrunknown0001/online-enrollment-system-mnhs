@@ -79,7 +79,7 @@ class StudentController extends Controller
  		// return $grades;
 
 
-		return view('student.evaluation', ['grades' => $grades, 'sy' => $sy]);
+		return view('student.evaluation', ['student' => $student, 'grades' => $grades, 'sy' => $sy]);
 	}
 
 
@@ -280,7 +280,7 @@ class StudentController extends Controller
                     $schedules[] = [
                         'subject' => $this->core->getSubject($s->id),
                         'room' => $this->core->getRoomName($sched->room_id),
-                        'day' => $this->core->getDay($sched->day),
+                        'day' => str_replace(array('[',']','"',','), '',$sched->days),
                         'start_time' => $this->core->getTime($sched->start_time),
                         'end_time' => $this->core->getTime($sched->end_time) 
                     ];
@@ -300,7 +300,7 @@ class StudentController extends Controller
 
         // return $schedules;
 
-		return view('student.schedules', ['schedules' => $schedules]);
+		return view('student.schedules', ['student' => $student, 'schedules' => $schedules]);
 	}
 
 }

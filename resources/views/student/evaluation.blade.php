@@ -12,25 +12,30 @@
 
 @section('content')
   <div class="section-admin container-fluid">
+
     <div id="printArea">
+      <br><br><br><br>
       <div class="row">
         <div class="col-md-12">
-          <br><br><br>
-          <h1>Student Evaluation</h1>
+          @include('includes.print-header')
+          <h5 class="text-center">Student Evaluation</h5>
           <p>
-            <button class="btn btn-primary hidden-on-print" onclick="window.print()"><i class="fa fa-print"></i></button>
+            <button class="btn btn-primary hidden-on-print" onclick="window.print()"><i class="fa fa-print hidden-on-print"></i></button>
           </p>
+        </div>
+        <div class="col-md-6">
+          <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
+          <h5>LRN: {{ $student->student_number }}</h5>
         </div>
         <div class="col-md-12">
           @include('includes.all')
-          
           @if($grades > 0)
             <div class="row">
               <div class="col-md-9">
-                <h4>Year & Section: Grade {{ Auth::user()->info->section->grade_level }} - {{ Auth::user()->info->section->name }}</h4>
+                <h5>Year & Section: Grade {{ Auth::user()->info->section->grade_level }} - {{ Auth::user()->info->section->name }}</h5>
               </div>
               <div class="col-md-3">
-                <h4>School Year: {{ $sy->from . '-' . $sy->to }}</h4>
+                <h5>School Year: {{ $sy->from . '-' . $sy->to }}</h5>
               </div>
             </div>
             <table id="grades" class="table table-hover table-striped table-bordered">
