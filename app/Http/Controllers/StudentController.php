@@ -198,6 +198,7 @@ class StudentController extends Controller
 		$student_section->user_id = Auth::user()->id;
 		$student_section->section_id = $section->id;
 		$student_section->grade_level = $section->grade_level;
+		$student_section->school_year = $academic_year->from . '-' . $academic_year->to;
 		$student_section->save();
 
 		// add enrolled count in section student

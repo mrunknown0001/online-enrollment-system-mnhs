@@ -839,6 +839,7 @@ class UserController extends Controller
         if($grade_level == 11 || $grade_level == 12 ) {
             $student_section->semester = $setting->semester;
         }
+        $student_section->school_year = $ay_a;
         $student_section->save();
 
 
@@ -1032,6 +1033,7 @@ class UserController extends Controller
         if($grade_level == 11 || $grade_level == 12) {
             $student_section->semester = $semester;
         }
+        $student_section->school_year = $ay_a;
         $student_section->save();
 
 
@@ -1119,7 +1121,8 @@ class UserController extends Controller
 
         $ay_a = $academic_year->from . '-' . $academic_year->to;
 
-        $semester = \App\Setting::find(1);
+        $settings = \App\Setting::find(1);
+        $semester = $settings->semester;
 
         $student = \App\User::findorfail($student_id);
 
@@ -1168,6 +1171,10 @@ class UserController extends Controller
         $student_section->section_id = $section->id;
         $student_section->grade_level = $grade_level;
         $student_section->user_id = $student->id;
+        if($grade_level == 11 || $grade_level == 12) {
+            $student_section->semester = $semester;
+        }
+        $student_section->school_year = $ay_a;
         $student_section->save();
 
 

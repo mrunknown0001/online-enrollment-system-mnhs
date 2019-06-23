@@ -25,6 +25,7 @@ class CreateStudentSectionsTable extends Migration
             $table->unsignedInteger('strand_id')->nullable();
             $table->foreign('strand_id')->references('id')->on('strands');
             $table->string('semester', 15)->nullable();
+            $table->string('school_year', 15)->nullable();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

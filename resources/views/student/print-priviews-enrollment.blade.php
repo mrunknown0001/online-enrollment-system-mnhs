@@ -13,30 +13,30 @@
 @section('content')
   <div class="section-admin container-fluid">
       <div class="row">
+
         <div class="col-md-12">
           <br><br><br>
-          <h1>Enrollment History</h1>
-        </div>
-        <div class="col-md-12">
-          
           <div id="printArea">
-            <div class="col-md-12">
-              @include('includes.print-header')
-              <h4 class="text-center">Certificate of Registration</h4>
-            </div>
-            <h4>{{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }}</h4>
-            <h4>{{ Auth::user()->student_number }}</h4>
-            <h4>Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
+            @include('includes.print-header')
+            <h5 class="text-center">Certificate of Registration</h5>
+            
+            <h5>{{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }}</h5>
+            <h5>{{ Auth::user()->student_number }}</h5>
+            <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
             <table class="table table-hover table-bordered table-stiped">
               <thead>
                 <th>Subject Code</th>
                 <th>Subject Title</th>
+                <th>Schedule</th>
+                <th>Room</th>
               </thead>
               <tbody>
                 @foreach($subjects as $s)
                   <tr>
                     <td>{{ $s->code }}</td>
                     <td>{{ $s->title }}</td>
+                    <td></td>
+                    <td></td>
                   </tr>
                 @endforeach
               </tbody>
