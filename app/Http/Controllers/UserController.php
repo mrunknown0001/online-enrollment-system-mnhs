@@ -1129,7 +1129,7 @@ class UserController extends Controller
         $grade_level_enroll = $student->info->grade_level + 1;
 
         // check if the grade level is okay
-        if($semester->semester == 1) {
+        if($settings->semester == 1) {
             if($grade_level != $grade_level_enroll) {
                 return redirect()->route('faculty.register.choose.grade')->with('error', 'Invalid Grade Level');
             }
