@@ -22,9 +22,9 @@ class GeneralController extends Controller
         // get time equiv
         $start_time = self::getTime($sched->start_time);
         $end_time = self::getTime($sched->end_time);
-        $days = json_decode($sched->days);
+        $days = str_replace(array('[',']','"'), '',$sched->days);
 
-        return $sched->days . ' ' . $start_time . '-' . $end_time;
+        return $days . ' ' . $start_time . '-' . $end_time;
     }
 
     // get room name to show in schedule
