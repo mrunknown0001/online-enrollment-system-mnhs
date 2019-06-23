@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-6">
                   @if($student->info->grade_level == 11 || $student->info->grade_level == 12)
-                    <h5>{{ if($strand != NULL ? $strand->name : '' }}</h5>
+                    <h5>{{ $strand != NULL ? $strand->name : '' }}</h5>
                     <h5>{{ $student_section->semester == 1 ? '1st' : '2nd' }} Semester</h5>
                   @endif
                 </div>
