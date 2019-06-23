@@ -10,4 +10,9 @@ class StudentInfo extends Model
     {
     	return $this->belongsTo('App\Section', 'section_id');
     }
+
+    public function strand()
+    {
+    	return $this->belongsTo('App\Strand', 'strand_id');
+    }
 }

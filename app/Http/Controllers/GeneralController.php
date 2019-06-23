@@ -22,7 +22,7 @@ class GeneralController extends Controller
         // get time equiv
         $start_time = self::getTime($sched->start_time);
         $end_time = self::getTime($sched->end_time);
-        $days = str_replace(array('[',']','"'), '',$sched->days);
+        $days = str_replace(array('[',']','"',','), '',$sched->days);
 
         return $days . ' ' . $start_time . '-' . $end_time;
     }

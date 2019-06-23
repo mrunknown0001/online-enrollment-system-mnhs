@@ -165,13 +165,15 @@ class StudentController extends Controller
 	public function saveEnrollment(Request $request)
 	{
 		$section_id = $request['section_id'];
-		$strand_id = $request['strand_id'];
+		$strand_id = Auth::user()->info->strand_id;
 
 		$section = \App\Section::findorfail($section_id);
 
         $academic_year = \App\SchoolYear::whereActive(1)->first();
 
         $student = Auth::user();
+
+        $strand = NULL;
 
         if($strand_id != NULL) {
         	$strand = \App\Strand::findorfail($strand_id);

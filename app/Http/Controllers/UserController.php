@@ -983,6 +983,7 @@ class UserController extends Controller
         $info = new StudentInfo();
         $info->grade_level = $grade_level;
         $info->section_id = $section->id;
+        $info->stran_id = $strand_id;
         $info->user_id = $student->id;
         $info->gender = $gender;
         $info->birthday = $birthday;
