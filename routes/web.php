@@ -378,6 +378,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => ['check_faculty', 'prevent.
 	// route to view students on the subject and section assigned
 	Route::get('/subject/{subject_id}/section/{section_id}/view/students/{academic_year}', 'FacultyController@subjectViewStudents')->name('faculty.view.students');
 
+
+	// route to view printout of students
+	Route::get('/subject/{subject_id}/section/{section_id}/view/students/{academic_year}/printout', 'FacultyController@printSubjectViewStudents')->name('faculty.view.students.print');
+
 	// route to view student details on faculty
 	Route::get('/student/{id}/view/details', 'FacultyController@studentViewDetails')->name('faculty.student.view.details');
 

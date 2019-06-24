@@ -12,4 +12,10 @@ class Section extends Model
     		->whereActive(1);
     }
 
+
+    public function strand()
+    {
+    	return $this->belongsTo('App\Strand', 'strand_id');
+    }
+
 }

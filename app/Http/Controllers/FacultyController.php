@@ -35,7 +35,7 @@ class FacultyController extends Controller
     public function myStudents()
     {
 
-        // get all students in section and subjecdt assigned to the teacher
+        // get all students in section and subject assigned to the teacher
         
         return view('faculty.my-students');
     }
@@ -105,8 +105,29 @@ class FacultyController extends Controller
 
         $students = StudentSection::where('section_id', $section->id)->where('school_year', $academic_year)->get();
 
-        return view('faculty.students', ['students' => $students, 'section' => $section, 'subject' => $subject]);
+        return view('faculty.students', ['students' => $students, 'section' => $section, 'subject' => $subject, 'academic_year' => $academic_year]);
     }
+
+
+
+    // method to print students master list per subject
+    public function printSubjectViewStudents($subject_id, $section_id, $academic_year)
+    {
+        // return $subject_id;
+        // return $section_id;
+        // return $academic_year;
+
+        $subject = \App\Subject::findorfail($subject_id);
+        $section = \App\Section::findorfail($section_id);
+
+        $students = StudentSection::where('section_id', $section->id)->where('school_year', $academic_year)->get();
+
+
+        return view('faculty.students-masterlist-print', ['students' => $students, 'section' => $section, 'subject' => $subject, 'academic_year' => $academic_year]);
+    }
+
+
+
 
 
     // method use to view stuent details

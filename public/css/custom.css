@@ -25,6 +25,10 @@
     color: #fff !important;
 }
 
+.borderless td, .borderless th {
+    border: none;
+}
+
 @media print {
   body * {
     visibility: hidden;
