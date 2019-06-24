@@ -18,6 +18,7 @@
             <h1>Student Dashboard</h1>
         </div>
         <div class="col-md-12">
+            @include('includes.all')
             <table class="table table-hover table-bordered table-striped">
                 <tr>
                     <td>Fullname</td>

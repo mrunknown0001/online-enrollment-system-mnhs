@@ -42,7 +42,7 @@ class User extends Authenticatable
     // student section
     public function student_section()
     {
-        return $this->hasOne('App\StudentSection', 'user_id');
+        return $this->hasOne('App\StudentSection', 'user_id')->where('active', 1);
     }
 
 

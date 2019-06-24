@@ -30,7 +30,9 @@ class StudentController extends Controller
 
 		$section = $student_section->section;
 
-		return view('student.print-priviews-enrollment', ['student' => Auth::user(), 'subjects' => $subjects, 'section' => $section]);
+		// view schedule
+
+		return view('student.print-priviews-enrollment', ['student' => Auth::user(), 'student_section' => $student_section, 'subjects' => $subjects, 'section' => $section]);
 	}
 
 
@@ -297,6 +299,11 @@ class StudentController extends Controller
 		$student = Auth::user();
 
 		$grade_level = $student->info->grade_level;
+
+		if(empty($student->student_section)) {
+			return redirect()->route('student.dashboard')->with('error', 'Schedule Not Available!');
+		}
+
 		$section_id = $student->student_section->section->id;
 
 		$section = $student->student_section->section;
