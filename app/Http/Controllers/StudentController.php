@@ -299,6 +299,8 @@ class StudentController extends Controller
 		$grade_level = $student->info->grade_level;
 		$section_id = $student->student_section->section->id;
 
+		$section = $student->student_section->section;
+
 		$subjects = Subject::where('grade_level', $grade_level)->get(); 
 
         if(count($subjects) > 0) {
@@ -335,7 +337,7 @@ class StudentController extends Controller
 
         // return $schedules;
 
-		return view('student.schedules', ['student' => $student, 'schedules' => $schedules]);
+		return view('student.schedules', ['student' => $student, 'section' => $section, 'schedules' => $schedules]);
 	}
 
 }
