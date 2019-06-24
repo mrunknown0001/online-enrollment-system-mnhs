@@ -20,7 +20,7 @@
 			<p>
 				<a href="{{ route('faculty.assigned.subjects') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
 				{{-- <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button> --}}
-				<a href="{{ route('faculty.view.students.print', ['subject_id' => $subject->id, 'section_id' => $section->id, 'academic_year' => $academic_year]) }}" class="btn btn-primary"><i class="fa fa-print"></i></a>
+				<a href="{{ route('faculty.view.students.print', ['subject_id' => encrypt($subject->id), 'section_id' => encrypt($section->id), 'academic_year' => $academic_year]) }}" class="btn btn-primary"><i class="fa fa-print"></i></a>
 			</p>
 
             @include('includes.all')

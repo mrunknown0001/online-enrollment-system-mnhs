@@ -116,6 +116,8 @@ class FacultyController extends Controller
         // return $subject_id;
         // return $section_id;
         // return $academic_year;
+        $subject_id = decrypt($subject_id);
+        $section_id = decrypt($section_id);
 
         $subject = \App\Subject::findorfail($subject_id);
         $section = \App\Section::findorfail($section_id);
