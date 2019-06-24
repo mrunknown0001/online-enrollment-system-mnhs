@@ -23,6 +23,9 @@
 
       @if($schedules != NULL)
         <div id="printArea">
+          @include('includes.print-header')
+          <h5 class="text-center">Faculty Schedule</h5>
+          <h5>Name: {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</h5>
           <table class="table table-hover table-bordered table-striped">
             <thead>
               <th>Section</th>

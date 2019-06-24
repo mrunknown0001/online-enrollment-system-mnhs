@@ -183,7 +183,7 @@ class FacultyController extends Controller
                         'section' => $this->core->getGradeSection($sched->section_id),
                         'subject' => $this->core->getSubject($sched->subject_id),
                         'room' => $this->core->getRoomName($sched->room_id),
-                        'day' => $this->core->getDay($sched->day),
+                        'day' => str_replace(array('[',']','"',','), '',$sched->days),
                         'start_time' => $this->core->getTime($sched->start_time),
                         'end_time' => $this->core->getTime($sched->end_time) 
                     ];
