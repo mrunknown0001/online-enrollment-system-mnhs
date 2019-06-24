@@ -20,9 +20,10 @@
             @include('includes.print-header')
             <h5 class="text-center">Certificate of Registration</h5>
             
-            <h5>{{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }}</h5>
-            <h5>{{ Auth::user()->student_number }}</h5>
-            <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+            <h5>Fullname: {{ Auth::user()->lastname . ', ' . Auth::user()->firstname . ' ' . Auth::user()->middlename }}</h5>
+            <h5>LRN: {{ Auth::user()->student_number }}</h5>
+            <h5>Grade Level &amp; Section: Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+            <h5>School Year: {{ $student_section->school_year }}</h5>
             <table class="table table-hover table-bordered table-stiped">
               <thead>
                 <th>Subject Code</th>
@@ -45,7 +46,7 @@
             </table>
           </div>
 
-          <button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+          <p><button type="button" class="btn btn-success" onclick="window.print()"><i class="fa fa-print"></i> Print</button></p>
 
         </div>
       </div>

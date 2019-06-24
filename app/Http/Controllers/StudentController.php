@@ -150,6 +150,14 @@ class StudentController extends Controller
 
 		$section = \App\Section::findorfail($id);
 
+		$sy = \App\SchoolYear::whereActive(1)->first();
+
+		if(empty($sy)) {
+			return redirect()->route('student.dashboard')->with('error', 'No Active School Year!');
+		}
+
+		$school_year = $sy->from . '-' . $sy->to;
+
 		$strand_id = NULL;
 
 		if($section->strand_id != NULL) {
@@ -159,7 +167,7 @@ class StudentController extends Controller
 		// get subjects
 		$subjects = \App\Subject::where('grade_level', $section->grade_level)->where('active', 1)->get();
 
-		return view('student.preview-subject', ['subjects' => $subjects, 'section' => $section, 'strand_id' => $strand_id]);
+		return view('student.preview-subject', ['subjects' => $subjects, 'section' => $section, 'strand_id' => $strand_id, 'school_year' => $school_year]);
 	}
 
 

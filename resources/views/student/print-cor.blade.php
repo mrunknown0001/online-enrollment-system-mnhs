@@ -26,12 +26,13 @@
               <div class="row">
                 <div class="col-md-12">
                   @include('includes.print-header')
-                  <h5>Certificate of Registration</h5>
+                  <h5 class="text-center">Certificate of Registration</h5>
                 </div>
                 <div class="col-md-6">
                   <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
                   <h5>LRN: {{ $student->student_number }}</h5>
                   <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+                  <h5>School Year: {{ $student_section->school_year }}</h5>
                 </div>
                 <div class="col-md-6">
                   @if($student->info->grade_level == 11 || $student->info->grade_level == 12)
@@ -46,17 +47,17 @@
                   <th>Subject Code</th>
                   <th>Subject Title</th>
                   <th>Room</th>
-                  <th>Day</th>
-                  <th>Time</th>
+                  <th>Schedule</th>
+                  <th>Faculty Assigned</th>
                 </thead>
                 <tbody>
                   @foreach($subjects as $s)
                     <tr>
                       <td>{{ $s->code }}</td>
                       <td>{{ $s->title }}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>{{ \App\Http\Controllers\GeneralController::get_room_name($student_section->school_year, $student_section->section_id, $s->id) }}</td>
+                      <td>{{ \App\Http\Controllers\GeneralController::get_time_and_day($student_section->school_year, $student_section->section_id, $s->id) }}</td>
+                      <td>{{ \App\Http\Controllers\GeneralController::faculty_assigned($student_section->school_year, $student_section->section_id, $s->id) }}</td>
                     </tr>
                   @endforeach
                 </tbody>
