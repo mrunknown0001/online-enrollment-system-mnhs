@@ -16,6 +16,9 @@
           <div class="col-md-12">
             <br><br><br>
             <h1>Online Enrolled Students</h1>
+            <p>
+              <a href="{{ route('admin.reports') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Reports</a>
+            </p>
             <div class="row">
               <div class="col-md-3">
                 <form>
