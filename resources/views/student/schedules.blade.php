@@ -28,6 +28,7 @@
                 <h5>Student Name: {{ $student->lastname . ', ' . $student->firstname . ' ' . $student->middlename }}</h5>
                 <h5>LRN: {{ $student->student_number }}</h5>
                 <h5>Grade {{ $section->grade_level }} - {{ $section->name }}</h5>
+                <h5>School Year: {{ $student_section->school_year }}</h5>
               </div>
             </div>
             <table class="table table-hover table-bordered table-striped">

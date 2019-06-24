@@ -337,7 +337,7 @@ class StudentController extends Controller
 
         // return $schedules;
 
-		return view('student.schedules', ['student' => $student, 'section' => $section, 'schedules' => $schedules]);
+		return view('student.schedules', ['student' => $student, 'student_section' => $student->student_section, 'section' => $section, 'schedules' => $schedules]);
 	}
 
 }

@@ -55,6 +55,7 @@ class FacultyController extends Controller
 
         $sy = \App\FacultyAssignment::where('faculty_id', Auth::user()->id)
                             ->distinct()
+                            ->orderBy('academic_year', 'desc')
                             ->get(['academic_year']);
         
         return view('faculty.my-subjects', ['subjects' => $subjects, 'sy' => $sy, 'ay' => $ay]);
@@ -81,7 +82,7 @@ class FacultyController extends Controller
                 $data[] = [
                     'grade_section' => 'Grade ' . $a->section->grade_level . ' - ' . $a->section->name,
                     'subject' => $a->subject->code,
-                    'action' => "<a href=" .  route('faculty.view.students', ['subject_id' => encrypt($a->subject_id), 'section_id' => encrypt($a->section_id)]) . " class='btn btn-success btn-xs'><i class='fa fa-eye'></i> View Students</a>
+                    'action' => "<a href=" .  route('faculty.view.students', ['subject_id' => encrypt($a->subject_id), 'section_id' => encrypt($a->section_id), 'academic_year' => $a->academic_year]) . " class='btn btn-success btn-xs'><i class='fa fa-eye'></i> View Students</a>
                         <a href=" . route('faculty.encode.grades', ['subject_id' => encrypt($a->subject_id), 'section_id' => encrypt($a->section_id)]) . " class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Encode Grades</a>"
                 ];
             }
@@ -92,15 +93,17 @@ class FacultyController extends Controller
 
 
     // method use to view students enrolled in the subject, section and grade level
-    public function subjectViewStudents($subject_id, $section_id)
+    public function subjectViewStudents($subject_id, $section_id, $academic_year)
     {
         $subject_id = $this->core->decryptString($subject_id);
         $section_id = $this->core->decryptString($section_id);
 
+
+
         $section = Section::findorfail($section_id);
         $subject = Subject::findorfail($subject_id);
 
-        $students = StudentSection::where('active', 1)->where('section_id', $section->id)->get();
+        $students = StudentSection::where('section_id', $section->id)->where('school_year', $academic_year)->get();
 
         return view('faculty.students', ['students' => $students, 'section' => $section, 'subject' => $subject]);
     }
