@@ -38,24 +38,32 @@
             </form>
           </div>
         </div>
+        <p>
+          <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
+        </p>
         @include('includes.all')
         
-        <table id="students" class="table table-hover table-bordered table-striped">
-            <thead>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>LRN</th>
-                <th>Grade &amp; Section</th>
-                <th>Status</th>
-                <th>Date Enrolled</th>
-            </thead>
-        </table>
+        <div id="printArea">
+          @include('includes.print-header')
+          <h4 class="text-center">Assisted Students: <span id="year"></span></h4>
+          <table id="students" class="table table-hover table-bordered table-striped">
+              <thead>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>LRN</th>
+                  <th>Grade &amp; Section</th>
+                  <th>Status</th>
+                  <th>Date Enrolled</th>
+              </thead>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 <script>
   $(document).ready(function() {
     var ay = $("#current").val();
+    $("#year").text(ay);
     $('#students').DataTable({
       ajax: {
         url: "/admin/student/assisted/students/" + ay,
@@ -70,11 +78,14 @@
         { data: 'date_enrolled' }
       ],
       destroy: true,
+      paging: false,
+      searching: false,
     });
   } );
 
   function selectChange() {
     var ay = document.getElementById("academic_year").value;
+    $("#year").text(ay);
     if(ay == '') {
       ay = 'null';
     }
@@ -93,6 +104,8 @@
         { data: 'date_enrolled' }
       ],
       destroy: true,
+      paging: false,
+      searching: false,
     });
   }
 </script>
