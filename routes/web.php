@@ -193,6 +193,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check_admin', 'prevent.back
 	Route::get('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSection')->name('admin.list.of.student.per.section');
 	Route::post('/reports/list-of-student-per-section', 'ReportController@ListOfStudentPerSectionPost')->name('admin.list.of.student.per.section.post');
 
+
+	// report list of faculy with subject assigne per year
+	Route::get('/reports/list-of-faculty/', 'ReportController@listOfFaculty')->name('admin.list.of.faculty');
+
+	Route::get('/reports/list-of-faculty/data/{academic_year}', 'ReportController@listOfFacultyData')->name('admin.list.of.faculty.data');
+
+
 	// report junior students
 	Route::get('/reports/junior-high', 'ReportController@listOfJuniorHighStudents')->name('admin.reports.junior.high');
 

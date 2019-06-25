@@ -57,6 +57,48 @@ class ReportController extends Controller
     }
 
 
+
+    public function listOfFaculty()
+    {
+        $current = \App\SchoolYear::whereActive(1)->first();
+        $ay = 1;
+        if(!empty($current)) {
+            $ay = $current->from . '-' . $current->to;
+        }
+
+        $ays = \App\FacultyAssignment::distinct()->orderBy('academic_year', 'desc')->get(['academic_year']);
+
+        return view('admin.report-list-of-faculty', ['ay' => $ay, 'ays' => $ays]);
+    }
+
+
+    public function listOfFacultyData($academic_year)
+    {
+        $data = [
+            'faculty' => NULL,
+            'id_number' => NULL,
+            'grade_section' => NULL,
+            'subject' => NULL,
+        ];
+
+        $assignment = \App\FacultyAssignment::where('academic_year', $academic_year)->get();
+
+        if(count($assignment) > 0) {
+            $data = NULL;
+            foreach($assignment as $a) {
+                $data[] = [
+                    'faculty' => $a->faculty->firstname . ' ' . $a->faculty->lastname,
+                    'id_number' => $a->faculty->employee_id,
+                    'grade_section' => 'Grade ' . $a->section->grade_level . '-' . $a->section->name,
+                    'subject' => $a->subject->title,
+                ];
+            }
+        }        
+
+        return $data;
+    }
+
+
     // list of students per grade level
     public function listOfStudentPerGradeLevel()
     {
