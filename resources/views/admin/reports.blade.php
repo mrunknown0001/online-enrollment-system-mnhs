@@ -24,8 +24,8 @@
               <p><a href="{{ route('admin.list.of.sections') }}" class="btn btn-primary btn-sm btn-block">List of sections</a></p>
               <p><a href="{{ route('admin.list.of.student.grade.level') }}" class="btn btn-primary btn-sm btn-block">List of students per grade level</a></p>
               <p><a href="{{ route('admin.list.of.student.per.section') }}" class="btn btn-primary btn-sm btn-block">List of students per section</a></p>
-              <p><a href="{{ route('admin.reports.junior.high') }}" class="btn btn-primary btn-sm btn-block">List of junior high students</a></p>
-              <p><a href="{{ route('admin.list.of.senior.high.students') }}" class="btn btn-primary btn-sm btn-block">List of senior high students</a></p>
+              {{-- <p><a href="{{ route('admin.reports.junior.high') }}" class="btn btn-primary btn-sm btn-block">List of junior high students</a></p>
+              <p><a href="{{ route('admin.list.of.senior.high.students') }}" class="btn btn-primary btn-sm btn-block">List of senior high students</a></p> --}}
               {{-- List of faculties per grade level with sections assigned
               List of faculties per department
               List of class schedule --}}
