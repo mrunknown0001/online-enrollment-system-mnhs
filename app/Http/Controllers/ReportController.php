@@ -15,9 +15,45 @@ class ReportController extends Controller
     // LIST OF SECTIONS
     public function listOfSections()
     {
-    	$sections = \App\Section::whereActive(1)->orderBy('grade_level', 'ASC')->orderBy('name', 'ASC')->get();
+    	// $sections = \App\Section::whereActive(1)->orderBy('grade_level', 'ASC')->orderBy('name', 'ASC')->get();
 
-    	return view('admin.report-list-of-sections', ['sections' => $sections]);
+        // get all year in section stuent count
+        $ssc = \App\SectionStudentCount::distinct()->orderBy('school_year', 'desc')->get(['school_year']);
+
+        $sy = \App\SchoolYear::whereActive(1)->first();
+        $current = null;
+        if(!empty($sy)) {
+            $current = $sy->from . '-' . $sy->to;
+        }
+
+    	return view('admin.report-list-of-sections', ['ssc' => $ssc, 'current' => $current]);
+    }
+
+
+    // list of section by school year
+    public function listOfSectionsData($academic_year)
+    {
+        // get all section by academic year
+        $sections = \App\SectionStudentCount::where('school_year', $academic_year)->get();
+
+        $data = [
+            'section' => NULL,
+            'grade_level' => NULL,
+            'count' => NULL,
+        ];
+
+        if(count($sections) > 0) {
+            $data = NULL;
+            foreach($sections as $s) {
+                $data[] = [
+                    'section' => $s->section->name,
+                    'grade_level' => 'Grade ' . $s->section->grade_level,
+                    'count' => $s->count
+                ];
+            }
+        }
+
+        return $data;
     }
 
 

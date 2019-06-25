@@ -19,6 +19,7 @@
         <p>
           <a href="{{ route('admin.reports') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Back to Reports</a>
         </p>
+
         @include('includes.all')
         <p>
           <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
