@@ -27,6 +27,7 @@
           <div class="row">
             <div class="col-md-12">
               @if(count($students) > 0)
+                @include('includes.print-header')
                 <table class="table table-striped table-hovered table-bordered">
                   <thead>
                     <th>Student Name/LRN</th>
