@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col-md-3">
             <form>
-              <input type="hidden" id="current" value="{{ $ay }}">
+              <input type="hidden" id="current" value="{{ $ay != NULL ? $ay : '1' }}">
               <div class="form-group">
                 <select onchange="selectChange()" class="form-control" name="academic_year" id="academic_year">
                   <option value="">Select Academic Year</option>
