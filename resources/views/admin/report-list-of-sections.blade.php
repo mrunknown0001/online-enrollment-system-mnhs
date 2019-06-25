@@ -23,7 +23,7 @@
           <div class="col-md-3">
             <form>
               <div class="form-group">
-                <input type="hidden" id="current" value="{{ $current }}">
+                <input type="hidden" id="current" value="{{ $current != NULL ? $current : '1' }}">
                 <select class="form-control" id="academic_year" onclick="selectChange()">
                   <option value="">Select School Year</option>
                   @if(count($ssc) > 0)
@@ -71,6 +71,9 @@
         { data: 'count' }
       ],
       destroy: true,
+      paging: false,
+      searching: false,
+      lengthchange: false,
     });
   } );
 
@@ -91,6 +94,9 @@
         { data: 'count' }
       ],
       destroy: true,
+      paging: false,
+      searching: false,
+      lengthchange: false,
     });
   }
 </script>
