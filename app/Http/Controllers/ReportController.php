@@ -78,7 +78,7 @@ class ReportController extends Controller
 
     	// return $students;
 
-        return view('admin.report-student-per-grade-level-view', ['students' => $students]);
+        return view('admin.report-student-per-grade-level-view', ['students' => $students, 'grade_level' => $grade_level]);
     }
 
 

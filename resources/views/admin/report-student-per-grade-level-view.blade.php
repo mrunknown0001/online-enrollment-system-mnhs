@@ -28,6 +28,7 @@
             <div class="col-md-12">
               @if(count($students) > 0)
                 @include('includes.print-header')
+                <h4 class="text-center">Students on Grade {{ $grade_level }}</h4>
                 <table class="table table-striped table-hovered table-bordered">
                   <thead>
                     <th>Student Name/LRN</th>

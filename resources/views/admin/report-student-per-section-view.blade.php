@@ -26,6 +26,7 @@
         </p>
         <div id="printArea">
           @include('includes.print-header')
+          <h4 class="text-center">Students on Grade {{ $section->grade_level }} - {{ $section->name }}</h4>
           <div class="row">
             <div class="col-md-12">
               @if(count($students) > 0)
