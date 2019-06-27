@@ -73,7 +73,7 @@
       destroy: true,
       paging: false,
       searching: false,
-      lengthchange: false,
+      bInfo : false,
     });
   } );
 
@@ -96,7 +96,7 @@
       destroy: true,
       paging: false,
       searching: false,
-      lengthchange: false,
+      bInfo : false,
     });
   }
 </script>

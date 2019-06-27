@@ -80,6 +80,7 @@
       destroy: true,
       paging: false,
       searching: false,
+      bInfo : false,
     });
   } );
 
@@ -106,6 +107,7 @@
       destroy: true,
       paging: false,
       searching: false,
+      bInfo : false,
     });
   }
 </script>
