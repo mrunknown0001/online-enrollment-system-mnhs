@@ -241,7 +241,12 @@ class ScheduleController extends Controller
     public function allSchedules()
     {
 
-        $school_year = date('Y') . '-' . date('Y', strtotime('+1 year'));
+        $academic_year = \App\SchoolYear::whereActive(1)->first();
+        $school_year = NULL;
+        if(!empty($academic_year)) {
+            $school_year = $academic_year->from . '-' . $academic_year->to;
+        }
+        
         $schedules = Schedule::where('active', 1)->where('school_year', $school_year)->get();
 
         $data = [
